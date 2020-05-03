@@ -1,0 +1,153 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+.container {
+    padding: 10px;
+    width: 380px;
+    margin: 0 auto;
+}
+
+.header {
+    width: 380px;
+    height: 200px;
+    background-image: url('img1.svg');
+    background-size: 150%;
+    background-color: lightblue;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+}
+
+#clear {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#clear i {
+    font-size: 30px;
+    color: white;
+}
+
+#clear i:hover {
+    cursor: pointer;
+    text-shadow: 1px 3px 5px black;
+    transform: rotate(45deg);
+}
+
+#date {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: white;
+    font-size: 25px;
+}
+
+.content {
+    width: 380px;
+    height: 350px;
+    background-color: white;
+    max-height: 350px;
+    overflow: auto;
+}
+
+.content ul {
+    padding: 0;
+    margin: 0;
+}
+
+.item {
+    width: 380px;
+    height: 45px;
+    min-height: 45px;
+    position: relative;
+    border-bottom: 1px solid black;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item i.fa-circle {
+    position: absolute;
+    font-size: 25px;
+    padding-left: 5px;
+    left: 15px;
+    top: 10px;
+}
+
+.item i.fa-circle:hover {
+    cursor: pointer;
+}
+
+.fa-check-circle {
+    color: green;
+    position: absolute;
+    font-size: 25px;
+    padding-left: 5px;
+    left: 15px;
+    top: 10px;
+}
+
+.lineThrough{
+    text-decoration: line-through;
+    color : rgb(124, 49, 49);
+}
+
+.item p.text {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    left: 50px;
+    top: 10px;
+    background-color: white;
+    max-width: 285px;
+}
+
+.item i.fa-trash-alt {
+    position: absolute;
+    font-size: 25px;
+    right: 15px;
+    top: 10px;
+}
+
+.item i.fa-trash-alt:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.add-item {
+    position: relative;
+    width: 380px;
+    height: 61px;
+    background-color: white;
+    padding: 10px;
+    border-top: 1px solid black;
+}
+
+.add-item i {
+    position: absolute;
+    font-size: 40px;
+    color: blue;
+}
+
+.add-item input {
+    position: absolute;
+    left: 50px;
+    height: 35px;
+    width: 310px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    padding-left: 10px;
+}
