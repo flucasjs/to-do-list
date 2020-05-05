@@ -7,14 +7,18 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: rgb(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* ----- Container ----- */
 
 .container {
     padding: 10px;
     width: 380px;
     margin: 0 auto;
 }
+
+/* ----- Header ----- */
 
 .header {
     width: 380px;
@@ -53,10 +57,12 @@ body {
     font-size: 25px;
 }
 
+/* ----- Content ----- */
+
 .content {
     width: 380px;
     height: 350px;
-    background-color: white;
+    background: white;
     max-height: 350px;
     overflow: auto;
 }
@@ -110,7 +116,7 @@ body {
     font-size: 20px;
     left: 50px;
     top: 10px;
-    background-color: white;
+    background-color: inherit;
     max-width: 285px;
 }
 
@@ -125,6 +131,8 @@ body {
     color: red;
     cursor: pointer;
 }
+
+/* ----- Add Item ----- */
 
 .add-item {
     position: relative;
@@ -150,4 +158,22 @@ body {
     border: none;
     font-size: 20px;
     padding-left: 10px;
+}
+
+/* ----- Theme ----- */
+
+#theme {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+}
+
+#theme i {
+    font-size: 30px;
+}
+
+#theme i:hover {
+    cursor: pointer;
 }

@@ -3,11 +3,17 @@ const clear = document.getElementById("clear");
 const dateElement = document.getElementById("date");
 const list = document.getElementById("list");
 const input = document.getElementById("input");
+const content = document.querySelector(".content");
+const additem = document.querySelector(".add-item");
 
 // Visual elements used to indicate completion of items.
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle";
 const LINE_THROUGH = "lineThrough";
+
+// Visual element used to toggle theme settings.
+const TOGGLEON = "fa-toggle-on";
+const TOGGLEOFF = "fa-toggle-off";
 
 // Variables used for local storage.
 let LIST, id;
@@ -111,11 +117,32 @@ list.addEventListener("click", (event) => {
     const element = event.target;
     const elementJob = element.dataset.job;
 
-    if(elementJob == "complete") {
+    if (elementJob == "complete") {
         completeToDo(element);
     } else if (elementJob == "delete") {
         removeToDo(element);
     }
 
     localStorage.setItem("TODO", JSON.stringify(LIST));
+});
+
+function changeBodyColor(color) {
+    document.body.style.background = yellow;
+}
+
+theme.addEventListener("click", (event) => {
+    const element = event.target;
+    
+    element.classList.toggle(TOGGLEON);
+    element.classList.toggle(TOGGLEOFF);
+
+    if (element.classList.contains(TOGGLEON)) {
+        document.body.style.background = "rgba(0, 0, 0, 0.75)";
+        content.style.background = "lightgray";
+        additem.style.background = "lightgray";
+    } else {
+        document.body.style.background = "rgba(0,0,0,0.1)";
+        content.style.background = "white";
+        additem.style.background = "white";
+    }
 });
