@@ -5,6 +5,7 @@ const list = document.getElementById("list");
 const input = document.getElementById("input");
 const content = document.querySelector(".content");
 const additem = document.querySelector(".add-item");
+const header = document.querySelector(".header");
 
 // Visual elements used to indicate completion of items.
 const CHECK = "fa-check-circle";
@@ -127,7 +128,7 @@ list.addEventListener("click", (event) => {
 });
 
 function changeBodyColor(color) {
-    document.body.style.background = yellow;
+    document.body.style.background = color;
 }
 
 theme.addEventListener("click", (event) => {
@@ -140,9 +141,16 @@ theme.addEventListener("click", (event) => {
         document.body.style.background = "rgba(0, 0, 0, 0.75)";
         content.style.background = "lightgray";
         additem.style.background = "lightgray";
+        header.style.backgroundImage = "url('img2.svg')";
+        header.style.backgroundSize = "150%";
+        header.style.backgroundPosition = "initial";
+
     } else {
-        document.body.style.background = "rgba(0,0,0,0.1)";
+        document.body.style.background = "aqua";
         content.style.background = "white";
         additem.style.background = "white";
+        header.style.backgroundImage = "url('img1.svg')";
+        header.style.backgroundSize = "200%";
+        header.style.backgroundPosition = "-100px -175px";
     }
 });
