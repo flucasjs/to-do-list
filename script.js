@@ -6,6 +6,7 @@ const input = document.getElementById("input");
 const content = document.querySelector(".content");
 const additem = document.querySelector(".add-item");
 const header = document.querySelector(".header");
+const container = document.querySelector(".container");
 
 // Visual elements used to indicate completion of items.
 const CHECK = "fa-check-circle";
@@ -146,7 +147,7 @@ theme.addEventListener("click", (event) => {
         header.style.backgroundPosition = "initial";
 
     } else {
-        document.body.style.background = "aqua";
+        document.body.style.background = "rgb(137, 201, 170)";
         content.style.background = "white";
         additem.style.background = "white";
         header.style.backgroundImage = "url('img1.svg')";

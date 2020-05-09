@@ -7,15 +7,18 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: aqua;
+    background-color: rgb(155, 214, 185);
+    background-color: rgb(137, 201, 170);
 }
 
 /* ----- Container ----- */
 
 .container {
-    padding: 10px;
+
     width: 380px;
-    margin: 0 auto;
+    margin: 10px auto 0px;
+    font-family: 'Amiri', serif;
+    box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
 }
 
 /* ----- Header ----- */
@@ -46,7 +49,7 @@ body {
 
 #clear i:hover {
     cursor: pointer;
-    text-shadow: 1px 3px 5px black;
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
     transform: rotate(45deg);
 }
 
@@ -56,7 +59,7 @@ body {
     bottom: 10px;
     color: white;
     font-size: 25px;
-    text-shadow: 1px 3px 5px black;
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 /* ----- Content ----- */
@@ -143,6 +146,7 @@ body {
     background-color: white;
     padding: 10px;
     border-top: 1px solid black;
+    
 }
 
 .add-item i {
