@@ -10,28 +10,32 @@
         <script defer type="text/javascript" src="script.js"></script>
     </head>
     <body>
-        <div id="theme">
-            <i id="toggle" class="fas fa-toggle-off fa-lg"></i>
+        <div class="theme-selector">
+            <i class="theme-selector__toggle-icon fas fa-toggle-off fa-lg"></i>
         </div>
-        <div class="app-container">
-            <div class="app-container__header">
-                <div id="clear">
-                    <i class="fas fa-redo-alt fa-lg"></i>
+        <div class="app">
+            <div class="header">
+                <div class="todo-list-refresher">
+                    <i class="todo-list-refresher__redo-icon fas fa-redo-alt fa-lg"></i>
                 </div>
-                <div id="date">Day Month Year</div>
+                <div class="date">
+                    <span class="date__text">Day Month Year</span>
+                </div>
             </div>
-            <div class="content">
-                <ul id="list">
-                    <!--<li class="item">
-                        <i class="far fa-circle" data-job="complete"></i>
-                        <p class="text">To-do item</p>
-                        <i class="far fa-trash-alt" data-job="delete"></i>
-                    </li>-->
+            <div class="main-content">
+                <ul class="todo-list">
+                    <!--
+                        <li class="todo-list__item">
+                            <i class="todo-list__circle-icon--unchecked far fa-circle" data-job="complete"></i>
+                            <p class="todo-list__text">To-do item</p>
+                            <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete"></i>
+                        </li>
+                    -->
                 </ul>
             </div>
-            <div class="add-item">
-                <i class="fas fa-plus-circle"></i>
-                <input type="text" id="input" placeholder="Add an item">
+            <div class="item-adder">
+                <i class="item-adder__plus-circle-icon fas fa-plus-circle"></i>
+                <input type="text" class="item-adder__input" placeholder="Add an item">
             </div>
         </div>
     </body>
