@@ -1,19 +1,19 @@
 // Selector constants.
-const clear = document.getElementById("clear");
-const dateElement = document.getElementById("date");
-const list = document.getElementById("list");
-const input = document.getElementById("input");
-const content = document.querySelector(".content");
-const additem = document.querySelector(".add-item");
+const clear = document.querySelector(".todo-list-refresher");
+const dateText = document.querySelector(".date__text");
+const list = document.querySelector(".todo-list");
+const input = document.querySelector(".item-adder__input");
+const content = document.querySelector(".main-content");
+const additem = document.querySelector(".item-adder");
 const header = document.querySelector(".header");
-const container = document.querySelector(".container");
+const toggle = document.querySelector(".theme-selector");
 
 // Arguements for date text.
 const options = {weekday: "long", month: "short", day: "numeric"};
 const today = new Date();
 
 // Todays date.
-dateElement.innerHTML = today.toLocaleDateString("en-US", options);
+dateText.innerHTML = today.toLocaleDateString("en-US", options);
 
 // Visual elements used to indicate completion of items.
 const CHECK = "fa-check-circle";
@@ -49,8 +49,6 @@ if (data) {
 
 // Theme Loader. Preserves the state of the theme using local storage.
 if (style == "dark") {
-    
-    let element = document.getElementById("toggle");
 
     setTheme(toggle);
 
@@ -119,7 +117,7 @@ list.addEventListener("click", (event) => {
 });
 
 // Dark and light theme toggle
-theme.addEventListener("click", (event) => {
+toggle.addEventListener("click", (event) => {
 
     const element = event.target;
     
@@ -132,8 +130,10 @@ theme.addEventListener("click", (event) => {
 function completeToDo(element) {
 
     element.classList.toggle(CHECK);
+    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--checked");
     element.classList.toggle(UNCHECK);
-    element.parentNode.querySelector(".text").classList.toggle(LINE_THROUGH);
+    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--unchecked");
+    element.parentNode.querySelector(".todo-list__text").classList.toggle("todo-list__text--linethrough");
 
     LIST[element.id].done = LIST[element.id].done ? false : true;
 
@@ -159,13 +159,15 @@ function addToDo(toDo, id, done, trash) {
 
     }
 
+    const checkedState = done ? "todo-list__circle-icon--checked" : "todo-list__circle-icon--unchecked";
+    const linethroughState = done ? "todo-list__text--linethrough" : "";
     const DONE = done ? CHECK : UNCHECK;
     const LINE = done ? LINE_THROUGH : "";
 
-    const item = `<li class="item">
-                    <i class="far ${DONE}" data-job="complete" id="${id}"></i>
-                    <p class="text ${LINE}">${toDo}</p>
-                    <i class="far fa-trash-alt" data-job="delete" id="${id}"></i>
+    const item = `<li class="todo-list__item">
+                    <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${id}"></i>
+                    <p class="todo-list__text ${linethroughState} ${LINE}">${toDo}</p>
+                    <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
                   </li>`;
 
     const position = "beforeend";
