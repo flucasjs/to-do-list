@@ -6,7 +6,7 @@ const input = document.querySelector(".item-adder__input");
 const content = document.querySelector(".main-content");
 const additem = document.querySelector(".item-adder");
 const header = document.querySelector(".header");
-const toggle = document.querySelector(".theme-selector");
+const theme = document.querySelector(".theme-selector__toggle-icon");
 
 // Arguements for date text.
 const options = {weekday: "long", month: "short", day: "numeric"};
@@ -30,15 +30,10 @@ let LIST, id;
 // Retrieve to do list from local storage.
 let data = localStorage.getItem("TODO");
 
-// Retrieve theme setting from local storage.
-let style = localStorage.getItem("THEME");
-
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
 
-    LIST = JSON.parse(data);
-    id = LIST.length;
-    loadList(LIST);
+    loadList(data);
 
 } else {
 
@@ -47,10 +42,13 @@ if (data) {
 
 }
 
+// Retrieve theme setting from local storage.
+let style = localStorage.getItem("THEME");
+
 // Theme Loader. Preserves the state of the theme using local storage.
 if (style == "dark") {
 
-    setTheme(toggle);
+    setTheme(theme);
 
 }
 
@@ -61,7 +59,6 @@ clear.addEventListener("click", () => {
     location.reload();
 
 });
-
 
 // Add a new item to the list when the user hits the enter key.
 // Update the list in local storage.
@@ -117,10 +114,9 @@ list.addEventListener("click", (event) => {
 });
 
 // Dark and light theme toggle
-toggle.addEventListener("click", (event) => {
+theme.addEventListener("click", (event) => {
 
     const element = event.target;
-    
     setTheme(element);
 
 });
@@ -177,7 +173,10 @@ function addToDo(toDo, id, done, trash) {
 }
 
 // Load list retrieved from local storage.
-function loadList(array) {
+function loadList(listData) {
+
+    LIST = JSON.parse(listData);
+    id = LIST.length;
 
     array.forEach( (item) => addToDo(item.name, item.id, item.done, item.trash) );
 
