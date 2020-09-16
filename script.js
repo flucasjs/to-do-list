@@ -149,16 +149,25 @@ function removeToDo(element) {
 // Appends a to do item to the list located in the content area.
 function addToDo(toDo, id, done, trash) {
     
-    if (trash) {
+    let checkedState, linethroughState, DONE, LINE;
+    
+    if (trash) return;
 
-        return;
+    if (done) {
+
+        checkedState = "todo-list__circle-icon--checked";
+        linethroughState = "todo-list__text--linethrough";
+        DONE = CHECK;
+        LINE = LINE_THROUGH;
+
+    } else {
+
+        checkedState = "todo-list__circle-icon--unchecked";
+        linethroughState = "";
+        DONE = UNCHECK;
+        LINE = "";
 
     }
-
-    const checkedState = done ? "todo-list__circle-icon--checked" : "todo-list__circle-icon--unchecked";
-    const linethroughState = done ? "todo-list__text--linethrough" : "";
-    const DONE = done ? CHECK : UNCHECK;
-    const LINE = done ? LINE_THROUGH : "";
 
     const item = `<li class="todo-list__item">
                     <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${id}"></i>
@@ -178,7 +187,7 @@ function loadList(listData) {
     LIST = JSON.parse(listData);
     id = LIST.length;
 
-    array.forEach( (item) => addToDo(item.name, item.id, item.done, item.trash) );
+    LIST.forEach( (item) => addToDo(item.name, item.id, item.done, item.trash) );
 
 }
 
