@@ -146,6 +146,19 @@ function removeToDo(element) {
 
 }
 
+class TodoItem {
+
+    contructor(text, id, done, trash) {
+
+        this.text = text;
+        this.id = id;
+        this.done = done;
+        this.trash = trash;
+
+    }
+
+}
+
 // Appends a to do item to the list located in the content area.
 function addToDo(toDo, id, done, trash) {
     
