@@ -156,6 +156,20 @@ class TodoItem {
         this.trash = trash;
 
     }
+    
+    // done, trash, edit
+
+}
+
+class TodoList {
+
+    constructor(itemsArray = []) {
+
+        this.itemsArray = itemsArray;
+
+    }
+    
+    // check/uncheck, add/remove, loadList
 
 }
 
