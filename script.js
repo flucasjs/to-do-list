@@ -148,7 +148,7 @@ function removeToDo(element) {
 
 class TodoItem {
 
-    contructor(text, id, done, trash) {
+    contructor(text = "", id = 0, done = false, trash = false) {
 
         this.text = text;
         this.id = id;
@@ -156,8 +156,24 @@ class TodoItem {
         this.trash = trash;
 
     }
-    
-    // done, trash, edit
+
+    toggleDone() {
+
+        this.done = (this.done) ? false : true;
+
+    }
+
+    trash() {
+
+        this.trash = true;
+        
+    }
+
+    edit(text) {
+
+        this.text = text;
+
+    }
 
 }
 
@@ -168,8 +184,35 @@ class TodoList {
         this.itemsArray = itemsArray;
 
     }
-    
-    // check/uncheck, add/remove, loadList
+
+    push(item) {
+
+        this.itemsArray.push(item);
+
+    }
+
+    pop() {
+
+        this.itemsArray.pop(item);
+
+    }
+
+    insert(item, id) {
+
+        this.itemsArray[id].id++;
+        this.itemsArray.splice(id, 0, item);
+ 
+    }
+
+    remove(id) {
+
+        this.itemsArray.splice(id, 1)
+
+    }
+
+    loadList() {
+
+    }
 
 }
 
