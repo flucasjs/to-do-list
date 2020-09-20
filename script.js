@@ -210,7 +210,9 @@ class TodoList {
 
     }
 
-    loadList() {
+    static loadList(listData) {
+
+        return new TodoList(JSON.parse(listData));
 
     }
 
