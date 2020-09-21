@@ -1,3 +1,5 @@
+'use strict';
+
 class TodoItem {
 
     constructor(text = "", id = 0, done = false, trash = false) {
