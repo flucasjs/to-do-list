@@ -135,14 +135,13 @@ clear.addEventListener("click", () => {
 // Reset the input field.
 document.addEventListener("keyup", (event) => {
 
-    if (event.keyCode == 13) {
+    if (event.code == "Enter" || event.code == "NumpadEnter") {
 
         const toDo = input.value;
 
         if (toDo) {
 
             addToDo(toDo, id, false, false);
-            debugger;
             LIST.push(new TodoItem(toDo, id, false, false));
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
