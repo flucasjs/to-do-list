@@ -41,6 +41,38 @@ class TodoList {
 
     push(item) {
 
+        const list = document.querySelector(".todo-list");
+
+        let checkedState, linethroughState, DONE, LINE;
+    
+        if (item.trash) return;
+
+        if (item.done) {
+
+            checkedState = "todo-list__circle-icon--checked";
+            linethroughState = "todo-list__text--linethrough";
+            DONE = CHECK;
+            LINE = LINE_THROUGH;
+
+        } else {
+
+            checkedState = "todo-list__circle-icon--unchecked";
+            linethroughState = "";
+            DONE = UNCHECK;
+            LINE = "";
+
+        }
+
+        const itemComponent = `<li class="todo-list__item">
+                        <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${id}"></i>
+                        <p class="todo-list__text ${linethroughState} ${LINE}">${item.text}</p>
+                        <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
+                    </li>`;
+
+        const position = "beforeend";
+    
+        list.insertAdjacentHTML(position, itemComponent);
+
         this.itemsArray.push(item);
 
     }
@@ -141,7 +173,6 @@ document.addEventListener("keyup", (event) => {
 
         if (toDo) {
 
-            addToDo(toDo, id, false, false);
             LIST.push(new TodoItem(toDo, id, false, false));
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
