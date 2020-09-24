@@ -39,9 +39,55 @@ class TodoList {
 
     }
 
+    get itemsArray() {
+
+        return this._itemsArray;
+
+    }
+
+    set itemsArray(todoItemsArray) {
+
+        this._itemsArray = todoItemsArray;
+    }
+
+    get length() {
+
+        return this._itemsArray.length;
+
+    }
+
+    set length(value) {
+
+        throw new Error('length property is read only');
+
+    }
+
     push(item) {
 
-        const list = document.querySelector(".todo-list");
+        this.itemsArray.push(item);
+
+    }
+
+    pop() {
+
+        this.itemsArray.pop(item);
+
+    }
+
+    insert(item, id) {
+
+        this.itemsArray[id].id++;
+        this.itemsArray.splice(id, 0, item);
+ 
+    }
+
+    remove(id) {
+
+        this.itemsArray.splice(id, 1)
+
+    }
+
+    static renderItem(item, listContainer) {
 
         let checkedState, linethroughState, DONE, LINE;
     
@@ -68,38 +114,15 @@ class TodoList {
                         <p class="todo-list__text ${linethroughState} ${LINE}">${item.text}</p>
                         <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
                     </li>`;
-
-        const position = "beforeend";
     
-        list.insertAdjacentHTML(position, itemComponent);
-
-        this.itemsArray.push(item);
-
+        listContainer.insertAdjacentHTML("beforeend", itemComponent);
+        
     }
 
-    pop() {
+    static renderList(todoList, listContainer) {
 
-        this.itemsArray.pop(item);
-
-    }
-
-    insert(item, id) {
-
-        this.itemsArray[id].id++;
-        this.itemsArray.splice(id, 0, item);
- 
-    }
-
-    remove(id) {
-
-        this.itemsArray.splice(id, 1)
-
-    }
-
-    static loadList(listData) {
-
-        return new TodoList(JSON.parse(listData));
-
+        todoList.itemsArray.forEach( (item) => TodoList.renderItem(item, listContainer) );
+        
     }
 
 }
@@ -173,7 +196,10 @@ document.addEventListener("keyup", (event) => {
 
         if (toDo) {
 
-            LIST.push(new TodoItem(toDo, id, false, false));
+            let item = new TodoItem(toDo, id, false, false);
+
+            LIST.push(item);
+            TodoList.renderItem(item, list);
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
             id++;
@@ -239,47 +265,12 @@ function removeToDo(element) {
 
 }
 
-// Appends a to do item to the list located in the content area.
-function addToDo(toDo, id, done, trash) {
-    
-    let checkedState, linethroughState, DONE, LINE;
-    
-    if (trash) return;
-
-    if (done) {
-
-        checkedState = "todo-list__circle-icon--checked";
-        linethroughState = "todo-list__text--linethrough";
-        DONE = CHECK;
-        LINE = LINE_THROUGH;
-
-    } else {
-
-        checkedState = "todo-list__circle-icon--unchecked";
-        linethroughState = "";
-        DONE = UNCHECK;
-        LINE = "";
-
-    }
-
-    const item = `<li class="todo-list__item">
-                    <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${id}"></i>
-                    <p class="todo-list__text ${linethroughState} ${LINE}">${toDo}</p>
-                    <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
-                  </li>`;
-
-    const position = "beforeend";
-    
-    list.insertAdjacentHTML(position, item);
-
-}
-
 // Load list retrieved from local storage.
 function loadList(listData) {
 
     LIST.itemsArray = JSON.parse(listData);
     id = LIST.length;
-    LIST.itemsArray.forEach( (item) => addToDo(item.text, item.id, item.done, item.trash) );
+    TodoList.renderList(LIST, list);
 
 }
 
