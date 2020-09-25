@@ -81,9 +81,15 @@ class TodoList {
  
     }
 
-    remove(id) {
+    trashItem(id) {
 
-        this.itemsArray.splice(id, 1)
+        this.itemsArray[id].trash = true;
+
+    }
+
+    toggleItemDone(id) {
+
+        this.itemsArray[id].done = this.itemsArray[element.id].done ? false : true;
 
     }
 
@@ -162,8 +168,10 @@ let data = localStorage.getItem("TODO");
 
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
-    
-    loadList(data);
+
+    LIST.itemsArray = JSON.parse(data);
+    id = LIST.length;
+    TodoList.renderList(LIST, list);
 
 }
 
@@ -220,14 +228,19 @@ list.addEventListener("click", (event) => {
 
     if (elementJob == "complete") {
 
-        completeToDo(element);
+        element.classList.toggle(CHECK);
+        element.classList.toggle(UNCHECK);
+        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--checked");
+        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--unchecked");
+        element.parentNode.querySelector(".todo-list__text").classList.toggle("todo-list__text--linethrough");    
+        LIST.toggleItemDone(element.id);
 
     } else if (elementJob == "delete") {
 
-        removeToDo(element);
+        element.parentNode.parentNode.removeChild(element.parentNode);
+        LIST.remove(element.id);
 
     }
-
 
     localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
@@ -240,39 +253,6 @@ theme.addEventListener("click", (event) => {
     setTheme(element);
 
 });
-
-// Apply visual elements when a user has finished or restarted an item in the list.
-// Update the list item to reflect the state of the item.
-function completeToDo(element) {
-
-    element.classList.toggle(CHECK);
-    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--checked");
-    element.classList.toggle(UNCHECK);
-    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--unchecked");
-    element.parentNode.querySelector(".todo-list__text").classList.toggle("todo-list__text--linethrough");
-    LIST.itemsArray[element.id].done = LIST.itemsArray[element.id].done ? false : true;
-
-}
-
-
-// Delete an item when the user hits the trash icon.
-// Update the list item to reflect the state of the item.
-function removeToDo(element) {
-
-    element.parentNode.parentNode.removeChild(element.parentNode);
-
-    LIST.itemsArray[element.id].trash = true;
-
-}
-
-// Load list retrieved from local storage.
-function loadList(listData) {
-
-    LIST.itemsArray = JSON.parse(listData);
-    id = LIST.length;
-    TodoList.renderList(LIST, list);
-
-}
 
 // Toggle between light and dark themes.
 function setTheme(element) {
