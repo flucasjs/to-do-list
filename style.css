@@ -119,7 +119,8 @@ body {
 
 .todo-list__text--linethrough {
     text-decoration: line-through;
-    color : rgb(124, 49, 49);
+    font-style: italic;
+    color : #cdcdcd;
 }
 
 .todo-list__trash-icon {
