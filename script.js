@@ -143,12 +143,8 @@ const additem = document.querySelector(".item-adder");
 const header = document.querySelector(".header");
 const theme = document.querySelector(".theme-selector__toggle-icon");
 
-// Arguements for date text.
-const options = {weekday: "long", month: "short", day: "numeric"};
-const today = new Date();
-
 // Todays date.
-dateText.innerHTML = today.toLocaleDateString("en-US", options);
+displayTodaysDate(dateText);
 
 // Visual elements used to indicate completion of items.
 const CHECK = "fa-check-circle";
@@ -294,4 +290,10 @@ function setTheme(element) {
         localStorage.setItem("THEME", "light");
 
     }
+}
+
+function displayTodaysDate(element) {
+    const options = {weekday: "long", month: "short", day: "numeric"};
+    const today = new Date();
+    element.innerHTML = today.toLocaleDateString("en-US", options);
 }
