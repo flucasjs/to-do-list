@@ -9,7 +9,12 @@ class TodoItem {
         this.done = done;
         this.trash = trash;
 
+        this.toggleDone = this.toggleDone.bind(this);
+        this.setTrash = this.setTrash.bind(this);
+        this.edit = this.edit.bind(this);
+
     }
+
 
     toggleDone() {
 
@@ -17,7 +22,7 @@ class TodoItem {
 
     }
 
-    trash() {
+    setTrash() {
 
         this.trash = true;
         
@@ -81,12 +86,6 @@ class TodoList {
  
     }
 
-    trashItem(id) {
-
-        this.itemsArray[id].trash = true;
-
-    }
-
     toggleItemDone(id) {
 
         this.itemsArray[id].done = this.itemsArray[element.id].done ? false : true;
@@ -94,30 +93,32 @@ class TodoList {
     }
 
     static renderItem(item, listContainer) {
-
-        let checkedState, linethroughState, DONE, LINE;
     
         if (item.trash) return;
 
+        let checkedState, linethroughState, DONE, LINE;
+
+        const checkedCircleStyle = "todo-list__circle-icon--checked";
+        const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
+        const lineThroughStyle = "todo-list__text--linethrough"
+
         if (item.done) {
 
-            checkedState = "todo-list__circle-icon--checked";
-            linethroughState = "todo-list__text--linethrough";
+            checkedState = checkedCircleStyle;
+            linethroughState = lineThroughStyle;
             DONE = CHECK;
-            LINE = LINE_THROUGH;
 
         } else {
 
-            checkedState = "todo-list__circle-icon--unchecked";
+            checkedState = uncheckedCircleStyle;
             linethroughState = "";
             DONE = UNCHECK;
-            LINE = "";
 
         }
 
         const itemComponent = `<li class="todo-list__item">
                         <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${id}"></i>
-                        <p class="todo-list__text ${linethroughState} ${LINE}">${item.text}</p>
+                        <p class="todo-list__text ${linethroughState}">${item.text}</p>
                         <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
                     </li>`;
     
@@ -129,6 +130,22 @@ class TodoList {
 
         todoList.itemsArray.forEach( (item) => TodoList.renderItem(item, listContainer) );
         
+    }
+
+    static renderCompletedItem(element) {
+
+        const checkedCircleIcon = "fa-check-circle";
+        const uncheckedCircleIcon = "fa-circle";
+        const checkedCircleStyle = "todo-list__circle-icon--checked";
+        const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
+        const lineThroughStyle = "todo-list__text--linethrough"
+
+        element.classList.toggle(CHECK);
+        element.classList.toggle(UNCHECK);
+        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
+        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
+        element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);
+
     }
 
 }
@@ -166,7 +183,7 @@ let data = localStorage.getItem("TODO");
 if (data) {
 
     LIST.itemsArray = JSON.parse(data);
-    id = LIST.length;
+    id = LIST.length - 1;
     TodoList.renderList(LIST, list);
 
 }
@@ -192,7 +209,7 @@ clear.addEventListener("click", () => {
 // Add a new item to the list when the user hits the enter key.
 // Update the list in local storage.
 // Reset the input field.
-document.addEventListener("keyup", (event) => {
+document.addEventListener("keydown", (event) => {
 
     if (event.code == "Enter" || event.code == "NumpadEnter") {
 
@@ -201,7 +218,7 @@ document.addEventListener("keyup", (event) => {
         if (toDo) {
 
             let item = new TodoItem(toDo, id, false, false);
-
+            debugger;
             LIST.push(item);
             TodoList.renderItem(item, list);
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
@@ -223,18 +240,14 @@ list.addEventListener("click", (event) => {
     const elementJob = element.dataset.job;
 
     if (elementJob == "complete") {
-
-        element.classList.toggle(CHECK);
-        element.classList.toggle(UNCHECK);
-        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--checked");
-        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--unchecked");
-        element.parentNode.querySelector(".todo-list__text").classList.toggle("todo-list__text--linethrough");    
-        LIST.toggleItemDone(element.id);
+        debugger;
+        LIST.itemsArray[element.id].toggleDone();
+        TodoList.renderCompletedItem(element);
 
     } else if (elementJob == "delete") {
-
+    
+        LIST.itemsArray[element.id].trash();
         element.parentNode.parentNode.removeChild(element.parentNode);
-        LIST.remove(element.id);
 
     }
 
@@ -296,4 +309,14 @@ function displayTodaysDate(element) {
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
     element.innerHTML = today.toLocaleDateString("en-US", options);
+}
+
+function renderCompletedItem(element) {
+
+    element.classList.toggle(CHECK);
+    element.classList.toggle(UNCHECK);
+    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--checked");
+    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--unchecked");
+    element.parentNode.querySelector(".todo-list__text").classList.toggle("todo-list__text--linethrough");
+
 }
