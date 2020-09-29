@@ -117,7 +117,7 @@ class TodoList {
         }
 
         const itemComponent = `<li class="todo-list__item">
-                        <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${id}"></i>
+                        <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${item.id}"></i>
                         <p class="todo-list__text ${linethroughState}">${item.text}</p>
                         <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
                     </li>`;
@@ -182,8 +182,8 @@ let data = localStorage.getItem("TODO");
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
 
-    LIST.itemsArray = JSON.parse(data);
-    id = LIST.length - 1;
+    LIST.itemsArray = JSON.parse(data).map(item => new TodoItem(item.text, item.id, item.done, item.trash));
+    id = LIST.length;
     TodoList.renderList(LIST, list);
 
 }
@@ -218,7 +218,6 @@ document.addEventListener("keydown", (event) => {
         if (toDo) {
 
             let item = new TodoItem(toDo, id, false, false);
-            debugger;
             LIST.push(item);
             TodoList.renderItem(item, list);
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
