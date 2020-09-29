@@ -70,6 +70,8 @@ body {
     background: white;
     max-height: 350px;
     overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cdcdcd transparent;
 }
 
 .todo-list {
