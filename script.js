@@ -98,6 +98,8 @@ class TodoList {
 
         let checkedState, linethroughState, DONE, LINE;
 
+        const CHECK = "fa-check-circle";
+        const UNCHECK = "fa-circle";
         const checkedCircleStyle = "todo-list__circle-icon--checked";
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
@@ -134,8 +136,8 @@ class TodoList {
 
     static renderCompletedItem(element) {
 
-        const checkedCircleIcon = "fa-check-circle";
-        const uncheckedCircleIcon = "fa-circle";
+        const CHECK = "fa-check-circle";
+        const UNCHECK = "fa-circle";
         const checkedCircleStyle = "todo-list__circle-icon--checked";
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
@@ -163,11 +165,6 @@ const theme = document.querySelector(".theme-selector__toggle-icon");
 // Todays date.
 displayTodaysDate(dateText);
 
-// Visual elements used to indicate completion of items.
-const CHECK = "fa-check-circle";
-const UNCHECK = "fa-circle";
-const LINE_THROUGH = "lineThrough";
-
 // Visual element used to toggle theme settings.
 const TOGGLEON = "fa-toggle-on";
 const TOGGLEOFF = "fa-toggle-off";
@@ -176,7 +173,7 @@ const TOGGLEOFF = "fa-toggle-off";
 let LIST = new TodoList();
 let id = 0;
 
-// Retrieve to do list from local storage.
+// Retrieve TodoList.itemsArray from local storage.
 let data = localStorage.getItem("TODO");
 
 // Data loader. Creates new local storage list if data is empty.
@@ -239,7 +236,7 @@ list.addEventListener("click", (event) => {
     const elementJob = element.dataset.job;
 
     if (elementJob == "complete") {
-        debugger;
+
         LIST.itemsArray[element.id].toggleDone();
         TodoList.renderCompletedItem(element);
 
@@ -308,14 +305,4 @@ function displayTodaysDate(element) {
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
     element.innerHTML = today.toLocaleDateString("en-US", options);
-}
-
-function renderCompletedItem(element) {
-
-    element.classList.toggle(CHECK);
-    element.classList.toggle(UNCHECK);
-    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--checked");
-    element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle("todo-list__circle-icon--unchecked");
-    element.parentNode.querySelector(".todo-list__text").classList.toggle("todo-list__text--linethrough");
-
 }
