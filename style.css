@@ -7,7 +7,6 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: rgb(155, 214, 185);
     background-color: rgb(137, 201, 170);
 }
 
@@ -26,7 +25,7 @@ body {
 .header {
     width: 380px;
     height: 200px;
-    background: url('img1.svg');
+    background: url('lightTheme.svg');
     background-size: 200%;
     background-color: lightblue;
     background-position: -100px -175px;
