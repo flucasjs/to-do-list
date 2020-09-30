@@ -11,10 +11,8 @@ class TodoItem {
 
         this.toggleDone = this.toggleDone.bind(this);
         this.setTrash = this.setTrash.bind(this);
-        this.edit = this.edit.bind(this);
 
     }
-
 
     toggleDone() {
 
@@ -26,12 +24,6 @@ class TodoItem {
 
         this.trash = true;
         
-    }
-
-    edit(text) {
-
-        this.text = text;
-
     }
 
 }
@@ -96,32 +88,16 @@ class TodoList {
     
         if (item.trash) return;
 
-        let checkedState, linethroughState, DONE, LINE;
-
         const CHECK = "fa-check-circle";
         const UNCHECK = "fa-circle";
         const checkedCircleStyle = "todo-list__circle-icon--checked";
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
 
-        if (item.done) {
-
-            checkedState = checkedCircleStyle;
-            linethroughState = lineThroughStyle;
-            DONE = CHECK;
-
-        } else {
-
-            checkedState = uncheckedCircleStyle;
-            linethroughState = "";
-            DONE = UNCHECK;
-
-        }
-
         const itemComponent = `<li class="todo-list__item">
-                        <i class="todo-list__circle-icon ${checkedState} far ${DONE}" data-job="complete" id="${item.id}"></i>
-                        <p class="todo-list__text ${linethroughState}">${item.text}</p>
-                        <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${id}"></i>
+                        <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-job="complete" id="${item.id}"></i>
+                        <p class="todo-list__text ${item.done ? lineThroughStyle : ""}">${item.text}</p>
+                        <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${item.id}"></i>
                     </li>`;
     
         listContainer.insertAdjacentHTML("beforeend", itemComponent);
@@ -166,8 +142,8 @@ const theme = document.querySelector(".theme-selector__toggle-icon");
 displayTodaysDate(dateText);
 
 // Visual element used to toggle theme settings.
-const TOGGLEON = "fa-toggle-on";
-const TOGGLEOFF = "fa-toggle-off";
+const darkTheme = "fa-toggle-on";
+const lightTheme = "fa-toggle-off";
 
 // Variables used for local storage.
 let LIST = new TodoList();
@@ -175,7 +151,7 @@ let id = 0;
 
 // Retrieve TodoList.itemsArray from local storage.
 let data = localStorage.getItem("TODO");
-
+debugger;
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
 
@@ -210,11 +186,11 @@ document.addEventListener("keydown", (event) => {
 
     if (event.code == "Enter" || event.code == "NumpadEnter") {
 
-        const toDo = input.value;
+        const todoText = input.value;
+        debugger;
+        if (todoText) {
 
-        if (toDo) {
-
-            let item = new TodoItem(toDo, id, false, false);
+            let item = new TodoItem(todoText, id, false, false);
             LIST.push(item);
             TodoList.renderItem(item, list);
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
@@ -241,8 +217,9 @@ list.addEventListener("click", (event) => {
         TodoList.renderCompletedItem(element);
 
     } else if (elementJob == "delete") {
+        debugger;
     
-        LIST.itemsArray[element.id].trash();
+        LIST.itemsArray[element.id].setTrash();
         element.parentNode.parentNode.removeChild(element.parentNode);
 
     }
@@ -262,43 +239,17 @@ theme.addEventListener("click", (event) => {
 // Toggle between light and dark themes.
 function setTheme(element) {
 
-    element.classList.toggle(TOGGLEON);
-    element.classList.toggle(TOGGLEOFF);
+    element.classList.toggle(darkTheme);
+    element.classList.toggle(lightTheme);
 
-    let darkBackgroundColor = "rgba(0, 0, 0, .75)";
-    let darkContentColor = "lightgray";
-    let darkItemColor = "lightgray";
+    document.body.style.background = element.classList.contains(lightTheme) ? "rgb(137, 201, 170)" : "#003d47";
+    header.style.backgroundSize = element.classList.contains(lightTheme) ? "200%" : "150%";
+    header.style.backgroundImage = element.classList.contains(lightTheme) ? "url('lightTheme.svg')" : "url('darkTheme.svg')";
+    header.style.backgroundPosition = element.classList.contains(lightTheme) ? "-100px -175px": "initial" ;
+    content.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
+    additem.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
+    localStorage.setItem("THEME", element.classList.contains(lightTheme) ? 'light' : 'dark');
 
-    let lightBackgroundColor = "rgb(137, 201, 170)";
-    let lightContentColor = "white";
-    let lightItemColor = "white";
-
-    if (element.classList.contains(TOGGLEON)) {
-
-        document.body.style.background = darkBackgroundColor;
-        content.style.background = darkContentColor;
-        additem.style.background = darkItemColor;
-
-        header.style.backgroundImage = "url('img2.svg')";
-        header.style.backgroundSize = "150%";
-        header.style.backgroundPosition = "initial";
-
-        localStorage.setItem("THEME", "dark");
-        
-        
-    } else {
-
-        document.body.style.background = lightBackgroundColor;
-        content.style.background = lightContentColor ;
-        additem.style.background = lightItemColor;
-
-        header.style.backgroundImage = "url('img1.svg')";
-        header.style.backgroundSize = "200%";
-        header.style.backgroundPosition = "-100px -175px";
-
-        localStorage.setItem("THEME", "light");
-
-    }
 }
 
 function displayTodaysDate(element) {
