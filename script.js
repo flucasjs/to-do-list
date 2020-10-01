@@ -95,9 +95,9 @@ class TodoList {
         const lineThroughStyle = "todo-list__text--linethrough"
 
         const itemComponent = `<li class="todo-list__item">
-                        <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-job="complete" id="${item.id}"></i>
+                        <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-state="complete" id="${item.id}"></i>
                         <p class="todo-list__text ${item.done ? lineThroughStyle : ""}">${item.text}</p>
-                        <i class="todo-list__trash-icon far fa-trash-alt" data-job="delete" id="${item.id}"></i>
+                        <i class="todo-list__trash-icon far fa-trash-alt" data-state="delete" id="${item.id}"></i>
                     </li>`;
     
         listContainer.insertAdjacentHTML("beforeend", itemComponent);
@@ -147,16 +147,14 @@ const lightTheme = "fa-toggle-off";
 
 // Variables used for local storage.
 let LIST = new TodoList();
-let id = 0;
 
 // Retrieve TodoList.itemsArray from local storage.
 let data = localStorage.getItem("TODO");
-debugger;
+
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
 
     LIST.itemsArray = JSON.parse(data).map(item => new TodoItem(item.text, item.id, item.done, item.trash));
-    id = LIST.length;
     TodoList.renderList(LIST, list);
 
 }
@@ -187,15 +185,13 @@ document.addEventListener("keydown", (event) => {
     if (event.code == "Enter" || event.code == "NumpadEnter") {
 
         const todoText = input.value;
-        debugger;
+
         if (todoText) {
 
-            let item = new TodoItem(todoText, id, false, false);
+            let item = new TodoItem(todoText, LIST.length, false, false);
             LIST.push(item);
             TodoList.renderItem(item, list);
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
-
-            id++;
 
         }
 
@@ -209,15 +205,14 @@ document.addEventListener("keydown", (event) => {
 list.addEventListener("click", (event) => {
 
     const element = event.target;
-    const elementJob = element.dataset.job;
+    const elementState = element.dataset.state;
 
-    if (elementJob == "complete") {
+    if (elementState == "complete") {
 
         LIST.itemsArray[element.id].toggleDone();
         TodoList.renderCompletedItem(element);
 
-    } else if (elementJob == "delete") {
-        debugger;
+    } else if (elementState == "delete") {
     
         LIST.itemsArray[element.id].setTrash();
         element.parentNode.parentNode.removeChild(element.parentNode);
