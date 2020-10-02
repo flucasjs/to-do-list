@@ -126,6 +126,12 @@ class TodoList {
 
     }
 
+    static fromData(dataArray) {
+
+        return new TodoList(JSON.parse(dataArray).map(item => new TodoItem(item.text, item.id, item.done, item.trash)));
+
+    }
+
 }
 
 // Selector constants.
@@ -154,7 +160,7 @@ let data = localStorage.getItem("TODO");
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
 
-    LIST.itemsArray = JSON.parse(data).map(item => new TodoItem(item.text, item.id, item.done, item.trash));
+    LIST = TodoList.fromData(data);
     TodoList.renderList(LIST, list);
 
 }
@@ -165,7 +171,7 @@ let style = localStorage.getItem("THEME");
 // Theme Loader. Preserves the state of the theme using local storage.
 if (style == "dark") {
 
-    setTheme(theme);
+    setTheme(style, theme);
 
 }
 
@@ -232,7 +238,7 @@ theme.addEventListener("click", (event) => {
 });
 
 // Toggle between light and dark themes.
-function setTheme(element) {
+function setTheme(style, element) {
 
     element.classList.toggle(darkTheme);
     element.classList.toggle(lightTheme);
