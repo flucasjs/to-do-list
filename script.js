@@ -71,13 +71,6 @@ class TodoList {
 
     }
 
-    insert(item, id) {
-
-        this.itemsArray[id].id++;
-        this.itemsArray.splice(id, 0, item);
- 
-    }
-
     toggleItemDone(id) {
 
         this.itemsArray[id].done = this.itemsArray[element.id].done ? false : true;
