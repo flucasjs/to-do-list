@@ -59,9 +59,18 @@ class TodoList {
 
     }
 
-    push(item) {
+    push(item, listElement = null) {
 
         this.itemsArray.push(item);
+        if (listElement && listElement.nodeName == 'UL') {
+
+            this.constructor.renderItem(item, listElement)
+
+        } else {
+
+            throw TypeError('listElement must be of type HTMLUListElement')
+
+        }
 
     }
 
@@ -119,7 +128,7 @@ class TodoList {
 
     }
 
-    static fromData(dataArray) {
+    static parseData(dataArray) {
 
         return new TodoList(JSON.parse(dataArray).map(item => new TodoItem(item.text, item.id, item.done, item.trash)));
 
@@ -153,7 +162,7 @@ let data = localStorage.getItem("TODO");
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
 
-    LIST = TodoList.fromData(data);
+    LIST = TodoList.parseData(data);
     TodoList.renderList(LIST, list);
 
 }
@@ -164,7 +173,7 @@ let style = localStorage.getItem("THEME");
 // Theme Loader. Preserves the state of the theme using local storage.
 if (style == "dark") {
 
-    setTheme(style, theme);
+    setTheme(theme);
 
 }
 
@@ -187,9 +196,7 @@ document.addEventListener("keydown", (event) => {
 
         if (todoText) {
 
-            let item = new TodoItem(todoText, LIST.length, false, false);
-            LIST.push(item);
-            TodoList.renderItem(item, list);
+            LIST.push(new TodoItem(todoText, LIST.length, false, false), list)
             localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
         }
@@ -231,7 +238,7 @@ theme.addEventListener("click", (event) => {
 });
 
 // Toggle between light and dark themes.
-function setTheme(style, element) {
+function setTheme(element) {
 
     element.classList.toggle(darkTheme);
     element.classList.toggle(lightTheme);
