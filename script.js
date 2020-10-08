@@ -112,7 +112,7 @@ function setTheme(element) {
 
     document.body.style.background = element.classList.contains(lightTheme) ? "rgb(137, 201, 170)" : "#003d47";
     header.style.backgroundSize = element.classList.contains(lightTheme) ? "200%" : "150%";
-    header.style.backgroundImage = element.classList.contains(lightTheme) ? "url('lightTheme.svg')" : "url('darkTheme.svg')";
+    header.style.backgroundImage = element.classList.contains(lightTheme) ? "url('./images/lightTheme.svg')" : "url('./images/darkTheme.svg')";
     header.style.backgroundPosition = element.classList.contains(lightTheme) ? "-100px -175px": "initial" ;
     content.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
     additem.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
