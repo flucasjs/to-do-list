@@ -1,3 +1,5 @@
+import TodoItem from './TodoItem.js';
+
 class TodoList {
 
     constructor(itemsArray = []) {
