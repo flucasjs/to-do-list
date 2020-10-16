@@ -25,7 +25,7 @@ body {
 .header {
     width: 380px;
     height: 200px;
-    background: url('../images/lightTheme.svg');
+    background: url('../assets/lightTheme.svg');
     background-size: 200%;
     background-color: lightblue;
     background-position: -100px -175px;
