@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Permanent+Marker&family=Work+Sans&display=swap');
+
 *, *:before, *:after {
     padding: 0;
     margin: 0;
@@ -16,7 +18,7 @@ body {
 
     width: 380px;
     margin: 10px auto 0px;
-    font-family: 'Amiri', serif;
+    font-family: 'Architects Daughter', cursive;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
 }
 
@@ -56,9 +58,10 @@ body {
     position: absolute;
     left: 10px;
     bottom: 10px;
-    color: white;
-    font-size: 25px;
+    color: #D2C844;
+    font-size: 36px;
     text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+    font-family: 'Permanent Marker', cursive;
 }
 
 /* ----- Content ----- */
@@ -83,7 +86,7 @@ body {
     height: 45px;
     min-height: 45px;
     position: relative;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #cdcdcd;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -162,6 +165,7 @@ body {
     background-color: transparent;
     border: none;
     font-size: 20px;
+    font-family: 'Work Sans', sans-serif;
     padding-left: 10px;
 }
 
