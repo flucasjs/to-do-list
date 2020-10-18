@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Permanent+Marker&family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Permanent+Marker&family=Sansita+Swashed:wght@500&family=Work+Sans:wght@100&display=swap');
 
 *, *:before, *:after {
     padding: 0;
@@ -61,7 +61,7 @@ body {
     color: #D2C844;
     font-size: 36px;
     text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Sansita Swashed', cursive;
 }
 
 /* ----- Content ----- */
