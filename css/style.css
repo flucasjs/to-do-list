@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Permanent+Marker&family=Sansita+Swashed:wght@500&family=Work+Sans:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bebas+Neue&family=Permanent+Marker&family=Work+Sans&display=swap');
 
 *, *:before, *:after {
     padding: 0;
@@ -44,7 +44,7 @@ body {
 }
 
 .todo-list-refresher__redo-icon {
-    font-size: 30px;
+    font-size: 1.875 rem;
     color: white;
     cursor: pointer;
 }
@@ -59,9 +59,9 @@ body {
     left: 10px;
     bottom: 10px;
     color: #D2C844;
-    font-size: 36px;
+    font-size: 2.375rem;
     text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
-    font-family: 'Sansita Swashed', cursive;
+    font-family: 'Bebas Neue', cursive;
 }
 
 /* ----- Content ----- */
@@ -94,7 +94,7 @@ body {
 
 .todo-list__circle-icon {
     cursor: pointer;
-    font-size: 25px;
+    font-size: 1.5625rem;
     position: absolute;
     left: 15px;
     top: 10px;
@@ -114,7 +114,7 @@ body {
     position: absolute;
     padding: 0;
     margin: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     left: 50px;
     top: 10px;
     background-color: inherit;
@@ -129,7 +129,7 @@ body {
 
 .todo-list__trash-icon {
     position: absolute;
-    font-size: 25px;
+    font-size: 1.5625rem;
     right: 15px;
     top: 10px;
     cursor: pointer;
@@ -153,7 +153,7 @@ body {
 
 .item-adder__plus-circle-icon {
     position: absolute;
-    font-size: 40px;
+    font-size: 2.5rem;
     color: blue;
 }
 
@@ -164,7 +164,7 @@ body {
     width: 310px;
     background-color: transparent;
     border: none;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-family: 'Work Sans', sans-serif;
     padding-left: 10px;
 }
@@ -180,6 +180,6 @@ body {
 }
 
 .theme-selector__toggle-icon {
-    font-size: 30px;
+    font-size: 1.875rem;
     cursor: pointer;
 }

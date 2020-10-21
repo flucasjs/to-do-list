@@ -114,9 +114,9 @@ function setTheme(element) {
     header.style.backgroundSize = element.classList.contains(lightTheme) ? "200%" : "150%";
     header.style.backgroundImage = element.classList.contains(lightTheme) ? "url('./assets/lightTheme.svg')" : "url('./assets/darkTheme.svg')";
     header.style.backgroundPosition = element.classList.contains(lightTheme) ? "-100px -175px" : "initial" ;
-    dateText.style.fontSize = "36px";
+    dateText.style.fontSize = element.classList.contains(lightTheme) ? "2.375rem" : "2.25rem";
     dateText.style.color = element.classList.contains(lightTheme) ? "#D2C844" : "#B6E0EA";
-    dateText.style.fontFamily = `${element.classList.contains(lightTheme) ? "'Sansita Swashed'" : "'Permanent Marker'"}, cursive`;
+    dateText.style.fontFamily = `${element.classList.contains(lightTheme) ? "'Bebas Neue'" : "'Permanent Marker'"}, cursive`;
     content.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
     additem.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
     localStorage.setItem("THEME", element.classList.contains(lightTheme) ? 'light' : 'dark');
