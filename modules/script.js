@@ -110,16 +110,49 @@ function setTheme(element) {
     element.classList.toggle(darkTheme);
     element.classList.toggle(lightTheme);
 
-    document.body.style.background = element.classList.contains(lightTheme) ? "rgb(137, 201, 170)" : "#003d47";
-    header.style.backgroundSize = element.classList.contains(lightTheme) ? "200%" : "150%";
-    header.style.backgroundImage = element.classList.contains(lightTheme) ? "url('./assets/lightTheme.svg')" : "url('./assets/darkTheme.svg')";
-    header.style.backgroundPosition = element.classList.contains(lightTheme) ? "-100px -175px" : "initial" ;
-    dateText.style.fontSize = element.classList.contains(lightTheme) ? "2.375rem" : "2.25rem";
-    dateText.style.color = element.classList.contains(lightTheme) ? "#D2C844" : "#B6E0EA";
-    dateText.style.fontFamily = `${element.classList.contains(lightTheme) ? "'Bebas Neue'" : "'Permanent Marker'"}, cursive`;
-    content.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
-    additem.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
-    localStorage.setItem("THEME", element.classList.contains(lightTheme) ? 'light' : 'dark');
+    let elements = {
+        body: document.body,
+        header: header,
+        date: dateText,
+        content: content,
+        "item-adder": additem
+    };
+    
+    if (element.classList.contains(lightTheme)) {
+
+        for (let prop in elements) {
+
+            let elem = elements[prop];
+            elem.classList.remove(`dt__${prop}`)
+            elem.classList.add(`lt__${prop}`)
+
+        }
+
+        localStorage.setItem("THEME", 'light')
+
+    } else if (element.classList.contains(darkTheme)) {
+
+        for (let prop in elements) {
+
+            let elem = elements[prop];
+            elem.classList.remove(`lt__${prop}`)
+            elem.classList.add(`dt__${prop}`)       
+        }
+
+        localStorage.setItem("THEME", 'dark');
+    }
+
+
+    // document.body.style.background = element.classList.contains(lightTheme) ? "rgb(137, 201, 170)" : "#003d47";
+    // header.style.backgroundSize = element.classList.contains(lightTheme) ? "200%" : "150%";
+    // header.style.backgroundImage = element.classList.contains(lightTheme) ? "url('./assets/lightTheme.svg')" : "url('./assets/darkTheme.svg')";
+    // header.style.backgroundPosition = element.classList.contains(lightTheme) ? "-100px -175px" : "initial" ;
+    // dateText.style.fontSize = element.classList.contains(lightTheme) ? "2.375rem" : "2.25rem";
+    // dateText.style.color = element.classList.contains(lightTheme) ? "#D2C844" : "#B6E0EA";
+    // dateText.style.fontFamily = `${element.classList.contains(lightTheme) ? "'Bebas Neue'" : "'Permanent Marker'"}, cursive`;
+    // content.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
+    // additem.style.background = element.classList.contains(lightTheme) ? "white" : "lightgray";
+    // localStorage.setItem("THEME", element.classList.contains(lightTheme) ? 'light' : 'dark');
 
 }
 
