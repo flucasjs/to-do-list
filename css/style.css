@@ -169,7 +169,7 @@ body {
     padding-left: 10px;
 }
 
-/* ----- Theme ----- */
+/* ----- Theme Selector ----- */
 
 .theme-selector {
     position: absolute;
@@ -182,4 +182,56 @@ body {
 .theme-selector__toggle-icon {
     font-size: 1.875rem;
     cursor: pointer;
+}
+
+/* ----- Light Theme ----- */
+
+.lt__body {
+    background: rgb(137, 201, 170);
+}
+
+.lt__header {
+    background-size: 200%;
+    background-image: url('../assets/lightTheme.svg');
+    background-position: -100px -175px;
+}
+
+.lt__date {
+    font-size: 2.375rem;
+    color: #D2C844;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.lt__content {
+    background: white;
+}
+
+.lt__item-adder {
+    background: white;
+}
+
+/* ----- Dark Theme ----- */
+
+.dt__body {
+    background: #003d47;
+}
+
+.dt__header {
+    background-size: 150%;
+    background-image: url('../assets/darkTheme.svg');
+    background-position: initial;
+}
+
+.dt__date {
+    font-size: 2.25rem;
+    color: #B6E0EA;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.dt__content {
+    background: lightgray;
+}
+
+.dt__item-adder {
+    background: lightgray;
 }
