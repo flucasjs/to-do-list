@@ -9,9 +9,10 @@ const dateText = document.querySelector(".date__text");
 const list = document.querySelector(".todo-list");
 const input = document.querySelector(".item-adder__input");
 const content = document.querySelector(".main-content");
-const additem = document.querySelector(".item-adder");
+const itemAdderContainer = document.querySelector(".item-adder");
 const header = document.querySelector(".header");
 const theme = document.querySelector(".theme-selector__toggle-icon");
+const itemAdderIcon = document.querySelector(".item-adder__plus-circle-icon");
 
 // Todays date.
 displayTodaysDate(dateText);
@@ -57,20 +58,7 @@ clear.addEventListener("click", () => {
 // Reset the input field.
 document.addEventListener("keydown", (event) => {
 
-    if (event.code == "Enter" || event.code == "NumpadEnter") {
-
-        const todoText = input.value;
-
-        if (todoText) {
-
-            LIST.push(new TodoItem(todoText, LIST.length, false, false), list)
-            localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
-
-        }
-
-        input.value = "";
-
-    }
+    addItem(input.value, (event.code == "Enter" || event.code == "NumpadEnter"))
 
 });
 
@@ -115,7 +103,7 @@ function setTheme(element) {
         header: header,
         date: dateText,
         content: content,
-        "item-adder": additem
+        "item-adder": itemAdderContainer
     };
     
     if (element.classList.contains(lightTheme)) {
@@ -148,4 +136,32 @@ function displayTodaysDate(element) {
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
     element.innerHTML = today.toLocaleDateString("en-US", options);
+}
+
+itemAdderIcon.addEventListener("click", (event) => {
+
+    addItem(input.value)
+
+})
+
+function addItem(inputValue, condition = true) {
+
+
+    if (condition) {
+
+        if (inputValue) {
+
+            LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)
+            localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
+
+        }
+
+        input.value = "";
+
+    } else {
+
+        return false;
+
+    }
+
 }
