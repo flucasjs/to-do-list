@@ -155,6 +155,7 @@ body {
     position: absolute;
     font-size: 2.5rem;
     color: blue;
+    cursor: pointer;
 }
 
 .item-adder__input {
