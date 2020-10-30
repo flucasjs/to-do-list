@@ -139,6 +139,14 @@ body {
     color: red;
 }
 
+.todo-list__edit-icon {
+    position: absolute;
+    font-size: 1.5625rem;
+    right: 45px;
+    top: 9.1px;
+    cursor: pointer;
+}
+
 /* ----- Add Item ----- */
 
 .item-adder {
