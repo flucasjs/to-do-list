@@ -42,7 +42,7 @@ body {
 }
 
 .todo-list-refresher__redo-icon {
-    font-size: 1.875 rem;
+    font-size: 1.75em;
     color: white;
     cursor: pointer;
 }
@@ -137,14 +137,6 @@ body {
     color: red;
 }
 
-.todo-list__edit-icon {
-    position: absolute;
-    font-size: 1.5625rem;
-    right: 45px;
-    top: 9.1px;
-    cursor: pointer;
-}
-
 /* ----- Add Item ----- */
 
 .item-adder {
@@ -187,7 +179,7 @@ body {
 }
 
 .theme-selector__toggle-icon {
-    font-size: 1.875rem;
+    font-size: 1.85em;
     cursor: pointer;
 }
 
