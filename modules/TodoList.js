@@ -71,7 +71,6 @@ class TodoList {
         const itemComponent = `<li class="todo-list__item">
                         <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-state="complete" id="${item.id}"></i>
                         <p class="todo-list__text ${item.done ? lineThroughStyle : ""}">${item.text}</p>
-                        <i class="todo-list__edit-icon far fa-edit"></i>
                         <i class="todo-list__trash-icon far fa-trash-alt" data-state="delete" id="${item.id}"></i>
                     </li>`;
     
