@@ -18,8 +18,8 @@ const itemAdderIcon = document.querySelector(".item-adder__plus-circle-icon");
 displayTodaysDate(dateText);
 
 // Visual element used to toggle theme settings.
-const darkTheme = "fa-toggle-on";
-const lightTheme = "fa-toggle-off";
+const darkTheme = "fas";
+const lightTheme = "far";
 
 // Variables used for local storage.
 let LIST = new TodoList();
