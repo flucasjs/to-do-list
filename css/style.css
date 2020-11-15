@@ -90,6 +90,10 @@ body {
     margin: 0;
 }
 
+.todo-list__item:hover {
+    animation: borderColor 0.5s;
+}
+
 .todo-list__circle-icon {
     cursor: pointer;
     font-size: 1.5625rem;
@@ -131,10 +135,30 @@ body {
     right: 15px;
     top: 10px;
     cursor: pointer;
+    display: none;
+    animation: fadeIn 0.5s;
 }
 
 .todo-list__trash-icon:hover {
     color: red;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes borderColor {
+    0% {
+        border-bottom: 1px solid #cdcdcd;
+    }
+    100% {
+        border-bottom: 1px solid black;
+    }
 }
 
 /* ----- Add Item ----- */
