@@ -68,13 +68,42 @@ class TodoList {
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
 
-        const itemComponent = `<li class="todo-list__item">
-                        <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-state="complete" id="${item.id}"></i>
-                        <p class="todo-list__text ${item.done ? lineThroughStyle : ""}">${item.text}</p>
-                        <i class="todo-list__trash-icon far fa-trash-alt" data-state="delete" id="${item.id}"></i>
-                    </li>`;
-    
-        listContainer.insertAdjacentHTML("beforeend", itemComponent);
+        let newItem = document.createElement("li");
+        newItem.className = "todo-list__item";
+
+        let circleIcon = document.createElement("i");
+        circleIcon.className = `todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}`;
+        circleIcon.dataset.state = "complete";
+        circleIcon.id = item.id;
+        newItem.appendChild(circleIcon);
+
+        let text = document.createElement("p");
+        text.className = `todo-list__text ${item.done ? lineThroughStyle : ""}`
+        text.textContent = item.text;
+        newItem.appendChild(text);
+
+
+        let trashIcon = document.createElement("i");
+        trashIcon.className = `todo-list__trash-icon far fa-trash-alt`;
+        trashIcon.dataset.state = "delete";
+        trashIcon.id = item.id;
+        newItem.appendChild(trashIcon);
+
+        newItem.addEventListener("mouseover", (event) => {
+
+            trashIcon.style.display = "inline-block";
+            newItem.style.borderColor = "black";
+
+        });
+
+        newItem.addEventListener("mouseout", (event) => {
+
+            trashIcon.style.display = "none";
+            newItem.style.borderColor = "#cdcdcd";
+
+        });
+
+        listContainer.appendChild(newItem);
         
     }
 

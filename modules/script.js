@@ -133,9 +133,11 @@ function setTheme(element) {
 }
 
 function displayTodaysDate(element) {
+
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
     element.innerHTML = today.toLocaleDateString("en-US", options);
+    
 }
 
 itemAdderIcon.addEventListener("click", (event) => {
@@ -143,6 +145,8 @@ itemAdderIcon.addEventListener("click", (event) => {
     addItem(input.value)
 
 })
+
+
 
 function addItem(inputValue, condition = true) {
 
