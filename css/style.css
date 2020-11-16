@@ -13,10 +13,9 @@ body {
 /* ----- Container ----- */
 
 .app {
-
     width: 380px;
     margin: 10px auto 0px;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Work Sans', sans-serif;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
 }
 
@@ -59,16 +58,16 @@ body {
     color: #D2C844;
     font-size: 2.375rem;
     text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 /* ----- Content ----- */
 
 .main-content {
     width: 380px;
-    height: 350px;
+    height: 360px;
     background: white;
-    max-height: 350px;
+    max-height: 360px;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #cdcdcd transparent;
@@ -84,14 +83,21 @@ body {
     height: 45px;
     min-height: 45px;
     position: relative;
-    border-bottom: 1px solid #cdcdcd;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.todo-list__item:hover {
-    animation: borderColor 0.5s;
+.todo-list__item--greenBorder:focus,
+.todo-list__item--greenBorder:hover {
+    animation: borderColorGreen 0.5s;
+    border-bottom: 1px solid green;
+}
+
+.todo-list__item--blackBorder:focus,
+.todo-list__item--blackBorder:hover {
+    animation: borderColorBlack 0.5s;
+    border-bottom: 1px solid black;
 }
 
 .todo-list__circle-icon {
@@ -152,18 +158,34 @@ body {
     }
 }
 
-@keyframes borderColor {
+@keyframes borderColorBlack {
     0% {
         border-bottom: 1px solid #cdcdcd;
+        background: white;
     }
     100% {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid blue;
+        background:lightblue;
+    }
+}
+
+@keyframes borderColorGreen {
+    0% {
+        border-bottom: 1px solid #cdcdcd;
+        background: white;
+    }
+    100% {
+        border-bottom: 1px solid green;
+        background: lightgreen;
     }
 }
 
 /* ----- Add Item ----- */
 
 .item-adder {
+    display: flex;
+    justify-content: center;
+    align-items: space-around;
     position: relative;
     width: 380px;
     height: 61px;
@@ -174,17 +196,30 @@ body {
 }
 
 .item-adder__plus-circle-icon {
-    position: absolute;
-    font-size: 2.5rem;
-    color: blue;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: 'Bebas Neueu', sans-serif;
+    color: white;
+    background: blue;
     cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.item-adder__plus-circle-icon:hover {
+    color: blue;
+    background: white;
+    border: 1px solid blue;
+}
+
+.item-adder__plus-circle-icon:active {
+    transform: translateY(1px);
 }
 
 .item-adder__input {
-    position: absolute;
-    left: 50px;
-    height: 35px;
-    width: 310px;
+    flex: 1;
     background-color: transparent;
     border: none;
     font-size: 1.25rem;
@@ -251,10 +286,10 @@ body {
     font-family: 'Permanent Marker', cursive;
 }
 
-.dt__content {
+/* .dt__content {
     background: lightgray;
 }
 
 .dt__item-adder {
     background: lightgray;
-}
+} */
