@@ -70,6 +70,7 @@ class TodoList {
 
         let newItem = document.createElement("li");
         newItem.className = "todo-list__item";
+        newItem.style.borderBottom = "1px solid #cdcdcd";
 
         let circleIcon = document.createElement("i");
         circleIcon.className = `todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}`;
@@ -92,7 +93,10 @@ class TodoList {
         newItem.addEventListener("mouseover", (event) => {
 
             trashIcon.style.display = "inline-block";
-            newItem.style.borderColor = "black";
+
+            newItem.classList.add((item.done) ? "todo-list__item--greenBorder" : "todo-list__item--blackBorder");
+            newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
+            newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
 
         });
 
@@ -100,6 +104,7 @@ class TodoList {
 
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
+            newItem.style.background = "white";
 
         });
 
@@ -120,13 +125,20 @@ class TodoList {
         const checkedCircleStyle = "todo-list__circle-icon--checked";
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
+        let greenBorder = "todo-list__item--greenBorder";
+        let blackBorder = "todo-list__item--blackBorder"
+
+        console.log(element);
 
         element.classList.toggle(CHECK);
         element.classList.toggle(UNCHECK);
+        element.parentNode.classList.toggle(greenBorder);
+        element.parentNode.classList.toggle(blackBorder);
+        element.parentNode.style.borderBottom = (element.classList.contains(CHECK)) ? "1px solid green" : "1px solid blue";
+        element.parentNode.style.background = (element.classList.contains(CHECK)) ? "lightgreen" : "lightblue";
         element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
         element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
         element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);
-
     }
 
     static parseData(dataArray) {
