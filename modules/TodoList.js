@@ -108,8 +108,28 @@ class TodoList {
 
         });
 
+        newItem.addEventListener("dblclick", (event) => {
+            let edit = document.createElement("input");
+            let text = newItem.querySelector(".todo-list__text");
+
+            edit.type = "text";
+            edit.placeholder = item.text;
+            edit.classList.add("todo-list__text");
+            text.insertAdjacentElement("afterend", edit);
+            text.style.display = "none";
+
+            edit.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    text.textContent = edit.value;
+                    text.style.display = "block";
+                    newItem.removeChild(edit);
+                }
+            })
+
+        });
+
         listContainer.appendChild(newItem);
-        
+        i
     }
 
     static renderList(todoList, listContainer) {

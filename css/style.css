@@ -206,6 +206,7 @@ body {
     background: blue;
     cursor: pointer;
     border: 1px solid transparent;
+    margin-right: 5px;
 }
 
 .item-adder__plus-circle-icon:hover {
