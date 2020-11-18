@@ -22,7 +22,7 @@ const darkTheme = "fas";
 const lightTheme = "far";
 
 // Variables used for local storage.
-let LIST = new TodoList();
+let LIST = new TodoList(document.getElementsByClassName("todo-list__item"));
 
 // Retrieve TodoList.itemsArray from local storage.
 let data = localStorage.getItem("TODO");
@@ -58,7 +58,11 @@ clear.addEventListener("click", () => {
 // Reset the input field.
 document.addEventListener("keydown", (event) => {
 
-    addItem(input.value, (event.code == "Enter" || event.code == "NumpadEnter"))
+    if (event.code == "Enter" || event.code == "NumpadEnter") {
+
+        addItem(input.value)
+        
+    }
 
 });
 
@@ -73,12 +77,23 @@ list.addEventListener("click", (event) => {
         LIST.itemsArray[element.id].toggleDone();
         TodoList.renderCompletedItem(element);
 
+        let prevEdit = document.querySelector(".edit");
+        if (prevEdit) {
+
+            let text = prevEdit.parentNode.querySelector(".todo-list__text");
+            text.style.display = "block";
+            prevEdit.parentNode.removeChild(prevEdit);
+
+        }
+
     } else if (elementState == "delete") {
     
         LIST.itemsArray[element.id].setTrash();
         element.parentNode.parentNode.removeChild(element.parentNode);
 
     }
+
+    
 
     localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
@@ -148,24 +163,28 @@ itemAdderIcon.addEventListener("click", (event) => {
 
 
 
-function addItem(inputValue, condition = true) {
+function addItem(inputValue) {
 
+    if (inputValue) {
 
-    if (condition) {
-
-        if (inputValue) {
-
-            LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)
-            localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
-
-        }
-
-        input.value = "";
-
-    } else {
-
-        return false;
+        LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)
+        localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
     }
 
+    input.value = "";
+
 }
+
+input.addEventListener("click", (event) => {
+
+    let prevEdit = document.querySelector(".edit");
+    if (prevEdit) {
+
+        let text = prevEdit.parentNode.querySelector(".todo-list__text");
+        text.style.display = "block";
+        prevEdit.parentNode.removeChild(prevEdit);
+
+    }
+
+})

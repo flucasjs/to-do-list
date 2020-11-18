@@ -2,9 +2,10 @@ import TodoItem from './TodoItem.js';
 
 class TodoList {
 
-    constructor(itemsArray = []) {
+    constructor(listElements, itemsArray = []) {
 
         this.itemsArray = itemsArray;
+        this.listElements = listElements;
 
     }
 
@@ -109,27 +110,46 @@ class TodoList {
         });
 
         newItem.addEventListener("dblclick", (event) => {
+
+            let prevEdit = document.querySelector(".edit");
+            if (prevEdit) {
+
+                let text = prevEdit.parentNode.querySelector(".todo-list__text");
+                text.style.display = "block";
+                prevEdit.parentNode.removeChild(prevEdit);
+
+            }
+
             let edit = document.createElement("input");
             let text = newItem.querySelector(".todo-list__text");
 
             edit.type = "text";
-            edit.placeholder = item.text;
+            edit.placeholder = "Edit";
+            edit.value = text.textContent;
             edit.classList.add("todo-list__text");
+            edit.classList.add("edit");
+            
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
 
+            edit.select();
+
             edit.addEventListener("keydown", (event) => {
+
                 if (event.key === "Enter") {
+
                     text.textContent = edit.value;
                     text.style.display = "block";
                     newItem.removeChild(edit);
+
                 }
-            })
+
+            });
 
         });
 
         listContainer.appendChild(newItem);
-        i
+        
     }
 
     static renderList(todoList, listContainer) {
