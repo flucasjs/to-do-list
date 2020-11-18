@@ -147,6 +147,10 @@ body {
 
 .todo-list__trash-icon:hover {
     color: red;
+    position: absolute;
+    font-size: 1.5625rem;
+    right: 15px;
+    top: 10px;
 }
 
 @keyframes fadeIn {
