@@ -111,15 +111,6 @@ class TodoList {
 
         newItem.addEventListener("dblclick", (event) => {
 
-            let prevEdit = document.querySelector(".edit");
-            if (prevEdit) {
-
-                let text = prevEdit.parentNode.querySelector(".todo-list__text");
-                text.style.display = "block";
-                prevEdit.parentNode.removeChild(prevEdit);
-
-            }
-
             let edit = document.createElement("input");
             let text = newItem.querySelector(".todo-list__text");
 
@@ -128,6 +119,7 @@ class TodoList {
             edit.value = text.textContent;
             edit.classList.add("todo-list__text");
             edit.classList.add("edit");
+            newItem.classList.add("edit-container");
             
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
@@ -149,6 +141,8 @@ class TodoList {
         });
 
         listContainer.appendChild(newItem);
+
+        
         
     }
 
