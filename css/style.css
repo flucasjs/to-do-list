@@ -90,13 +90,13 @@ body {
 
 .todo-list__item--greenBorder:focus,
 .todo-list__item--greenBorder:hover {
-    animation: borderColorGreen 0.5s;
+    animation: focusedItemDone 0.5s;
     border-bottom: 1px solid green;
 }
 
 .todo-list__item--blackBorder:focus,
 .todo-list__item--blackBorder:hover {
-    animation: borderColorBlack 0.5s;
+    animation: focusedItem 0.5s;
     border-bottom: 1px solid black;
 }
 
@@ -162,7 +162,7 @@ body {
     }
 }
 
-@keyframes borderColorBlack {
+@keyframes focusedItem {
     0% {
         border-bottom: 1px solid #cdcdcd;
         background: white;
@@ -173,7 +173,7 @@ body {
     }
 }
 
-@keyframes borderColorGreen {
+@keyframes focusedItemDone {
     0% {
         border-bottom: 1px solid #cdcdcd;
         background: white;
