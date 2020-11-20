@@ -84,30 +84,15 @@ class TodoList {
         text.textContent = item.text;
         newItem.appendChild(text);
 
-
         let trashIcon = document.createElement("i");
         trashIcon.className = `todo-list__trash-icon far fa-trash-alt`;
         trashIcon.dataset.state = "delete";
         trashIcon.id = item.id;
         newItem.appendChild(trashIcon);
 
-        newItem.addEventListener("mouseover", (event) => {
+        newItem.addEventListener("mouseover", setHoveredItemStyles);
 
-            trashIcon.style.display = "inline-block";
-
-            newItem.classList.add((item.done) ? "todo-list__item--greenBorder" : "todo-list__item--blackBorder");
-            newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
-            newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
-
-        });
-
-        newItem.addEventListener("mouseout", (event) => {
-
-            trashIcon.style.display = "none";
-            newItem.style.borderColor = "#cdcdcd";
-            newItem.style.background = "white";
-
-        });
+        newItem.addEventListener("mouseout", removeHoveredItemStyles);
 
         newItem.addEventListener("dblclick", (event) => {
 
@@ -115,7 +100,7 @@ class TodoList {
             let text = newItem.querySelector(".todo-list__text");
 
             edit.type = "text";
-            edit.placeholder = "Edit";
+            edit.placeholder = "Edit...";
             edit.value = text.textContent;
             edit.classList.add("todo-list__text");
             edit.classList.add("edit");
@@ -138,12 +123,63 @@ class TodoList {
 
             });
 
+            // If the user clicks anywhere besided the edit input element, remove it.
+            document.body.addEventListener("click", removePrevEditInput)
+
         });
 
         listContainer.appendChild(newItem);
 
-        
-        
+
+        // ---------- Private helper functions for static render method ---------- //
+
+        // Event handler that prevents multiple edit input elements from existing any given time.
+        function removePrevEditInput(event) {
+
+            let clickedElement = event.target;
+
+                // An edit input element has a class of "edit" and a parent container wth a class of "edit-container".
+                let editElementClicked = clickedElement.classList.contains("edit-container") || clickedElement.classList.contains("edit");
+
+                // If the user did not click on the existing edit input element, then remove it.
+                if (!(editElementClicked)) {
+
+                    let prevEditContainer = document.querySelector(".edit-container");
+                    if (prevEditContainer) {
+
+                        let text = prevEditContainer.querySelector(".todo-list__text");
+                        let prevEditInput = prevEditContainer.querySelector(".edit");
+
+                        text.style.display = "block";
+                        prevEditContainer.removeChild(prevEditInput);
+                        prevEditContainer.classList.remove("edit-container");
+
+                    }
+
+                    // Remove the event listener after it's handler has been called so it doesn't trigger everytime the user clicks something on the page.
+                    document.body.removeEventListener("click", removePrevEditInput);
+                }
+
+        }
+
+        function setHoveredItemStyles(event) {
+
+            trashIcon.style.display = "inline-block";
+
+            newItem.classList.add((item.done) ? "todo-list__item--greenBorder" : "todo-list__item--blackBorder");
+            newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
+            newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
+
+        }
+
+        function removeHoveredItemStyles(event) {
+
+            trashIcon.style.display = "none";
+            newItem.style.borderColor = "#cdcdcd";
+            newItem.style.background = "white";
+
+        }
+
     }
 
     static renderList(todoList, listContainer) {

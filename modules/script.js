@@ -77,6 +77,7 @@ list.addEventListener("click", (event) => {
         LIST.itemsArray[element.id].toggleDone();
         TodoList.renderCompletedItem(element);
 
+        // Change this.
         let prevEdit = document.querySelector(".edit");
         if (prevEdit) {
 
@@ -175,27 +176,3 @@ function addItem(inputValue) {
     input.value = "";
 
 }
-
-// This activates on any click.
-// TODO: trigger only when edit is active.
-document.body.addEventListener("click", (event) => {
-    
-    let clickedElement = event.target;
-    let editElementClicked = clickedElement.classList.contains("edit-container") || clickedElement.classList.contains("edit");
-    if (!(editElementClicked)) {
-
-        let prevEditContainer = document.querySelector(".edit-container");
-        if (prevEditContainer) {
-
-            let text = prevEditContainer.querySelector(".todo-list__text");
-            let prevEditInput = prevEditContainer.querySelector(".edit");
-
-            text.style.display = "block";
-            prevEditContainer.removeChild(prevEditInput);
-            prevEditContainer.classList.remove("edit-container");
-
-        }
-
-    }
-
-})
