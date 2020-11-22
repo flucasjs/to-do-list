@@ -77,16 +77,6 @@ list.addEventListener("click", (event) => {
         LIST.itemsArray[element.id].toggleDone();
         TodoList.renderCompletedItem(element);
 
-        // Change this.
-        let prevEdit = document.querySelector(".edit");
-        if (prevEdit) {
-
-            let text = prevEdit.parentNode.querySelector(".todo-list__text");
-            text.style.display = "block";
-            prevEdit.parentNode.removeChild(prevEdit);
-
-        }
-
     } else if (elementState == "delete") {
     
         LIST.itemsArray[element.id].setTrash();

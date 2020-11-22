@@ -90,11 +90,22 @@ class TodoList {
         trashIcon.id = item.id;
         newItem.appendChild(trashIcon);
 
+        newItem.addEventListener("dblclick", createTextEditor);
         newItem.addEventListener("mouseover", setHoveredItemStyles);
-
         newItem.addEventListener("mouseout", removeHoveredItemStyles);
+        
+        listContainer.appendChild(newItem);
 
-        newItem.addEventListener("dblclick", (event) => {
+        // ---------- Private helper functions for static render method ---------- //
+
+        // Creates a "text editor" from an input element and replaces the to do item on which an event is called.
+        function createTextEditor(event) {
+
+            // Prevent mulitple dblclick events from being called at the same time on a single to do item.
+            if (event.target.classList.contains("edit") || event.target.classList.contains("edit-container")) return;
+
+            // Prevent dblclick events on icons from creating edit elements.
+            if (event.target.classList.contains("todo-list__circle-icon") || event.target.classList.contains("todo-list__trash-icon")) return;
 
             let edit = document.createElement("input");
             let text = newItem.querySelector(".todo-list__text");
@@ -124,24 +135,19 @@ class TodoList {
             });
 
             // If the user clicks anywhere besided the edit input element, remove it.
-            document.body.addEventListener("click", removePrevEditInput)
+            document.body.addEventListener("click", removePrevTextEditor)
 
-        });
+        }
 
-        listContainer.appendChild(newItem);
-
-
-        // ---------- Private helper functions for static render method ---------- //
-
-        // Event handler that prevents multiple edit input elements from existing any given time.
-        function removePrevEditInput(event) {
+        // Event handler that prevents multiple "text editor" input elements from existing any given time.
+        function removePrevTextEditor(event) {
 
             let clickedElement = event.target;
 
-                // An edit input element has a class of "edit" and a parent container wth a class of "edit-container".
+                // An text editor element has a class of "edit" and a parent container wth a class of "edit-container".
                 let editElementClicked = clickedElement.classList.contains("edit-container") || clickedElement.classList.contains("edit");
 
-                // If the user did not click on the existing edit input element, then remove it.
+                // If the user did not click on the existing text editor element, then remove it.
                 if (!(editElementClicked)) {
 
                     let prevEditContainer = document.querySelector(".edit-container");
@@ -157,7 +163,7 @@ class TodoList {
                     }
 
                     // Remove the event listener after it's handler has been called so it doesn't trigger everytime the user clicks something on the page.
-                    document.body.removeEventListener("click", removePrevEditInput);
+                    document.body.removeEventListener("click", removePrevTextEditor);
                 }
 
         }
@@ -197,8 +203,6 @@ class TodoList {
         const lineThroughStyle = "todo-list__text--linethrough"
         let greenBorder = "todo-list__item--greenBorder";
         let blackBorder = "todo-list__item--blackBorder"
-
-        console.log(element);
 
         element.classList.toggle(CHECK);
         element.classList.toggle(UNCHECK);
