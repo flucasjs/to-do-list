@@ -107,6 +107,8 @@ class TodoList {
             // Prevent dblclick events on icons from creating edit elements.
             if (event.target.classList.contains("todo-list__circle-icon") || event.target.classList.contains("todo-list__trash-icon")) return;
 
+            setEditStyles();
+
             let edit = document.createElement("input");
             let text = newItem.querySelector(".todo-list__text");
 
@@ -172,9 +174,17 @@ class TodoList {
 
             trashIcon.style.display = "inline-block";
 
-            newItem.classList.add((item.done) ? "todo-list__item--greenBorder" : "todo-list__item--blackBorder");
-            newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
-            newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
+            if (event.target.classList.contains("edit-container") || event.target.classList.contains("edit")) {
+
+                setEditStyles();
+
+            } else {
+
+                newItem.classList.add((item.done) ? "todo-list__item--greenBorder" : "todo-list__item--blackBorder");
+                newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
+                newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
+
+            }
 
         }
 
@@ -183,6 +193,13 @@ class TodoList {
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
             newItem.style.background = "white";
+
+        }
+
+        function setEditStyles(event) {
+
+            newItem.style.background = "orange";
+            newItem.style.borderBottom = "1px solid darkorange";
 
         }
 

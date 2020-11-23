@@ -158,6 +158,12 @@ body {
     border-bottom: 1px solid black;
 }
 
+.todo-list__item.edit-container {
+    background: orange;
+    border-bottom: darkorange;
+    animation: editingItem 0.5s;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -186,6 +192,29 @@ body {
     100% {
         border-bottom: 1px solid green;
         background: lightgreen;
+    }
+}
+
+@keyframes focusedItemEdit {
+    0% {
+        border-bottom: 1px solid #cdcdcd;
+        background: white;
+    }
+    100% {
+        border-bottom: 1px solid darkorange;
+        background: orange;
+    }
+}
+
+@keyframes editingItem {
+    0% {
+        border-bottom: 1px solid blue;
+        background: lightblue;
+
+    }
+    100% {
+        border-bottom: darkorange;
+        background: orange;
     }
 }
 
