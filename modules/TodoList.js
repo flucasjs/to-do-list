@@ -107,8 +107,6 @@ class TodoList {
             // Prevent dblclick events on icons from creating edit elements.
             if (event.target.classList.contains("todo-list__circle-icon") || event.target.classList.contains("todo-list__trash-icon")) return;
 
-            setEditStyles();
-
             let edit = document.createElement("input");
             let text = newItem.querySelector(".todo-list__text");
 
@@ -122,7 +120,7 @@ class TodoList {
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
 
-            edit.select();
+            // edit.select();
 
             edit.addEventListener("keydown", (event) => {
 
@@ -174,17 +172,8 @@ class TodoList {
 
             trashIcon.style.display = "inline-block";
 
-            if (event.target.classList.contains("edit-container") || event.target.classList.contains("edit")) {
-
-                setEditStyles();
-
-            } else {
-
-                newItem.classList.add((item.done) ? "todo-list__item--greenBorder" : "todo-list__item--blackBorder");
-                newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
-                newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
-
-            }
+            newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
+            newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
 
         }
 
@@ -193,13 +182,6 @@ class TodoList {
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
             newItem.style.background = "white";
-
-        }
-
-        function setEditStyles(event) {
-
-            newItem.style.background = "orange";
-            newItem.style.borderBottom = "1px solid darkorange";
 
         }
 
@@ -218,15 +200,11 @@ class TodoList {
         const checkedCircleStyle = "todo-list__circle-icon--checked";
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
-        let greenBorder = "todo-list__item--greenBorder";
-        let blackBorder = "todo-list__item--blackBorder"
 
         element.classList.toggle(CHECK);
         element.classList.toggle(UNCHECK);
-        element.parentNode.classList.toggle(greenBorder);
-        element.parentNode.classList.toggle(blackBorder);
-        element.parentNode.style.borderBottom = (element.classList.contains(CHECK)) ? "1px solid green" : "1px solid blue";
-        element.parentNode.style.background = (element.classList.contains(CHECK)) ? "lightgreen" : "lightblue";
+        element.parentNode.classList.toggle(completedItemBorder);
+        element.parentNode.classList.toggle(incompletedItemBorder);
         element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
         element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
         element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);

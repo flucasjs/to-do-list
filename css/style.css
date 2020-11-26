@@ -86,19 +86,18 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+    transition: border 0.5s, background 0.5s;
 }
 
-.todo-list__item--greenBorder:focus,
-.todo-list__item--greenBorder:hover {
-    animation: focusedItemDone 0.5s;
-    border-bottom: 1px solid green;
+/* .todo-list__item--done:focus,
+.todo-list__item--done:hover {
+    
 }
 
-.todo-list__item--blackBorder:focus,
-.todo-list__item--blackBorder:hover {
-    animation: focusedItem 0.5s;
-    border-bottom: 1px solid black;
-}
+.todo-list__item--undone:focus,
+.todo-list__item--undone:hover {
+    
+} */
 
 .todo-list__circle-icon {
     cursor: pointer;
@@ -153,68 +152,12 @@ body {
     top: 10px;
 }
 
-.edit {
-    border: 0px solid transparent;
-    border-bottom: 1px solid black;
-}
-
-.todo-list__item.edit-container {
-    background: orange;
-    border-bottom: darkorange;
-    animation: editingItem 0.5s;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
-    }
-}
-
-@keyframes focusedItem {
-    0% {
-        border-bottom: 1px solid #cdcdcd;
-        background: white;
-    }
-    100% {
-        border-bottom: 1px solid blue;
-        background:lightblue;
-    }
-}
-
-@keyframes focusedItemDone {
-    0% {
-        border-bottom: 1px solid #cdcdcd;
-        background: white;
-    }
-    100% {
-        border-bottom: 1px solid green;
-        background: lightgreen;
-    }
-}
-
-@keyframes focusedItemEdit {
-    0% {
-        border-bottom: 1px solid #cdcdcd;
-        background: white;
-    }
-    100% {
-        border-bottom: 1px solid darkorange;
-        background: orange;
-    }
-}
-
-@keyframes editingItem {
-    0% {
-        border-bottom: 1px solid blue;
-        background: lightblue;
-
-    }
-    100% {
-        border-bottom: darkorange;
-        background: orange;
     }
 }
 
