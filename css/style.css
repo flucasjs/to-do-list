@@ -124,8 +124,8 @@ body {
     font-size: 1.25rem;
     left: 50px;
     top: 10px;
-    background-color: inherit;
     max-width: 285px;
+    background: inherit;
 }
 
 .todo-list__text--linethrough {
@@ -150,6 +150,11 @@ body {
     font-size: 1.5625rem;
     right: 15px;
     top: 10px;
+}
+
+.edit {
+    border: 0;
+    border-bottom: 1px solid orangered;
 }
 
 @keyframes fadeIn {

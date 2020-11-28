@@ -172,6 +172,7 @@ class TodoList {
 
             trashIcon.style.display = "inline-block";
 
+            // console.log(newItem.classList);
             newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
             newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
 
