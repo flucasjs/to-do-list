@@ -154,7 +154,8 @@ body {
 
 .edit {
     border: 0;
-    border-bottom: 1px solid orangered;
+    border-bottom: 0.0625rem outset black;
+    color: white;
 }
 
 @keyframes fadeIn {

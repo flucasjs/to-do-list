@@ -116,11 +116,14 @@ class TodoList {
             edit.classList.add("todo-list__text");
             edit.classList.add("edit");
             newItem.classList.add("edit-container");
+
+            setHoveredItemStyles();
             
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
 
-            // edit.select();
+            edit.setSelectionRange(edit.value.length, edit.value.length);
+            edit.focus();
 
             edit.addEventListener("keydown", (event) => {
 
@@ -156,7 +159,26 @@ class TodoList {
                         let text = prevEditContainer.querySelector(".todo-list__text");
                         let prevEditInput = prevEditContainer.querySelector(".edit");
 
+                        prevEditContainer.removeEventListener("mouseover", setHoveredItemStyles);
+                        prevEditContainer.removeEventListener("mouseout", removeHoveredItemStyles);
+                        prevEditContainer.addEventListener("mouseover", setHoveredItemStyles);
+                        prevEditContainer.addEventListener("mouseout", removeHoveredItemStyles);
+
+                        if (event.target.parentNode.classList.contains("edit-container")) {
+
+                            prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
+                            prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
+
+                        } else {
+
+                            prevEditContainer.style.borderColor = "#cdcdcd";
+                            prevEditContainer.style.background = "white";
+                            trashIcon.style.display = "none";
+
+                        }
+                        
                         text.style.display = "block";
+
                         prevEditContainer.removeChild(prevEditInput);
                         prevEditContainer.classList.remove("edit-container");
 
@@ -175,8 +197,11 @@ class TodoList {
             // console.log(newItem.classList);
             if (newItem.classList.contains("edit-container")) {
 
-                newItem.style.borderColor = "darkorange"
+                newItem.removeEventListener("mouseover", setHoveredItemStyles);
+                newItem.removeEventListener("mouseout", removeHoveredItemStyles);
+                newItem.style.borderBottom = "1px solid darkorange";
                 newItem.style.background = "orange";
+                
 
             } else {
 
@@ -204,7 +229,7 @@ class TodoList {
         
     }
 
-    static renderCompletedItem(element) {
+    renderCompletedItem(element) {
 
         const CHECK = "fa-check-circle";
         const UNCHECK = "fa-circle";
@@ -212,10 +237,11 @@ class TodoList {
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
 
+        element.parentNode.style.background = (this.itemsArray[element.id].done) ? "lightgreen" : "lightblue";
+        element.parentNode.style.borderBottom = (this.itemsArray[element.id].done) ? "1px solid green" : "1px solid blue";
+
         element.classList.toggle(CHECK);
         element.classList.toggle(UNCHECK);
-        element.parentNode.classList.toggle(completedItemBorder);
-        element.parentNode.classList.toggle(incompletedItemBorder);
         element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
         element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
         element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);
