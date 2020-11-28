@@ -173,8 +173,18 @@ class TodoList {
             trashIcon.style.display = "inline-block";
 
             // console.log(newItem.classList);
-            newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
-            newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
+            if (newItem.classList.contains("edit-container")) {
+
+                newItem.style.borderColor = "darkorange"
+                newItem.style.background = "orange";
+
+            } else {
+
+                newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
+                newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
+
+            }
+            
 
         }
 
