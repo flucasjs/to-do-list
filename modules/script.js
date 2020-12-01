@@ -75,7 +75,7 @@ list.addEventListener("click", (event) => {
     if (elementState == "complete") {
 
         LIST.itemsArray[element.id].toggleDone();
-        LIST.renderCompletedItem(element);
+        LIST.toggleCompletedItemStyles(element);
 
     } else if (elementState == "delete") {
     

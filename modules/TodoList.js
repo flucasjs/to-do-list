@@ -59,6 +59,26 @@ class TodoList {
 
     }
 
+    // Toggles between the styles of a compelted and uncompleted TodoItem
+    toggleCompletedItemStyles(element) {
+
+        const CHECK = "fa-check-circle";
+        const UNCHECK = "fa-circle";
+        const checkedCircleStyle = "todo-list__circle-icon--checked";
+        const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
+        const lineThroughStyle = "todo-list__text--linethrough"
+
+        element.parentNode.style.background = (this.itemsArray[element.id].done) ? "lightgreen" : "lightblue";
+        element.parentNode.style.borderBottom = (this.itemsArray[element.id].done) ? "1px solid green" : "1px solid blue";
+
+        element.classList.toggle(CHECK);
+        element.classList.toggle(UNCHECK);
+        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
+        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
+        element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);
+    }
+
+    // Renders a TodoItem to the TodoList as a list element to the specified list.
     static renderItem(item, listContainer) {
     
         if (item.trash) return;
@@ -91,8 +111,8 @@ class TodoList {
         newItem.appendChild(trashIcon);
 
         newItem.addEventListener("dblclick", createTextEditor);
-        newItem.addEventListener("mouseover", setHoveredItemStyles);
-        newItem.addEventListener("mouseout", removeHoveredItemStyles);
+        newItem.addEventListener("mouseover", setEditorStyles);
+        newItem.addEventListener("mouseout", removeEditorStyles);
         
         listContainer.appendChild(newItem);
 
@@ -117,7 +137,11 @@ class TodoList {
             edit.classList.add("edit");
             newItem.classList.add("edit-container");
 
-            setHoveredItemStyles();
+            // TODO: Add confirm and cancel buttons.
+            // let confirmButton = document.createElement("div");
+            // confirmButton.classList.add("edit__container");
+
+            setEditorStyles();
             
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
@@ -159,10 +183,10 @@ class TodoList {
                         let text = prevEditContainer.querySelector(".todo-list__text");
                         let prevEditInput = prevEditContainer.querySelector(".edit");
 
-                        prevEditContainer.removeEventListener("mouseover", setHoveredItemStyles);
-                        prevEditContainer.removeEventListener("mouseout", removeHoveredItemStyles);
-                        prevEditContainer.addEventListener("mouseover", setHoveredItemStyles);
-                        prevEditContainer.addEventListener("mouseout", removeHoveredItemStyles);
+                        prevEditContainer.removeEventListener("mouseover", setEditorStyles);
+                        prevEditContainer.removeEventListener("mouseout", removeEditorStyles);
+                        prevEditContainer.addEventListener("mouseover", setEditorStyles);
+                        prevEditContainer.addEventListener("mouseout", removeEditorStyles);
 
                         if (event.target.parentNode.classList.contains("edit-container")) {
 
@@ -190,15 +214,16 @@ class TodoList {
 
         }
 
-        function setHoveredItemStyles(event) {
+        // Sets the styles for the the text editor element.
+        function setEditorStyles(event) {
 
+            // Hide the trash icon.
             trashIcon.style.display = "inline-block";
 
-            // console.log(newItem.classList);
             if (newItem.classList.contains("edit-container")) {
 
-                newItem.removeEventListener("mouseover", setHoveredItemStyles);
-                newItem.removeEventListener("mouseout", removeHoveredItemStyles);
+                newItem.removeEventListener("mouseover", setEditorStyles);
+                newItem.removeEventListener("mouseout", removeEditorStyles);
                 newItem.style.borderBottom = "1px solid darkorange";
                 newItem.style.background = "orange";
                 
@@ -213,7 +238,8 @@ class TodoList {
 
         }
 
-        function removeHoveredItemStyles(event) {
+        // Removes the styles fro the text editor element.
+        function removeEditorStyles(event) {
 
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
@@ -223,30 +249,14 @@ class TodoList {
 
     }
 
+    // Renders a list of TodoItems as list items in the specified list.
     static renderList(todoList, listContainer) {
 
         todoList.itemsArray.forEach( (item) => TodoList.renderItem(item, listContainer) );
         
     }
 
-    renderCompletedItem(element) {
-
-        const CHECK = "fa-check-circle";
-        const UNCHECK = "fa-circle";
-        const checkedCircleStyle = "todo-list__circle-icon--checked";
-        const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
-        const lineThroughStyle = "todo-list__text--linethrough"
-
-        element.parentNode.style.background = (this.itemsArray[element.id].done) ? "lightgreen" : "lightblue";
-        element.parentNode.style.borderBottom = (this.itemsArray[element.id].done) ? "1px solid green" : "1px solid blue";
-
-        element.classList.toggle(CHECK);
-        element.classList.toggle(UNCHECK);
-        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
-        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
-        element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);
-    }
-
+    // Parses a JSON string describing a TodoList object.
     static parseData(dataArray) {
 
         return new TodoList(JSON.parse(dataArray).map(item => new TodoItem(item.text, item.id, item.done, item.trash)));
