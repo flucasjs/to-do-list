@@ -169,6 +169,18 @@ body {
     border-color: darkblue;
 }
 
+.edit__cancel {
+    width: 18px;
+    height: 10px;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit__cancel:hover {
+    border-color:darkred;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

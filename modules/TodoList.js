@@ -128,7 +128,7 @@ class TodoList {
             if (event.target.classList.contains("todo-list__circle-icon") || event.target.classList.contains("todo-list__trash-icon")) return;
 
             let edit = document.createElement("input");
-            let text = newItem.querySelector(".todo-list__text");
+            let text = newItem.querySelector(".todo-list__text")
 
             edit.type = "text";
             edit.placeholder = "Edit...";
@@ -137,11 +137,18 @@ class TodoList {
             edit.classList.add("edit");
             newItem.classList.add("edit-container");
 
-            // TODO: Add confirm and cancel buttons.
-            // let confirmButton = document.createElement("div");
-            // confirmButton.classList.add("edit__container");
+            let confirmButton = document.createElement("div");
+            confirmButton.classList.add("edit__confirm");
+            newItem.append(confirmButton);
+
+            let cancelButton = document.createElement("div");
+            cancelButton.textContent = "X"
+            cancelButton.classList.add("edit__cancel");
+            newItem.append(cancelButton);
 
             setEditorStyles();
+            // TODO: refactor this.
+            trashIcon.style.display = "none";
             
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
@@ -182,6 +189,8 @@ class TodoList {
 
                         let text = prevEditContainer.querySelector(".todo-list__text");
                         let prevEditInput = prevEditContainer.querySelector(".edit");
+                        let prevConfimButton = prevEditContainer.querySelector(".edit__confirm");
+                        let prevCancelButton = prevEditContainer.querySelector(".edit__cancel");
 
                         prevEditContainer.removeEventListener("mouseover", setEditorStyles);
                         prevEditContainer.removeEventListener("mouseout", removeEditorStyles);
@@ -202,6 +211,9 @@ class TodoList {
                         }
                         
                         text.style.display = "block";
+                        prevConfimButton.style.display = "none";
+                        prevCancelButton.style.display = "none";
+                        trashIcon.style.display = "inline-block";
 
                         prevEditContainer.removeChild(prevEditInput);
                         prevEditContainer.classList.remove("edit-container");
@@ -217,7 +229,6 @@ class TodoList {
         // Sets the styles for the the text editor element.
         function setEditorStyles(event) {
 
-            // Hide the trash icon.
             trashIcon.style.display = "inline-block";
 
             if (newItem.classList.contains("edit-container")) {
