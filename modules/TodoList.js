@@ -146,9 +146,7 @@ class TodoList {
             cancelButton.classList.add("edit__cancel");
             newItem.append(cancelButton);
 
-            setEditorStyles();
-            // TODO: refactor this.
-            trashIcon.style.display = "none";
+            setEditorStyles(null, "none");
             
             text.insertAdjacentElement("afterend", edit);
             text.style.display = "none";
@@ -174,7 +172,7 @@ class TodoList {
         }
 
         // Event handler that prevents multiple "text editor" input elements from existing any given time.
-        function removePrevTextEditor(event) {
+        function removePrevTextEditor(event,) {
 
             let clickedElement = event.target;
 
@@ -211,11 +209,11 @@ class TodoList {
                         }
                         
                         text.style.display = "block";
-                        prevConfimButton.style.display = "none";
-                        prevCancelButton.style.display = "none";
-                        trashIcon.style.display = "inline-block";
 
+                        prevEditContainer.removeChild(prevConfimButton);
+                        prevEditContainer.removeChild(prevCancelButton);
                         prevEditContainer.removeChild(prevEditInput);
+
                         prevEditContainer.classList.remove("edit-container");
 
                     }
@@ -227,9 +225,9 @@ class TodoList {
         }
 
         // Sets the styles for the the text editor element.
-        function setEditorStyles(event) {
+        function setEditorStyles(event, trashIconDisplay = "inline-block") {
 
-            trashIcon.style.display = "inline-block";
+            trashIcon.style.display = trashIconDisplay;
 
             if (newItem.classList.contains("edit-container")) {
 
