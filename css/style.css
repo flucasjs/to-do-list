@@ -163,6 +163,8 @@ body {
     border-left: 3px solid blue;
     transform: rotate(-50deg);
     cursor: pointer;
+    margin-left: 1em;
+    padding-top: 0.2em;
 }
 
 .edit__confirm:hover {
@@ -171,10 +173,13 @@ body {
 
 .edit__cancel {
     width: 18px;
-    height: 10px;
+    height: 20px;
     border: 0;
+    font-size: 1.35rem;
+    color: red;
     font-weight: bold;
     cursor: pointer;
+    margin-left: 0.5em;
 }
 
 .edit__cancel:hover {
