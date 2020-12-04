@@ -159,28 +159,37 @@ class TodoList {
                 if (event.key === "Enter") {
 
                     text.textContent = edit.value;
-                    text.style.display = "block";
-                    newItem.removeChild(edit);
+                    removePrevTextEditor(null, true);
 
                 }
 
             });
+
+            confirmButton.addEventListener("click", (event) => {
+
+                text.textContent = edit.value;
+                removePrevTextEditor(null, true);
+
+            })
+
+            cancelButton.addEventListener("click", removePrevTextEditor, true)
 
             // If the user clicks anywhere besided the edit input element, remove it.
             document.body.addEventListener("click", removePrevTextEditor)
 
         }
 
-        // Event handler that prevents multiple "text editor" input elements from existing any given time.
-        function removePrevTextEditor(event,) {
+        // Event handler that prevents multiple "text editor" input elements from existing at any given time.
+        function removePrevTextEditor(event, forceRemove = false) {
 
             let clickedElement = event.target;
 
-                // An text editor element has a class of "edit" and a parent container wth a class of "edit-container".
+                // A text editor element has a class of "edit" and a parent container wth a class of "edit-container".
                 let editElementClicked = clickedElement.classList.contains("edit-container") || clickedElement.classList.contains("edit");
 
                 // If the user did not click on the existing text editor element, then remove it.
-                if (!(editElementClicked)) {
+                // We can also forcibly remove the editor by setting forceRemove to true.
+                if (!(editElementClicked || forceRemove)) {
 
                     let prevEditContainer = document.querySelector(".edit-container");
                     if (prevEditContainer) {
