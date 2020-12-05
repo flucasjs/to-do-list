@@ -154,33 +154,19 @@ class TodoList {
             edit.setSelectionRange(edit.value.length, edit.value.length);
             edit.focus();
 
-            edit.addEventListener("keydown", (event) => {
+            edit.addEventListener("keydown", handleEditorInput);
 
-                if (event.key === "Enter") {
+            confirmButton.addEventListener("click", handleEditorInput)
 
-                    text.textContent = edit.value;
-                    removePrevTextEditor(null, true);
-
-                }
-
-            });
-
-            confirmButton.addEventListener("click", (event) => {
-
-                text.textContent = edit.value;
-                removePrevTextEditor(null, true);
-
-            })
-
-            cancelButton.addEventListener("click", removePrevTextEditor, true)
+            cancelButton.addEventListener("click", handleEditorInput)
 
             // If the user clicks anywhere besided the edit input element, remove it.
-            document.body.addEventListener("click", removePrevTextEditor)
+            document.body.addEventListener("click", preventMulitpleEditors)
 
         }
 
         // Event handler that prevents multiple "text editor" input elements from existing at any given time.
-        function removePrevTextEditor(event, forceRemove = false) {
+        function preventMulitpleEditors(event) {
 
             let clickedElement = event.target;
 
@@ -189,48 +175,78 @@ class TodoList {
 
                 // If the user did not click on the existing text editor element, then remove it.
                 // We can also forcibly remove the editor by setting forceRemove to true.
-                if (!(editElementClicked || forceRemove)) {
+                if (!editElementClicked) {
 
-                    let prevEditContainer = document.querySelector(".edit-container");
-                    if (prevEditContainer) {
+                    removeEditor();
 
-                        let text = prevEditContainer.querySelector(".todo-list__text");
-                        let prevEditInput = prevEditContainer.querySelector(".edit");
-                        let prevConfimButton = prevEditContainer.querySelector(".edit__confirm");
-                        let prevCancelButton = prevEditContainer.querySelector(".edit__cancel");
-
-                        prevEditContainer.removeEventListener("mouseover", setEditorStyles);
-                        prevEditContainer.removeEventListener("mouseout", removeEditorStyles);
-                        prevEditContainer.addEventListener("mouseover", setEditorStyles);
-                        prevEditContainer.addEventListener("mouseout", removeEditorStyles);
-
-                        if (event.target.parentNode.classList.contains("edit-container")) {
-
-                            prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
-                            prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
-
-                        } else {
-
-                            prevEditContainer.style.borderColor = "#cdcdcd";
-                            prevEditContainer.style.background = "white";
-                            trashIcon.style.display = "none";
-
-                        }
-                        
-                        text.style.display = "block";
-
-                        prevEditContainer.removeChild(prevConfimButton);
-                        prevEditContainer.removeChild(prevCancelButton);
-                        prevEditContainer.removeChild(prevEditInput);
-
-                        prevEditContainer.classList.remove("edit-container");
-
-                    }
-
-                    // Remove the event listener after it's handler has been called so it doesn't trigger everytime the user clicks something on the page.
-                    document.body.removeEventListener("click", removePrevTextEditor);
+                    // Remove the event listener after it's handler has been called so it doesn't trigger everytime the user clicks something on the body.
+                    document.body.removeEventListener("click", preventMulitpleEditors);
                 }
 
+        }
+
+        function removeEditor(event) {
+
+            let prevEditContainer = document.querySelector(".edit-container");
+            if (prevEditContainer) {
+
+                let text = prevEditContainer.querySelector(".todo-list__text");
+                let prevEditInput = prevEditContainer.querySelector(".edit");
+                let prevConfimButton = prevEditContainer.querySelector(".edit__confirm");
+                let prevCancelButton = prevEditContainer.querySelector(".edit__cancel");
+
+                prevEditContainer.removeEventListener("mouseover", setEditorStyles);
+                prevEditContainer.removeEventListener("mouseout", removeEditorStyles);
+                prevEditContainer.addEventListener("mouseover", setEditorStyles);
+                prevEditContainer.addEventListener("mouseout", removeEditorStyles);
+
+                // TODO: Fix styling bugs resulting from refactoring.
+                if (event.target.parentNode.classList.contains("edit-container")) {
+
+                    prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
+                    prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
+
+                } else {
+
+                    prevEditContainer.style.borderColor = "#cdcdcd";
+                    prevEditContainer.style.background = "white";
+                    trashIcon.style.display = "none";
+
+                }
+                
+                text.style.display = "block";
+
+                prevEditContainer.removeChild(prevConfimButton);
+                prevEditContainer.removeChild(prevCancelButton);
+                prevEditContainer.removeChild(prevEditInput);
+
+                prevEditContainer.classList.remove("edit-container");
+
+            }
+            
+        }
+
+        function updateItemText(elementToUpdate, inputElement) {
+
+            elementToUpdate.textContent = inputElement.value;
+
+        }
+
+        function handleEditorInput(event) {
+
+            if (event.type === "keydown" && event.key !== "Enter") {
+
+                return;
+
+            } 
+
+            let editorContainer = document.querySelector(".edit-container");
+            let editor = editorContainer.querySelector(".edit");
+            let todoText = editorContainer.querySelector(".todo-list__text");
+
+            updateItemText(todoText, editor);
+            removeEditor(event);
+            
         }
 
         // Sets the styles for the the text editor element.
@@ -256,7 +272,7 @@ class TodoList {
 
         }
 
-        // Removes the styles fro the text editor element.
+        // Removes the styles from the text editor element.
         function removeEditorStyles(event) {
 
             trashIcon.style.display = "none";
