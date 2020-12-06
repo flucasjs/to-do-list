@@ -89,6 +89,7 @@ class TodoList {
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
 
+        // TODO: Refactor this as a method of the TodoItem.js module that creates and returns an HTML element.
         let newItem = document.createElement("li");
         newItem.className = "todo-list__item";
         newItem.style.borderBottom = "1px solid #cdcdcd";
@@ -177,7 +178,7 @@ class TodoList {
                 // We can also forcibly remove the editor by setting forceRemove to true.
                 if (!editElementClicked) {
 
-                    removeEditor();
+                    removeEditor(event);
 
                     // Remove the event listener after it's handler has been called so it doesn't trigger everytime the user clicks something on the body.
                     document.body.removeEventListener("click", preventMulitpleEditors);
@@ -195,25 +196,15 @@ class TodoList {
                 let prevConfimButton = prevEditContainer.querySelector(".edit__confirm");
                 let prevCancelButton = prevEditContainer.querySelector(".edit__cancel");
 
+                // TODO: Refactor
                 prevEditContainer.removeEventListener("mouseover", setEditorStyles);
                 prevEditContainer.removeEventListener("mouseout", removeEditorStyles);
+
                 prevEditContainer.addEventListener("mouseover", setEditorStyles);
                 prevEditContainer.addEventListener("mouseout", removeEditorStyles);
 
-                // TODO: Fix styling bugs resulting from refactoring.
-                if (event.target.parentNode.classList.contains("edit-container")) {
-
-                    prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
-                    prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
-
-                } else {
-
-                    prevEditContainer.style.borderColor = "#cdcdcd";
-                    prevEditContainer.style.background = "white";
-                    trashIcon.style.display = "none";
-
-                }
-                
+                prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
+                prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
                 text.style.display = "block";
 
                 prevEditContainer.removeChild(prevConfimButton);
@@ -232,13 +223,7 @@ class TodoList {
 
         }
 
-        function handleEditorInput(event) {
-
-            if (event.type === "keydown" && event.key !== "Enter") {
-
-                return;
-
-            } 
+        function renderUpdatedItem(event) {
 
             let editorContainer = document.querySelector(".edit-container");
             let editor = editorContainer.querySelector(".edit");
@@ -246,6 +231,36 @@ class TodoList {
 
             updateItemText(todoText, editor);
             removeEditor(event);
+
+        }
+
+        function handleEditorInput(event) {
+            
+            if (event.type === "keydown") {
+ 
+                if (event.key === "Escape") {
+
+                    removeEditor(event);
+
+                } else if (event.key === "Enter") {
+
+                    renderUpdatedItem(event)
+
+                }
+
+            } else if (event.type === "click") {
+                
+                let editorButtonClicked = event.target.classList.contains("edit__confirm") || event.target.classList.contains("edit__cancel");
+
+                if (!editorButtonClicked) {
+
+                    return;
+
+                }
+
+                renderUpdatedItem(event)
+
+            }
             
         }
 
@@ -258,6 +273,7 @@ class TodoList {
 
                 newItem.removeEventListener("mouseover", setEditorStyles);
                 newItem.removeEventListener("mouseout", removeEditorStyles);
+
                 newItem.style.borderBottom = "1px solid darkorange";
                 newItem.style.background = "orange";
                 
@@ -267,8 +283,7 @@ class TodoList {
                 newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
                 newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
 
-            }
-            
+            }       
 
         }
 
