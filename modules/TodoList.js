@@ -112,8 +112,7 @@ class TodoList {
         newItem.appendChild(trashIcon);
 
         newItem.addEventListener("dblclick", createTextEditor);
-        newItem.addEventListener("mouseover", setEditorStyles);
-        newItem.addEventListener("mouseout", removeEditorStyles);
+        setHoverListeners(newItem, setEditorStyles, removeEditorStyles);
         
         listContainer.appendChild(newItem);
 
@@ -196,13 +195,13 @@ class TodoList {
                 let prevConfimButton = prevEditContainer.querySelector(".edit__confirm");
                 let prevCancelButton = prevEditContainer.querySelector(".edit__cancel");
 
-                // TODO: Refactor
-                prevEditContainer.removeEventListener("mouseover", setEditorStyles);
-                prevEditContainer.removeEventListener("mouseout", removeEditorStyles);
+                // Remove existing mouseover and mouseout event listeners to avoid stacking.
+                removeHoverListeners(prevEditContainer, setEditorStyles, removeEditorStyles);
 
-                prevEditContainer.addEventListener("mouseover", setEditorStyles);
-                prevEditContainer.addEventListener("mouseout", removeEditorStyles);
+                // Reset default mouseover and mouseout event listeners.
+                setHoverListeners(prevEditContainer, setEditorStyles, removeEditorStyles);
 
+                // TODO: This shouldnt be handled in this function.
                 prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
                 prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
                 text.style.display = "block";
@@ -271,8 +270,9 @@ class TodoList {
 
             if (newItem.classList.contains("edit-container")) {
 
-                newItem.removeEventListener("mouseover", setEditorStyles);
-                newItem.removeEventListener("mouseout", removeEditorStyles);
+                // Do not alter the editor styles when the user hovers over or out of the item being edited.
+                // Maintain focus on the editor until the user finishes editing.
+                removeHoverListeners(newItem, setEditorStyles, removeEditorStyles);
 
                 newItem.style.borderBottom = "1px solid darkorange";
                 newItem.style.background = "orange";
@@ -293,6 +293,22 @@ class TodoList {
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
             newItem.style.background = "white";
+
+        }
+
+        // Set the mouseover and mouseout event listeners with the specified handlers on the referenced element.
+        function setHoverListeners(element, mouseOverHandler, mouseOutHandler) {
+            
+            element.addEventListener("mouseover", mouseOverHandler);
+            element.addEventListener("mouseout", mouseOutHandler);
+
+        }
+
+        // Removes the mouseover and mouseout event listeners with the specified handlers from the referenced element.
+        function removeHoverListeners(element, mouseOverHandler, mouseOutHandler) {
+            
+            element.removeEventListener("mouseover", mouseOverHandler);
+            element.removeEventListener("mouseout", mouseOutHandler);
 
         }
 
