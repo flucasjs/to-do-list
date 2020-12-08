@@ -111,7 +111,7 @@ body {
 }   
 
 .todo-list__circle-icon--unchecked {
-    padding-left: 5px;
+    margin-left: 0.5em;
     
 }
 
@@ -124,7 +124,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: 1.25rem;
-    margin-left: 0.25em;
+    margin-left: 0.5em;
     max-width: 285px;
     background: inherit;
 }
@@ -149,6 +149,16 @@ body {
     font-size: 1.5625rem;
 }
 
+.edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-container {
+    font-size: 0.75rem;
+}
+
 .edit {
     border: 0;
     border-bottom: 0.0625rem outset black;
@@ -156,34 +166,35 @@ body {
 }
 
 .edit__confirm {
-    width: 18px;
-    height: 10px;
+    /* width: 18px;
+    height: 10px; */
     border: 0;
-    border-bottom: 3px solid blue;
-    border-left: 3px solid blue;
-    transform: rotate(-50deg);
+    /* border-bottom: 3px solid blue; */
+    /* border-left: 3px solid blue; */
+    /* transform: rotate(-50deg); */
+    color: blue;
     cursor: pointer;
-    margin-left: 1em;
-    padding-top: 0.2em;
+    padding: 0.25em 0.5em;
+    margin: .675em 0.1em 0;
 }
 
 .edit__confirm:hover {
-    border-color: darkblue;
+    color: lightblue;
 }
 
 .edit__cancel {
-    width: 18px;
-    height: 20px;
+    /* width: 18px;
+    height: 20px; */
     border: 0;
-    font-size: 1.35rem;
     color: red;
     font-weight: bold;
     cursor: pointer;
-    margin-left: 0.5em;
+    padding: 0.25em 0.5em;
+    margin: .675em 0.1em 0;
 }
 
 .edit__cancel:hover {
-    border-color:darkred;
+    color:#FFCCBB;
 }
 
 @keyframes fadeIn {

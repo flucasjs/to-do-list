@@ -138,11 +138,12 @@ class TodoList {
             newItem.classList.add("edit-container");
 
             let confirmButton = document.createElement("div");
+            confirmButton.textContent = "Confirm"
             confirmButton.classList.add("edit__confirm");
             newItem.append(confirmButton);
 
             let cancelButton = document.createElement("div");
-            cancelButton.textContent = "X"
+            cancelButton.textContent = "Cancel"
             cancelButton.classList.add("edit__cancel");
             newItem.append(cancelButton);
 
