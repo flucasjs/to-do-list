@@ -1,33 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bebas+Neue&family=Permanent+Marker&family=Work+Sans&display=swap');
-
 *, *:before, *:after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* ====================
+    Variables
+==================== */
+
+:root {
+--primary-color: #90CAF9;
+--primary-color-light: #C3FDFF;
+--primary-color-dark: #5D99C6;
+--primary-text-color: #000;
+--secondary-color: #3949AB;
+--secondary-color-light: #6F74DD;
+--secondary-color-dark: #00227B;
+--secondary-text-color: #FFF:
+}
+
+/* ====================
+    General
+==================== */
+
 body {
     padding: 0;
     margin: 0;
     background-color: rgb(137, 201, 170);
+    background-image: url('../assets/just-waves/just-waves.png')
 }
 
-/* ----- Container ----- */
+img {
+    max-width: 100%:
+    display: block;
+}
+
+/* ====================
+    Typography
+==================== */
 
 .app {
+    font-family: 'Work Sans', sans-serif;
+}
 
+/* ------------------
+    type.header
+------------------ */
+
+.todo-list-refresher__redo-icon {
+    font-size: 1.75em;
+    color: white;
+}
+
+.todo-list-refresher__redo-icon:hover {
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.375rem;
+    color: #D2C844;
+    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* ------------------
+    type.main
+------------------ */
+
+/* ------------------
+    type.item
+------------------ */
+
+.todo-list__circle-icon--checked {
+    color: green;
+}
+
+.todo-list__text {
+    font-size: 1.25rem;
+}
+
+.todo-list__text--linethrough {
+    text-decoration: line-through;
+    font-style: italic;
+    color : green;
+}
+
+.todo-list__trash-icon {
+    font-size: 1.5625rem;
+}
+
+.todo-list__trash-icon:hover {
+    color: red;
+    font-size: 1.5625rem;
+}
+
+/* ------------------
+    type.editor
+------------------ */
+
+.edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-container {
+    font-size: 0.75rem;
+}
+
+.edit {
+    color: white;
+}
+
+.edit__confirm {
+    color: blue;
+}
+
+.edit__confirm:hover {
+    color: lightblue;
+}
+
+.edit__cancel {
+    font-weight: bold;
+    color: red;
+}
+
+.edit__cancel:hover {
+    color:#FFCCBB;
+}
+
+/* ------------------
+    type.input
+------------------ */
+
+.item-adder__input {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.25rem;
+}
+
+.item-adder__plus-circle-icon {
+    font-family: 'Bebas Neueu', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.item-adder__plus-circle-icon:hover {
+    color: blue;
+}
+
+/* ------------------
+    layout.theme
+------------------ */
+
+
+/* ----- Theme Selector ----- */
+
+.theme-selector__toggle-icon {
+    font-size: 1.85em;
+}
+
+/* ----- Light Theme ----- */
+
+.lt__date {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.375rem;
+    color: #D2C844;
+}
+
+.lt__content {
+    background: white;
+}
+
+.lt__item-adder {
+    background: white;
+}
+
+/* ----- Dark Theme ----- */
+
+.dt__date {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2.25rem;
+    color: #B6E0EA;
+}
+
+
+/* ====================
+    Layout
+==================== */
+
+.app {
     width: 380px;
     margin: 10px auto 0px;
-    font-family: 'Architects Daughter', cursive;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
 }
 
-/* ----- Header ----- */
+/* ------------------
+    layout.header
+------------------ */
 
 .header {
     width: 380px;
     height: 200px;
-    background: url('../assets/lightTheme.svg');
+    background-image: url('../assets/lightTheme.svg');
     background-size: 200%;
     background-color: lightblue;
     background-position: -100px -175px;
@@ -44,13 +219,10 @@ body {
 }
 
 .todo-list-refresher__redo-icon {
-    font-size: 1.875 rem;
-    color: white;
     cursor: pointer;
 }
 
 .todo-list-refresher__redo-icon:hover {
-    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
     transform: rotate(45deg);
 }
 
@@ -58,19 +230,17 @@ body {
     position: absolute;
     left: 10px;
     bottom: 10px;
-    color: #D2C844;
-    font-size: 2.375rem;
-    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
-    font-family: 'Bebas Neue', cursive;
 }
 
-/* ----- Content ----- */
+/* ------------------
+    layout.main
+------------------ */
 
 .main-content {
     width: 380px;
-    height: 350px;
+    height: 360px;
     background: white;
-    max-height: 350px;
+    max-height: 360px;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #cdcdcd transparent;
@@ -81,83 +251,88 @@ body {
     margin: 0;
 }
 
+/* ------------------
+    layout.item
+------------------ */
+
 .todo-list__item {
     width: 380px;
     height: 45px;
     min-height: 45px;
     position: relative;
-    border-bottom: 1px solid #cdcdcd;
     list-style: none;
     padding: 0;
     margin: 0;
+    transition: border 0.5s, background 0.5s;
+    display: flex;
+    align-items: center;
+}
+
+.todo-list__text {
+    padding: 0;
+    margin: 0;
+    margin-left: 0.5em;
+    max-width: 285px;
+    background: inherit;
 }
 
 .todo-list__circle-icon {
+    margin-left: 0.2em;
     cursor: pointer;
+} 
+
+.todo-list__circle-icon {
     font-size: 1.5625rem;
-    position: absolute;
-    left: 15px;
-    top: 10px;
-}   
+}
 
 .todo-list__circle-icon--unchecked {
-    padding-left: 5px;
+    margin-left: 0.5em;
     
 }
 
 .todo-list__circle-icon--checked {
-    color: green;
     padding-left: 5px;
 }
 
-.todo-list__text {
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    font-size: 1.25rem;
-    left: 50px;
-    top: 10px;
-    background-color: inherit;
-    max-width: 285px;
-}
-
-.todo-list__text--linethrough {
-    text-decoration: line-through;
-    font-style: italic;
-    color : green;
-}
-
 .todo-list__trash-icon {
-    position: absolute;
-    font-size: 1.5625rem;
-    right: 15px;
-    top: 10px;
     cursor: pointer;
+    display: none;
+    margin-left: auto;
+    margin-right: 1em;
+    animation: fadeIn 0.5s;
 }
 
-.todo-list__trash-icon:hover {
-    color: red;
+/* ------------------
+    layout.editor
+------------------ */
+
+.edit {
+    border: 0;
+    border-bottom: 0.0625rem outset black;
 }
 
-.todo-list__edit-icon {
-    position: absolute;
-    font-size: 1.5625rem;
-    right: 45px;
-    top: 9.1px;
+.edit__confirm {
+    border: 0;
     cursor: pointer;
+    padding: 0.25em 0.5em;
+    margin: .675em 0.1em 0;
 }
 
-.todo-list__options-icon {
-    position: absolute;
-    font-size: 1.5rem;
-    right: 15px;
-    top: 12px;
+.edit__cancel {
+    border: 0;
     cursor: pointer;
+    padding: 0.25em 0.5em;
+    margin: .675em 0.1em 0;
 }
 
-/* ----- Add Item ----- */
+/* ------------------
+    layout.input
+------------------ */
 
 .item-adder {
+    display: flex;
+    justify-content: center;
+    align-items: space-around;
     position: relative;
     width: 380px;
     height: 61px;
@@ -168,36 +343,47 @@ body {
 }
 
 .item-adder__plus-circle-icon {
-    position: absolute;
-    font-size: 2.5rem;
-    color: blue;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background: blue;
     cursor: pointer;
+    border: 1px solid transparent;
+    margin-right: 5px;
+}
+
+.item-adder__plus-circle-icon:hover {
+    background: white;
+    border: 1px solid blue;
+}
+
+.item-adder__plus-circle-icon:active {
+    transform: translateY(1px);
 }
 
 .item-adder__input {
-    position: absolute;
-    left: 50px;
-    height: 35px;
-    width: 310px;
+    flex: 1;
     background-color: transparent;
     border: none;
-    font-size: 1.25rem;
-    font-family: 'Work Sans', sans-serif;
     padding-left: 10px;
 }
+
+/* ------------------
+    layout.theme
+------------------ */
+
 
 /* ----- Theme Selector ----- */
 
 .theme-selector {
     position: absolute;
     top: 20px;
-    left: 20px;
+    right: 20px;
     width: 25px;
     height: 25px;
 }
 
 .theme-selector__toggle-icon {
-    font-size: 1.875rem;
     cursor: pointer;
 }
 
@@ -205,6 +391,7 @@ body {
 
 .lt__body {
     background: rgb(137, 201, 170);
+    background-image: url(../assets/just-waves/just-waves.png);
 }
 
 .lt__header {
@@ -213,24 +400,12 @@ body {
     background-position: -100px -175px;
 }
 
-.lt__date {
-    font-size: 2.375rem;
-    color: #D2C844;
-    font-family: 'Bebas Neue', cursive;
-}
-
-.lt__content {
-    background: white;
-}
-
-.lt__item-adder {
-    background: white;
-}
-
 /* ----- Dark Theme ----- */
 
 .dt__body {
     background: #003d47;
+    background-image: url(../assets/beanstalk-dark/beanstalk-dark.png);
+
 }
 
 .dt__header {
@@ -239,16 +414,23 @@ body {
     background-position: initial;
 }
 
-.dt__date {
-    font-size: 2.25rem;
-    color: #B6E0EA;
-    font-family: 'Permanent Marker', cursive;
-}
-
-.dt__content {
+/* .dt__content {
     background: lightgray;
 }
 
 .dt__item-adder {
     background: lightgray;
+} */
+
+/* ====================
+    Animations
+==================== */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

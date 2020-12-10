@@ -4,18 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>To Do List</title>
+        <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bebas+Neue&family=Permanent+Marker&family=Work+Sans&display=swap" rel="stylesheet"> 
         <script src="https://kit.fontawesome.com/266c898db6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <script defer type="module" src="./modules/script.js"></script>
+        <script type="module" src="./modules/script.js"></script>
     </head>
     <body>
-        <div class="theme-selector">
-            <i class="theme-selector__toggle-icon fas fa-toggle-off fa-lg"></i>
-        </div>
+        <!-- <div class="theme-selector">
+            <i class="theme-selector__toggle-icon far fa-lightbulb"></i>
+        </div> -->
         <div class="app">
             <div class="header">
                 <div class="todo-list-refresher">
-                    <i class="todo-list-refresher__redo-icon fas fa-redo-alt fa-lg"></i>
+                    <i class="todo-list-refresher__redo-icon fas fa-redo-alt"></i>
                 </div>
                 <div class="date">
                     <span class="date__text">Day Month Year</span>
@@ -24,16 +25,16 @@
             <div class="main-content">
                 <ul class="todo-list">
                     <!--
-                        <li class="todo-list__item">
-                            <i class="todo-list__circle-icon--unchecked far fa-circle" data-state"complete"></i>
-                            <p class="todo-list__text">To-do item</p>
-                            <i class="todo-list__trash-icon far fa-trash-alt" data-state="delete"></i>
-                        </li>
+                        `<li class="todo-list__item">
+                            <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-state="complete" id="${item.id}"></i>
+                            <p class="todo-list__text ${item.done ? lineThroughStyle : ""}">${item.text}</p>
+                            <i class="todo-list__trash-icon far fa-trash-alt" data-state="delete" id="${item.id}"></i>
+                        </li>`;
                     -->
                 </ul>
             </div>
             <div class="item-adder">
-                <i class="item-adder__plus-circle-icon fas fa-plus-circle"></i>
+                <button class="item-adder__plus-circle-icon">+</button>
                 <input type="text" class="item-adder__input" placeholder="Add an item">
             </div>
         </div>
