@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bebas+Neue&family=Permanent+Marker&family=Work+Sans&display=swap');
+
 *, *:before, *:after {
     padding: 0;
     margin: 0;
@@ -13,9 +15,10 @@ body {
 /* ----- Container ----- */
 
 .app {
+
     width: 380px;
     margin: 10px auto 0px;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Architects Daughter', cursive;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
 }
 
@@ -41,7 +44,7 @@ body {
 }
 
 .todo-list-refresher__redo-icon {
-    font-size: 1.75em;
+    font-size: 1.875 rem;
     color: white;
     cursor: pointer;
 }
@@ -58,16 +61,16 @@ body {
     color: #D2C844;
     font-size: 2.375rem;
     text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', cursive;
 }
 
 /* ----- Content ----- */
 
 .main-content {
     width: 380px;
-    height: 360px;
+    height: 350px;
     background: white;
-    max-height: 360px;
+    max-height: 350px;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #cdcdcd transparent;
@@ -83,35 +86,22 @@ body {
     height: 45px;
     min-height: 45px;
     position: relative;
+    border-bottom: 1px solid #cdcdcd;
     list-style: none;
     padding: 0;
     margin: 0;
-    transition: border 0.5s, background 0.5s;
-    display: flex;
-    align-items: center;
 }
-
-/* .todo-list__item--done:focus,
-.todo-list__item--done:hover {
-    
-}
-
-.todo-list__item--undone:focus,
-.todo-list__item--undone:hover {
-    
-} */
 
 .todo-list__circle-icon {
     cursor: pointer;
     font-size: 1.5625rem;
-    margin-left: 0.2em;
-    /* position: absolute;
+    position: absolute;
     left: 15px;
-    top: 10px; */
+    top: 10px;
 }   
 
 .todo-list__circle-icon--unchecked {
-    margin-left: 0.5em;
+    padding-left: 5px;
     
 }
 
@@ -121,12 +111,14 @@ body {
 }
 
 .todo-list__text {
+    position: absolute;
     padding: 0;
     margin: 0;
     font-size: 1.25rem;
-    margin-left: 0.5em;
+    left: 50px;
+    top: 10px;
+    background-color: inherit;
     max-width: 285px;
-    background: inherit;
 }
 
 .todo-list__text--linethrough {
@@ -136,82 +128,36 @@ body {
 }
 
 .todo-list__trash-icon {
+    position: absolute;
     font-size: 1.5625rem;
+    right: 15px;
+    top: 10px;
     cursor: pointer;
-    display: none;
-    margin-left: auto;
-    margin-right: 1em;
-    animation: fadeIn 0.5s;
 }
 
 .todo-list__trash-icon:hover {
     color: red;
+}
+
+.todo-list__edit-icon {
+    position: absolute;
     font-size: 1.5625rem;
-}
-
-.edit-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.edit-container {
-    font-size: 0.75rem;
-}
-
-.edit {
-    border: 0;
-    border-bottom: 0.0625rem outset black;
-    color: white;
-}
-
-.edit__confirm {
-    /* width: 18px;
-    height: 10px; */
-    border: 0;
-    /* border-bottom: 3px solid blue; */
-    /* border-left: 3px solid blue; */
-    /* transform: rotate(-50deg); */
-    color: blue;
+    right: 45px;
+    top: 9.1px;
     cursor: pointer;
-    padding: 0.25em 0.5em;
-    margin: .675em 0.1em 0;
 }
 
-.edit__confirm:hover {
-    color: lightblue;
-}
-
-.edit__cancel {
-    /* width: 18px;
-    height: 20px; */
-    border: 0;
-    color: red;
-    font-weight: bold;
+.todo-list__options-icon {
+    position: absolute;
+    font-size: 1.5rem;
+    right: 15px;
+    top: 12px;
     cursor: pointer;
-    padding: 0.25em 0.5em;
-    margin: .675em 0.1em 0;
-}
-
-.edit__cancel:hover {
-    color:#FFCCBB;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
 }
 
 /* ----- Add Item ----- */
 
 .item-adder {
-    display: flex;
-    justify-content: center;
-    align-items: space-around;
     position: relative;
     width: 380px;
     height: 61px;
@@ -222,31 +168,17 @@ body {
 }
 
 .item-adder__plus-circle-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 2rem;
-    font-family: 'Bebas Neueu', sans-serif;
-    color: white;
-    background: blue;
-    cursor: pointer;
-    border: 1px solid transparent;
-    margin-right: 5px;
-}
-
-.item-adder__plus-circle-icon:hover {
+    position: absolute;
+    font-size: 2.5rem;
     color: blue;
-    background: white;
-    border: 1px solid blue;
-}
-
-.item-adder__plus-circle-icon:active {
-    transform: translateY(1px);
+    cursor: pointer;
 }
 
 .item-adder__input {
-    flex: 1;
+    position: absolute;
+    left: 50px;
+    height: 35px;
+    width: 310px;
     background-color: transparent;
     border: none;
     font-size: 1.25rem;
@@ -259,13 +191,13 @@ body {
 .theme-selector {
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
     width: 25px;
     height: 25px;
 }
 
 .theme-selector__toggle-icon {
-    font-size: 1.85em;
+    font-size: 1.875rem;
     cursor: pointer;
 }
 
@@ -313,10 +245,10 @@ body {
     font-family: 'Permanent Marker', cursive;
 }
 
-/* .dt__content {
+.dt__content {
     background: lightgray;
 }
 
 .dt__item-adder {
     background: lightgray;
-} */
+}

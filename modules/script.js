@@ -18,11 +18,11 @@ const itemAdderIcon = document.querySelector(".item-adder__plus-circle-icon");
 displayTodaysDate(dateText);
 
 // Visual element used to toggle theme settings.
-const darkTheme = "fas";
-const lightTheme = "far";
+const darkTheme = "fa-toggle-on";
+const lightTheme = "fa-toggle-off";
 
 // Variables used for local storage.
-let LIST = new TodoList(document.getElementsByClassName("todo-list__item"));
+let LIST = new TodoList();
 
 // Retrieve TodoList.itemsArray from local storage.
 let data = localStorage.getItem("TODO");
@@ -58,11 +58,7 @@ clear.addEventListener("click", () => {
 // Reset the input field.
 document.addEventListener("keydown", (event) => {
 
-    if (event.code == "Enter" || event.code == "NumpadEnter") {
-
-        addItem(input.value)
-        
-    }
+    addItem(input.value, (event.code == "Enter" || event.code == "NumpadEnter"))
 
 });
 
@@ -75,7 +71,7 @@ list.addEventListener("click", (event) => {
     if (elementState == "complete") {
 
         LIST.itemsArray[element.id].toggleDone();
-        LIST.toggleCompletedItemStyles(element);
+        TodoList.renderCompletedItem(element);
 
     } else if (elementState == "delete") {
     
@@ -83,8 +79,6 @@ list.addEventListener("click", (event) => {
         element.parentNode.parentNode.removeChild(element.parentNode);
 
     }
-
-    
 
     localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
@@ -139,11 +133,9 @@ function setTheme(element) {
 }
 
 function displayTodaysDate(element) {
-
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
     element.innerHTML = today.toLocaleDateString("en-US", options);
-    
 }
 
 itemAdderIcon.addEventListener("click", (event) => {
@@ -152,17 +144,24 @@ itemAdderIcon.addEventListener("click", (event) => {
 
 })
 
+function addItem(inputValue, condition = true) {
 
 
-function addItem(inputValue) {
+    if (condition) {
 
-    if (inputValue) {
+        if (inputValue) {
 
-        LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)
-        localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
+            LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)
+            localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
+
+        }
+
+        input.value = "";
+
+    } else {
+
+        return false;
 
     }
-
-    input.value = "";
 
 }
