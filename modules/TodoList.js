@@ -204,7 +204,7 @@ class TodoList {
 
                 // TODO: This shouldnt be handled in this function.
                 prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
-                prevEditContainer.style.background = (item.done) ? "lightgreen" : "white";
+                prevEditContainer.style.background = (item.done) ? "lightgreen" : "var(--primary-color-light)";
                 text.style.display = "block";
 
                 prevEditContainer.removeChild(prevConfimButton);
@@ -276,7 +276,7 @@ class TodoList {
                 removeHoverListeners(newItem, setEditorStyles, removeEditorStyles);
 
                 newItem.style.borderBottom = "1px solid darkorange";
-                newItem.style.background = "orange";
+                newItem.style.background = "lightyellow";
                 
 
             } else {
@@ -293,8 +293,7 @@ class TodoList {
 
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
-            newItem.style.background = "white";
-
+            newItem.style.background = "var(--primary-color-light)";
         }
 
         // Set the mouseover and mouseout event listeners with the specified handlers on the referenced element.
