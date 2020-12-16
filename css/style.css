@@ -272,6 +272,8 @@ img {
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #cdcdcd transparent;
+    position: relative;
+    z-index: 1;
 }
 
 .todo-list {
@@ -281,7 +283,7 @@ img {
 
 @media (min-width: 600px) {
     .todo-list {
-        padding: 1em;
+        padding: 0 1em 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -293,9 +295,9 @@ img {
     layout.item
 ------------------ */
 
+
+
 .todo-list__item {
-    /* width: 380px; */
-    /* height: 45px; */
     min-height: 7vh;
     position: relative;
     list-style: none;
@@ -305,6 +307,8 @@ img {
     display: flex;
     align-items: center;
     background-color: var(--primary-color-light);
+    position: relative;
+    border-radius: 10px 10px 0 0;
 }
 
 .todo-list__text {
@@ -345,13 +349,47 @@ img {
         justify-content: flex-start;
         margin: 1em 0.5em;
         flex: 1 1 30%;
-        box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.2),
+        /* box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.2),
                     0 0.2em 0.2em rgba(0, 0, 0, 0.15),
                     0 0.3em 0.3em rgba(0, 0, 0, 0.1),
                     0 0.4em 0.4em rgba(0, 0, 0, 0.075),
                     0 0.5em 0.5em rgba(0, 0, 0, 0.05),
-                    0 0.6em 0.6em rgba(0, 0, 0, 0.025);
+                    0 0.6em 0.6em rgba(0, 0, 0, 0.025); */
+        position: relative;
     }
+
+    .todo-list__item:before, 
+    .todo-list__item:after {
+        z-index: -1;
+        position: absolute;
+        content: '';
+        bottom: 15px;
+        left: 10px;
+        top: 80%;
+        width: 50%;
+        max-width: 300px;
+        background: #707070;
+        box-shadow: 0 15px 10px rgba(0, 0, 0, 0.4);
+        transform: rotate(-3deg);
+    }
+
+    .todo-list__item:after {
+        left: auto;
+        right: 10px;
+        transform: rotate(3deg);
+    }
+
+    /* .todo-list__item:nth-child(n + 3) {
+        background: #5ac6d5;
+    }
+
+    .todo-list__item:nth-child(2n) {
+        background: #f8c5fe;
+    }
+
+    .todo-list__item:nth-child(2n + 2) {
+        background: #fffd61;
+    } */
 
     .todo-list__text {
         max-width: 100%;
