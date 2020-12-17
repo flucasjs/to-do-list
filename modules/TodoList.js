@@ -68,7 +68,7 @@ class TodoList {
         const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
         const lineThroughStyle = "todo-list__text--linethrough"
 
-        element.parentNode.style.background = (this.itemsArray[element.id].done) ? "lightgreen" : "lightblue";
+        // element.parentNode.style.background = (this.itemsArray[element.id].done) ? "lightgreen" : "lightblue";
         element.parentNode.style.borderBottom = (this.itemsArray[element.id].done) ? "1px solid green" : "1px solid blue";
 
         element.classList.toggle(CHECK);
@@ -90,22 +90,22 @@ class TodoList {
         const lineThroughStyle = "todo-list__text--linethrough"
 
         // TODO: Refactor this as a method of the TodoItem.js module that creates and returns an HTML element.
-        let newItem = document.createElement("li");
+        const newItem = document.createElement("li");
         newItem.className = "todo-list__item";
         newItem.style.borderBottom = "1px solid #cdcdcd";
 
-        let circleIcon = document.createElement("i");
+        const circleIcon = document.createElement("i");
         circleIcon.className = `todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}`;
         circleIcon.dataset.state = "complete";
         circleIcon.id = item.id;
         newItem.appendChild(circleIcon);
 
-        let text = document.createElement("p");
+        const text = document.createElement("p");
         text.className = `todo-list__text ${item.done ? lineThroughStyle : ""}`
         text.textContent = item.text;
         newItem.appendChild(text);
 
-        let trashIcon = document.createElement("i");
+        const trashIcon = document.createElement("i");
         trashIcon.className = `todo-list__trash-icon far fa-trash-alt`;
         trashIcon.dataset.state = "delete";
         trashIcon.id = item.id;
@@ -113,8 +113,10 @@ class TodoList {
 
         newItem.addEventListener("dblclick", createTextEditor);
         setHoverListeners(newItem, setEditorStyles, removeEditorStyles);
-        
+
         listContainer.appendChild(newItem);
+
+        randomizeBackgroundColor(newItem);
 
         // ---------- Private helper functions for static render method ---------- //
 
@@ -203,7 +205,7 @@ class TodoList {
                 setHoverListeners(prevEditContainer, setEditorStyles, removeEditorStyles);
 
                 // TODO: This shouldnt be handled in this function.
-                prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
+                // prevEditContainer.style.borderColor = (item.done) ? "green" : "#cdcdcd";
                 prevEditContainer.style.background = (item.done) ? "lightgreen" : "var(--primary-color-light)";
                 text.style.display = "block";
 
@@ -276,13 +278,13 @@ class TodoList {
                 removeHoverListeners(newItem, setEditorStyles, removeEditorStyles);
 
                 newItem.style.borderBottom = "1px solid darkorange";
-                newItem.style.background = "lightyellow";
+                // newItem.style.background = "lightyellow";
                 
 
             } else {
 
                 newItem.style.borderBottom = (item.done) ? "1px solid green" : "1px solid blue";
-                newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
+                // newItem.style.background = (item.done) ? "lightgreen" : "lightblue";
 
             }       
 
@@ -293,7 +295,7 @@ class TodoList {
 
             trashIcon.style.display = "none";
             newItem.style.borderColor = "#cdcdcd";
-            newItem.style.background = "var(--primary-color-light)";
+            // newItem.style.background = "var(--primary-color-light)";
         }
 
         // Set the mouseover and mouseout event listeners with the specified handlers on the referenced element.
@@ -310,6 +312,30 @@ class TodoList {
             element.removeEventListener("mouseover", mouseOverHandler);
             element.removeEventListener("mouseout", mouseOutHandler);
 
+        }
+
+        function randomizeBackgroundColor(element) {
+
+            const colorsArray = ["#e6fd91", "#f8c5fe", "#fd8781", "#fffd61", "#fd9f4b"];
+
+            if (element.previousElementSibling) {
+            
+                const prevItemColor = element.previousElementSibling.style.background;
+                let newItemColor = newItem.style.background;
+
+                do {
+
+                    element.style.background = colorsArray[Math.floor(Math.random() * 5)];
+                    newItemColor = element.style.background;
+                    
+        
+                } while (newItemColor === prevItemColor);
+
+            } else {
+
+                element.style.background = colorsArray[Math.floor(Math.random() * 5)];
+
+            }
         }
 
     }
