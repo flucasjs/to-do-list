@@ -316,7 +316,7 @@ class TodoList {
 
         function randomizeBackgroundColor(element) {
 
-            const colorsArray = ["#e6fd91", "#f8c5fe", "#fd8781", "#fffd61", "#fd9f4b"];
+            const colorsArray = ["#e6fd91", "#f8c5fe", "#fd8781", "#fffd61", "#fd9f4b", "#5ac6d5"];
 
             if (element.previousElementSibling) {
             
@@ -325,7 +325,7 @@ class TodoList {
 
                 do {
 
-                    element.style.background = colorsArray[Math.floor(Math.random() * 5)];
+                    element.style.background = colorsArray[Math.floor(Math.random() * colorsArray.length)];
                     newItemColor = element.style.background;
                     
         
