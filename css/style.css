@@ -82,8 +82,9 @@ img {
 }
 
 .todo-list__text {
+    font-family: 'Ubuntu', sans-serif;
     font-size: 1.25rem;
-    color: #404040;
+    color: white;
 }
 
 .todo-list__text--linethrough {
@@ -94,54 +95,12 @@ img {
 
 .todo-list__trash-icon {
     font-size: 1.5625rem;
+    color: white;
 }
 
 .todo-list__trash-icon:hover {
     color: red;
     font-size: 1.5625rem;
-}
-
-/* ------------------
-    type.editor
------------------- */
-
-.edit-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.edit-container {
-    font-size: 0.75rem;
-}
-
-.edit {
-    color: var(--primary-text-color);
-}
-
-.edit__confirm,
-.edit__cancel {
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-}
-
-.edit__confirm {
-    color: blue;
-    user-select: none;
-}
-
-.edit__confirm:hover {
-    color: rgba(0, 0, 255, 0.5);
-}
-
-.edit__cancel {
-    color: red;
-    user-select: none;
-}
-
-.edit__cancel:hover {
-    color: rgba(255, 0, 0, 0.5);
 }
 
 /* ------------------
@@ -164,48 +123,12 @@ img {
     color: blue;
 }
 
-/* ------------------
-    layout.theme
------------------- */
-
-
-/* ----- Theme Selector ----- */
-
-.theme-selector__toggle-icon {
-    font-size: 1.85em;
-}
-
-/* ----- Light Theme ----- */
-
-.lt__date {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 2.375rem;
-    color: #D2C844;
-}
-
-.lt__content {
-    background: white;
-}
-
-.lt__item-adder {
-    background: white;
-}
-
-/* ----- Dark Theme ----- */
-
-.dt__date {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 2.25rem;
-    color: #B6E0EA;
-}
-
 
 /* ====================
     Layout
 ==================== */
 
 .app {
-    /* width: 380px; */
     margin: 0 auto;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
 }
@@ -214,27 +137,22 @@ img {
     layout.header
 ------------------ */
 
-.header {
-    /* width: 380px; */
-    /* height: 200px; */
-    min-height: 21vh;
-    background-color: var(--primary-color);
-    background-image: url("../assets/wide-image4.jpg");
+header {
+    /* min-height: 5vh; */
+    background-color: #03045e;
+    /* background-image: url("../assets/wide-image4.jpg"); */
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    padding: 0.25em 0.5em;
 }
 
 .todo-list-refresher {
     width: 30px;
     height: 30px;
-    margin: 1em 1.125em 0 auto;
-    /* position: absolute;
-    right: 20px;
-    top: 20px; */
+    margin-left: auto;
 }
 
 .todo-list-refresher__redo-icon {
@@ -243,13 +161,6 @@ img {
 
 .todo-list-refresher__redo-icon:hover {
     transform: rotate(45deg);
-}
-
-.date {
-    margin: 0 0 0.125em 0.4em
-    /* position: absolute;
-    left: 10px;
-    bottom: 10px; */
 }
 
 @media (min-width: 600px) {
@@ -263,17 +174,17 @@ img {
 ------------------ */
 
 .main-content {
-    /* width: 380px; */
-    /* height: 360px; */
-    min-height: 70vh;
+    min-height: 85vh;
     background-image: var(--primary-color-light);
-    background-image: url(../assets/paper/paper.png);
+    background-image: url(../assets/triangles/triangles.png);
     max-height: 360px;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #cdcdcd transparent;
     position: relative;
     z-index: 1;
+    max-width: 600px;
+    padding-top: 0.5em;
 }
 
 .todo-list {
@@ -282,12 +193,16 @@ img {
 }
 
 @media (min-width: 600px) {
+    .main-content {
+        max-width: initial;
+    }
+
     .todo-list {
-        padding: 0 1em 0;
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: flex-start;
+        padding-top: 0.5em;
     }
 }
 
@@ -295,37 +210,54 @@ img {
     layout.item
 ------------------ */
 
+/* .new {
+    cursor: pointer;
+    padding: 1em 2.5em;
+    border-radius: 10px;
+    color: white;
+    background: black;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    order: 10;
+}
 
+.new:hover,
+.new:focus {
+    color: black;
+    background: white;
+    border: 1px solid black;
+} */
 
 .todo-list__item {
-    /* min-height: 7vh; */
+    min-height: 7vh;
+    max-width: 600px;
+    word-wrap: break-word;
     position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
-    transition: border 0.5s, background 0.5s;
+    /* transition: border 0.5s, background 0.5s; */
     display: flex;
     align-items: center;
     background-color: var(--primary-color-light);
     position: relative;
-    border-radius: 10px;
 }
 
 .todo-list__text {
-    padding: 0;
+    padding: 1em 0;
     margin: 0;
     margin-left: 0.75em;
     background: inherit;
+    max-width: 77.5%;
 }
 
 .todo-list__circle-icon {
     margin-left: 0.75em;
     cursor: pointer;
 } 
-
-/* .todo-list__circle-icon--unchecked {
-    
-} */
 
 .todo-list__circle-icon--checked {
     padding-left: 5px;
@@ -341,15 +273,16 @@ img {
 
 @media (min-width: 600px) {
     .todo-list__item {
-        padding: 0 1em 0;
+        padding: 0 1em;
         min-height: 14vh;
-        max-width: 50%;
+        flex: 1 1 30%;
+        max-width: 30%;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        margin: 1em 0.5em;
-        flex: 1 1 30%;
+        margin: 0.5em;
         position: relative;
+        border-radius: 10px;
     }
 
     .todo-list__item::before, 
@@ -391,33 +324,6 @@ img {
 }
 
 /* ------------------
-    layout.editor
------------------- */
-
-.edit-container {
-    justify-content: flex-start;
-}
-
-.edit {
-    border: 0;
-    border-bottom: 0.0625rem outset black;
-}
-
-.edit__confirm {
-    border: 0;
-    cursor: pointer;
-    padding: 0.25em 0.5em;
-    margin: .675em 0.25em 0 2.5em;
-}
-
-.edit__cancel {
-    border: 0;
-    cursor: pointer;
-    padding: 0.25em 0.5em;
-    margin: .675em 0.25em 0;
-}
-
-/* ------------------
     layout.input
 ------------------ */
 
@@ -426,10 +332,8 @@ img {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* width: 380px; */
-    /* height: 61px; */
     min-height: 9vh;
-    background-color: var(--primary-color-light);
+    background-color: #c5c5c5;
     padding: 10px;
     border-top: 1px solid black;
     
@@ -460,60 +364,6 @@ img {
 .item-adder__plus-circle-icon:active {
     transform: translateY(1px);
 }
-
-/* ------------------
-    layout.theme
------------------- */
-
-
-/* ----- Theme Selector ----- */
-
-.theme-selector {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 25px;
-    height: 25px;
-}
-
-.theme-selector__toggle-icon {
-    cursor: pointer;
-}
-
-/* ----- Light Theme ----- */
-
-.lt__body {
-    background: rgb(137, 201, 170);
-    background-image: url(../assets/just-waves/just-waves.png);
-}
-
-.lt__header {
-    background-size: 200%;
-    background-image: url('../assets/lightTheme.svg');
-    background-position: -100px -175px;
-}
-
-/* ----- Dark Theme ----- */
-
-.dt__body {
-    background: #003d47;
-    background-image: url(../assets/beanstalk-dark/beanstalk-dark.png);
-
-}
-
-.dt__header {
-    background-size: 150%;
-    background-image: url('../assets/darkTheme.svg');
-    background-position: initial;
-}
-
-/* .dt__content {
-    background: lightgray;
-}
-
-.dt__item-adder {
-    background: lightgray;
-} */
 
 /* ====================
     Animations
