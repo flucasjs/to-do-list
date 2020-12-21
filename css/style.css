@@ -65,6 +65,14 @@ img {
     letter-spacing: 0.1em;
 }
 
+.navbar__tabs {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    list-style: none;
+    letter-spacing: 0.045em;
+}
+
 /* ------------------
     type.main
 ------------------ */
@@ -145,6 +153,7 @@ header {
     background-position: center;
     position: relative;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0.25em 0.5em;
 }
@@ -152,7 +161,6 @@ header {
 .todo-list-refresher {
     width: 30px;
     height: 30px;
-    margin-left: auto;
 }
 
 .todo-list-refresher__redo-icon {
@@ -163,9 +171,30 @@ header {
     transform: rotate(45deg);
 }
 
+.navbar__tabs--active {
+    border-bottom: 1px solid white;
+}
+
 @media (min-width: 600px) {
     .app {
         width: 75%;
+    }
+
+    .date {
+        margin-left: 0.25em;
+    }
+    
+    .navbar__tabs {
+        padding: 0;
+        display: flex;
+    }
+
+    .navbar__tabs li {
+        margin: 0 1em;
+    }
+
+    .todo-list-refresher {
+        margin-right: 1em;
     }
 }
 
@@ -184,7 +213,6 @@ header {
     position: relative;
     z-index: 1;
     max-width: 600px;
-    padding-top: 0.5em;
 }
 
 .todo-list {
@@ -210,26 +238,9 @@ header {
     layout.item
 ------------------ */
 
-/* .new {
-    cursor: pointer;
-    padding: 1em 2.5em;
-    border-radius: 10px;
-    color: white;
-    background: black;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2em;
-    order: 10;
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text);
 }
-
-.new:hover,
-.new:focus {
-    color: black;
-    background: white;
-    border: 1px solid black;
-} */
 
 .todo-list__item {
     min-height: 7vh;
@@ -244,6 +255,7 @@ header {
     align-items: center;
     background-color: var(--primary-color-light);
     position: relative;
+    transition: 1s;
 }
 
 .todo-list__text {
