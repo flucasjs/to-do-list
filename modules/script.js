@@ -66,6 +66,15 @@ document.addEventListener("keydown", (event) => {
 
 });
 
+let n = document.querySelector(".new");
+
+n.addEventListener("click", (event) => {
+    n.classList.add('todo-list__item');
+    n.textContent = "";
+    n.contentEditable = "true";
+    n.dataset.text = "Enter text here...";
+})
+
 // Complete or delete an item depending on which icon the user clicks.
 list.addEventListener("click", (event) => {
 
