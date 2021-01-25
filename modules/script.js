@@ -17,10 +17,6 @@ const itemAdderIcon = document.querySelector(".item-adder__plus-circle-icon");
 // Todays date.
 displayTodaysDate(dateText);
 
-// Visual element used to toggle theme settings.
-// const darkTheme = "fas";
-// const lightTheme = "far";
-
 // Variables used for local storage.
 let LIST = new TodoList(document.getElementsByClassName("todo-list__item"));
 
@@ -34,24 +30,6 @@ if (data) {
     TodoList.renderList(LIST, list);
 
 }
-
-// Retrieve theme setting from local storage.
-// let style = localStorage.getItem("THEME");
-
-// Theme Loader. Preserves the state of the theme using local storage.
-// if (style == "dark") {
-
-//     setTheme(theme);
-
-// }
-
-// Clear and reload the page when the user clicks the clear icon in the header area.
-clear.addEventListener("click", () => {
-
-    localStorage.setItem("TODO", "");
-    location.reload();
-
-});
 
 // Add a new item to the list when the user hits the enter key.
 // Update the list in local storage.
@@ -98,54 +76,6 @@ list.addEventListener("click", (event) => {
     localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
 
 });
-
-// Dark and light theme toggle
-// theme.addEventListener("click", (event) => {
-
-//     const element = event.target;
-//     setTheme(element);
-
-// });
-
-// Toggle between light and dark themes.
-// function setTheme(element) {
-
-//     element.classList.toggle(darkTheme);
-//     element.classList.toggle(lightTheme);
-
-//     let elements = {
-//         body: document.body,
-//         header: header,
-//         date: dateText,
-//         content: content,
-//         "item-adder": itemAdderContainer
-//     };
-    
-//     if (element.classList.contains(lightTheme)) {
-
-//         for (let prop in elements) {
-
-//             let elem = elements[prop];
-//             elem.classList.remove(`dt__${prop}`)
-//             elem.classList.add(`lt__${prop}`)
-
-//         }
-
-//         localStorage.setItem("THEME", 'light')
-
-//     } else if (element.classList.contains(darkTheme)) {
-
-//         for (let prop in elements) {
-
-//             let elem = elements[prop];
-//             elem.classList.remove(`lt__${prop}`)
-//             elem.classList.add(`dt__${prop}`)       
-//         }
-
-//         localStorage.setItem("THEME", 'dark');
-//     }
-
-// }
 
 function displayTodaysDate(element) {
 
