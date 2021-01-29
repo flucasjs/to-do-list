@@ -9,7 +9,7 @@
 ==================== */
 
 :root {
-    --primary-color: #90CAF9;
+    --primary-color: #F8F8F8;
     --primary-color-light: #C3FDFF;
     --primary-color-dark: #5D99C6;
     --primary-text-color: #000;
@@ -24,14 +24,15 @@
 ==================== */
 
 body {
-    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
     margin: 0;
-    background-color: rgb(137, 201, 170);
-    background-image: url('../assets/just-waves/just-waves.png')
 }
 
 img {
-    max-width: 100%:
+    max-width: 100%;
     display: block;
 }
 
@@ -47,6 +48,10 @@ img {
     type.header
 ------------------ */
 
+header {
+    text-align: center;
+}
+
 .todo-list-refresher__redo-icon {
     font-size: 1.75em;
     color: white;
@@ -61,16 +66,33 @@ img {
     font-size: 2.375rem;
     font-weight: 700;
     color: var(--secondary-text-color);
-    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
     letter-spacing: 0.1em;
 }
 
 .navbar__tabs {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 1.5rem;
     color: white;
     list-style: none;
     letter-spacing: 0.045em;
+}
+
+
+.navbar__tabs a {
+    padding: .25em 0;
+    font-weight: 700;
+    color: #707070;
+    text-decoration: none;  
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav a:focus,
+nav a:hover {
+    color: #1792D2;
+}
+
+.current-page:hover {
+    color: #707070;
 }
 
 /* ------------------
@@ -92,7 +114,14 @@ img {
 .todo-list__text {
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.25rem;
-    color: white;
+    color: gray;
+    background: pink !important;
+    width: 100%;
+    cursor: pointer
+}
+
+.todo-list__text:active {
+    cursor: text;
 }
 
 .todo-list__text--linethrough {
@@ -138,7 +167,25 @@ img {
 
 .app {
     margin: 0 auto;
-    box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.4);
+}
+
+.container {
+    width: 90%;
+    max-width: 1400x;
+    margin: 0 auto;
+}
+
+.container-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 675px) {
+    .container-flex {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 /* ------------------
@@ -146,9 +193,7 @@ img {
 ------------------ */
 
 header {
-    /* min-height: 5vh; */
-    background-color: #03045e;
-    /* background-image: url("../assets/wide-image4.jpg"); */
+    background-color: #F8F8F8;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -156,6 +201,10 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0.25em 0.5em;
+}
+
+.date {
+    color: #707070;
 }
 
 .todo-list-refresher {
@@ -171,26 +220,30 @@ header {
     transform: rotate(45deg);
 }
 
-.navbar__tabs--active {
-    border-bottom: 1px solid white;
+.current-page {
+    border-bottom: 1px solid #707070;
+}
+
+.navbar__tabs {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 }
 
 @media (min-width: 600px) {
     .app {
         width: 75%;
     }
-
-    .date {
-        margin-left: 0.25em;
-    }
     
     .navbar__tabs {
-        padding: 0;
         display: flex;
+        flex-direction: row;
     }
 
     .navbar__tabs li {
-        margin: 0 1em;
+        margin-left: 1em;
+        
     }
 
     .todo-list-refresher {
@@ -204,8 +257,6 @@ header {
 
 .main-content {
     min-height: 85vh;
-    background-image: var(--primary-color-light);
-    background-image: url(../assets/triangles/triangles.png);
     max-height: 360px;
     overflow: auto;
     scrollbar-width: thin;
@@ -344,16 +395,16 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 9vh;
-    background-color: #c5c5c5;
+    background-color: #F8F8F8;
     padding: 10px;
-    border-top: 1px solid black;
-    
+    width: 50vw;
+    min-width: 50vw;
+    border-radius: 30px;
 }
 
 .item-adder__input {
     flex: 1;
-    background-color: transparent;
+    
     border: 0;
     margin-right: auto;
 }
