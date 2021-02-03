@@ -5,46 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>To Do List</title>
         <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bebas+Neue&family=Permanent+Marker&family=Work+Sans&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400,700&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/266c898db6.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
         <script type="module" src="./modules/script.js"></script>
     </head>
     <body>
-        <!-- <div class="theme-selector">
-            <i class="theme-selector__toggle-icon far fa-lightbulb"></i>
-        </div> -->
         <header>
-            <div class="date">
-                <span class="date__text">Day Month Year</span>
-            </div>
-            <nav class="navbar">
-                <ul class="navbar__tabs">
-                    <li class="navbar__tab--active">
-                        View Active Items
-                    </li>
-                    <li class="navbar__tab--completed">
-                        View Completed Items
-                    </li>
-                </ul>
-            </nav>
-            <div class="todo-list-refresher">
-                <i class="todo-list-refresher__redo-icon fas fa-redo-alt"></i>
+            <div class="container container-flex">
+                <div class="date">
+                    <span class="date__text">Day Month Year</span>
+                </div>
+                <nav class="navbar">
+                    <ul class="navbar__tabs">
+                        <li class="navbar__tab--active">
+                            <a href="#" class="current-page">View Active Items</a>
+                        </li>
+                        <li class="navbar__tab--completed">
+                            <a href="#">View Completed Items</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </header>
         <main role="main">
             <div class="main-content">
-                <ul class="todo-list">
-                    <!-- <li class="new">
-                        Add New Item
-                    </li> -->
-                    <!--
-                        `<li class="todo-list__item">
-                            <i class="todo-list__circle-icon ${item.done ? checkedCircleStyle : uncheckedCircleStyle} far ${item.done ? CHECK : UNCHECK}" data-state="complete" id="${item.id}"></i>
-                            <p class="todo-list__text ${item.done ? lineThroughStyle : ""}">${item.text}</p>
-                            <i class="todo-list__trash-icon far fa-trash-alt" data-state="delete" id="${item.id}"></i>
-                        </li>`;
-                    -->
-                </ul>
+                <ul class="todo-list"></ul>
             </div>
             <div class="item-adder">
                 <button class="item-adder__plus-circle-icon">+</button>
