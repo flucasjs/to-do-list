@@ -121,7 +121,8 @@ class TodoList {
 
         listContainer.appendChild(newItem);
 
-        randomizeBackgroundColor(newItem);
+        // randomizeBackgroundColor(newItem);
+        newItem.style.background = "#ffffed";
 
         // ---------- Private helper functions for static render method ---------- //
 
