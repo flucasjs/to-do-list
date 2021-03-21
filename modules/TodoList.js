@@ -110,11 +110,11 @@ class TodoList {
 
         // const postedDate
         
-        const trashIcon = document.createElement("i");
-        trashIcon.className = `todo-list__trash-icon far fa-trash-alt`;
-        trashIcon.dataset.state = "delete";
-        trashIcon.id = item.id;
-        newItem.appendChild(trashIcon);
+        // const trashIcon = document.createElement("i");
+        // trashIcon.className = `todo-list__trash-icon far fa-trash-alt`;
+        // trashIcon.dataset.state = "delete";
+        // trashIcon.id = item.id;
+        // newItem.appendChild(trashIcon);
 
         newItem.addEventListener("mouseover", handleMouseOver);
         newItem.addEventListener("mouseout", handleMouseOut);
