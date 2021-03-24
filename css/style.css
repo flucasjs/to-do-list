@@ -114,8 +114,7 @@ nav a:hover {
 .todo-list__text {
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.25rem;
-    color: gray;
-    background: pink !important;
+    color: #707070;
     width: 100%;
     cursor: pointer
 }
@@ -305,28 +304,33 @@ main {
 }
 
 .todo-list__item {
-    min-height: 7vh;
-    /* max-width: 600px; */
     word-wrap: break-word;
     position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
-    /* transition: border 0.5s, background 0.5s; */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-color-light);
     position: relative;
-    transition: 1s;
+    background-color: white;
+    margin-top: 1em;
+    padding: 0.2em;
 }
 
 .todo-list__text {
     padding: 0.75em 1em;
     margin: 0;
-    background: inherit;
     max-width: 85%;
+    background-color: whitesmoke;
+    box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.2);
 }
+
+.todo-list__text:focus {
+    outline-color: rgba(0, 0, 0, 0.2);
+    outline-style: solid;
+}
+
 
 .todo-list__circle-icon {
     margin-left: 0.75em;
