@@ -1,17 +1,10 @@
 import TodoList from './TodoList.js'
 import TodoItem from './TodoItem.js'
 
-'use strict';
-
 // Selector constants.
-const clear = document.querySelector(".todo-list-refresher");
 const dateText = document.querySelector(".date__text");
 const list = document.querySelector(".todo-list");
 const input = document.querySelector(".item-adder__input");
-// const content = document.querySelector(".main-content");
-// const itemAdderContainer = document.querySelector(".item-adder");
-// const header = document.querySelector(".header");
-// const theme = document.querySelector(".theme-selector__toggle-icon");
 const itemAdderIcon = document.querySelector(".item-adder__plus-circle-icon");
 
 // Todays date.
@@ -25,37 +18,21 @@ let data = localStorage.getItem("TODO");
 
 // Data loader. Creates new local storage list if data is empty.
 if (data) {
-
     LIST = TodoList.parseData(data);
     TodoList.renderList(LIST, list);
-
 }
 
 // Add a new item to the list when the user hits the enter key.
 // Update the list in local storage.
 // Reset the input field.
 document.addEventListener("keydown", (event) => {
-
     if (event.code == "Enter" || event.code == "NumpadEnter") {
-
         addItem(input.value)
-        
     }
-
 });
-
-let n = document.querySelector(".new");
-
-n.addEventListener("click", (event) => {
-    n.classList.add('todo-list__item');
-    n.textContent = "";
-    n.contentEditable = "true";
-    n.dataset.text = "Enter text here...";
-})
 
 // Complete or delete an item depending on which icon the user clicks.
 list.addEventListener("click", (event) => {
-
     const element = event.target;
     const elementState = element.dataset.state;
 
@@ -71,37 +48,26 @@ list.addEventListener("click", (event) => {
 
     }
 
-    
-
     localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
-
 });
 
 function displayTodaysDate(element) {
-
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
     element.innerHTML = today.toLocaleDateString("en-US", options);
-    
 }
 
 itemAdderIcon.addEventListener("click", (event) => {
-    debugger;
     addItem(input.value)
-
 })
 
 
 
 function addItem(inputValue) {
-
     if (inputValue) {
-
         LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)
         localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
-
     }
 
     input.value = "";
-
 }
