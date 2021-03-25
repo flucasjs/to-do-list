@@ -30,6 +30,7 @@ body {
     line-height: 1.6;
     margin: 0;
     height: 100vh;
+    overflow: hidden;
 }
 
 img {
@@ -195,8 +196,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75em 0.25em 0.25em;
-    height: 22.5%;
+    min-height: 12%;
 }
 
 .date {
@@ -240,15 +240,22 @@ header {
     .app {
         width: 75%;
     }
+
+    header {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .date {
+        margin-bottom: 0.2em;
+    }
     
     .navbar__tabs {
         display: flex;
         flex-direction: row;
-    }
-
-    .navbar__tabs li {
-        margin-left: 1em;
-        
+        justify-content: space-around;
     }
 
     .todo-list-refresher {
@@ -261,7 +268,7 @@ header {
 ------------------ */
 
 main {
-    height: 77.5%;
+    height: 84.5%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -349,7 +356,12 @@ main {
     animation: fadeIn 0.5s;
 }
 
+
 @media (min-width: 600px) {
+    main {
+        height: 88%;
+    }
+
     .todo-list__item {
         padding: 0 1em;
         min-height: 14vh;
@@ -389,16 +401,6 @@ main {
         word-break: break-word;
         margin: 0 0 0.25em;
     }
-
-    .todo-list__circle-icon {
-        margin: 0.75em 0 0.25em;
-        margin-right: auto;
-    } 
-
-    .todo-list__trash-icon {
-        margin: auto 0 0.5em;
-    }
-
 }
 
 /* ------------------
@@ -409,9 +411,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
+    width: 100%;
     background-color: #F8F8F8;
     padding: 10px;
+    bottom: 0;
 }
 
 .item-adder__input {
