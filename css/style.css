@@ -177,13 +177,6 @@ nav a:hover {
     justify-content: space-between;
 }
 
-@media (min-width: 675px) {
-    .container-flex {
-        flex-direction: row;
-        align-items: center;
-    }
-}
-
 /* ------------------
     layout.header
 ------------------ */
@@ -197,6 +190,7 @@ header {
     justify-content: space-between;
     align-items: center;
     min-height: 12%;
+    z-index: 2;
 }
 
 .date {
@@ -416,6 +410,7 @@ main {
     background-color: #F8F8F8;
     padding: 10px;
     bottom: 0;
+    z-index: 1;
 }
 
 .item-adder__input {
@@ -455,3 +450,29 @@ main {
         opacity: 1;
     }
 }
+
+@media (min-width: 900px) {
+    header {
+        min-height: 8%;
+    }
+
+    .container-flex {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .navbar__tab--completed {
+        margin-left: 1em;
+    }
+
+    .date {
+        font-size: 2.2em;
+        margin-bottom: 0;
+    }
+
+    ul.navbar__tabs {
+        font-size: 1.1em;
+        margin-top: 0.325em;
+    }
+}
+
