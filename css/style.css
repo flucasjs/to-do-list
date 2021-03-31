@@ -195,6 +195,7 @@ header {
 
 .date {
     color: #707070;
+    margin-top: 0.2em;
 }
 
 .todo-list-refresher {
@@ -226,11 +227,7 @@ header {
     margin-bottom: 1em;
 }
 
-.navbar__tab--completed {
-    margin-bottom: 0.75em;
-}
-
-@media (min-width: 600px) {
+@media (min-width: 700px) {
     .app {
         width: 75%;
     }
@@ -243,17 +240,26 @@ header {
     }
 
     .date {
+        margin-top: 0.325em;
         margin-bottom: 0.2em;
     }
     
-    .navbar__tabs {
+    ul.navbar__tabs {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
     }
 
+    .narrow {
+        width: 80%;
+    }
+
     .todo-list-refresher {
         margin-right: 1em;
+    }
+
+    .container {
+        width: 70%;
     }
 }
 
@@ -351,7 +357,7 @@ main {
 }
 
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
     main {
         height: 88%;
     }
@@ -451,7 +457,7 @@ main {
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 880px) {
     header {
         min-height: 8%;
     }
@@ -472,7 +478,11 @@ main {
 
     ul.navbar__tabs {
         font-size: 1.1em;
-        margin-top: 0.325em;
+        margin-top: 1.275em;
+    }
+
+    .container {
+        width: 90%;
     }
 }
 
