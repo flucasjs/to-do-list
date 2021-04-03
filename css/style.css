@@ -169,6 +169,7 @@ nav a:hover {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0.5em 1em;
 }
 
 .container-flex {
@@ -195,7 +196,6 @@ header {
 
 .date {
     color: #707070;
-    margin-top: 0.2em;
 }
 
 .todo-list-refresher {
@@ -310,25 +310,14 @@ main {
     content: attr(data-text);
 }
 
-.todo-list__item {
-    word-wrap: break-word;
+.todo-list__item {s
     position: relative;
     list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: white;
-    margin-top: 1em;
-    padding: 0.2em;
 }
 
 .todo-list__text {
     padding: 0.75em 1em;
     margin: 0;
-    max-width: 85%;
     background-color: whitesmoke;
     box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.2);
 }
@@ -363,20 +352,14 @@ main {
     }
 
     .todo-list__item {
-        padding: 0 1em;
-        min-height: 14vh;
-        flex: 1 1 30%;
+        flex: 1 1 100%;
         max-width: 30%;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin: 0.5em;
-        position: relative;
+        margin: 0.75em;
         border-radius: 10px;
     }
 
-    .todo-list__item::before, 
-    .todo-list__item::after {
+    .todo-list__text::before, 
+    .todo-list__text::after {
         z-index: -1;
         position: absolute;
         content: '';
@@ -384,22 +367,19 @@ main {
         left: 10px;
         top: 80%;
         width: 50%;
-        max-width: 300px;
-        background: #707070;
         box-shadow: 0 15px 10px rgba(0, 0, 0, 0.4);
         transform: rotate(-3deg);
     }
 
-    .todo-list__item::after {
+    .todo-list__text::after {
         left: auto;
         right: 10px;
         transform: rotate(3deg);
     }
 
     .todo-list__text {
-        max-width: 100%;
+        position: relative;
         word-break: break-word;
-        margin: 0 0 0.25em;
     }
 }
 
@@ -482,7 +462,8 @@ main {
     }
 
     .container {
-        width: 90%;
+        width: 100%;
+        max-width: 1700px;
     }
 }
 
