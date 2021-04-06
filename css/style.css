@@ -324,8 +324,9 @@ main {
 .todo-list__text {
     padding: 0.75em 1em;
     margin: 1em;
-    background-color: #E8E8E8;
+    background-color: #F5F591;
     box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.2);
+    overflow-wrap: break-word;
 }
 
 .todo-list__text:focus {
@@ -378,7 +379,6 @@ main {
 
     .todo-list__text {
         position: relative;
-        word-break: break-word;
         margin: 0;
     }
 
@@ -471,7 +471,10 @@ main {
     }
 
     .todo-list__item {
-        max-width: 30%;
+        max-width: 12.5%;
+    }
+
+    .todo-list__text {
+        min-height: 6em;
     }
 }
-
