@@ -218,7 +218,7 @@ main {
 }
 
 .todo-list {
-    padding: 0;
+    padding: 0.5em 0 3em;
     margin: 0;
 }
 
