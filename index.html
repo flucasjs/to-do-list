@@ -11,31 +11,33 @@
         <script type="module" src="./modules/script.js"></script>
     </head>
     <body>
-        <header>
-            <div class="container container-flex">
-                <div class="date">
-                    <span class="date__text">Day Month Year</span>
+        <div class="grid">
+            <header>
+                <div class="container container-flex">
+                    <div class="date">
+                        <span class="date__text">Day Month Year</span>
+                    </div>
+                    <nav class="navbar">
+                        <ul class="navbar__tabs">
+                            <li class="navbar__tab--active">
+                                <a href="#" class="current-page">View Active Items</a>
+                            </li>
+                            <li class="navbar__tab--completed">
+                                <a href="#">View Completed Items</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <nav class="navbar">
-                    <ul class="navbar__tabs">
-                        <li class="navbar__tab--active">
-                            <a href="#" class="current-page">View Active Items</a>
-                        </li>
-                        <li class="navbar__tab--completed">
-                            <a href="#">View Completed Items</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main role="main">
-            <div class="main-content">
-                <ul class="todo-list"></ul>
-            </div>
-            <div class="item-adder">
-                <button class="item-adder__plus-circle-icon">+</button>
-                <input type="text" class="item-adder__input" placeholder="Add an item">
-            </div>
-        </main>
+            </header>
+            <main role="main">
+                <div class="main-content">
+                    <ul class="todo-list"></ul>
+                </div>
+                <div class="item-adder">
+                    <button class="item-adder__plus-circle-icon">+</button>
+                    <input type="text" class="item-adder__input" placeholder="Add an item">
+                </div>
+            </main>
+        </div>
     </body>
 </html>

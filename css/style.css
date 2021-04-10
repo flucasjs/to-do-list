@@ -202,7 +202,7 @@ header {
 ------------------ */
 
 main {
-    height: 84.5%;
+    /* height: 84.5%; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -218,7 +218,7 @@ main {
 }
 
 .todo-list {
-    padding: 0.5em 0 3em;
+    padding: 0.5em 0 0;
     margin: 0;
 }
 
@@ -289,11 +289,25 @@ main {
     transform: translateY(1px);
 }
 
+.grid {
+    display: grid;
+    grid-template-rows: 17.5% 75% 7.5%;
+    height: 100vh;
+}
+
+header {
+    grid-row: span 1;
+}
+
 /* ====================
     Media Queries
 ==================== */
 
 @media (min-width: 600px) {
+    .grid {
+        grid-template-rows: 17.5% 75% 1fr;
+    }
+
     .main-content {
         max-width: initial;
     }
@@ -313,9 +327,13 @@ main {
 }
 
 @media (min-width: 700px) {
-    main {
-        height: 88%;
+    .grid {
+        grid-template-rows: 15% 85% 1fr;
     }
+
+    /* main {
+        height: 88%;
+    } */
 
     header {
         display: flex;
@@ -370,9 +388,13 @@ main {
 
 
 @media (min-width: 880px) {
-    header {
-        min-height: 8%;
+    .grid {
+        grid-template-rows: 10% 85% 1fr;
     }
+
+    /* header {
+        min-height: 8%;
+    } */
 
     .container-flex {
         flex-direction: row;
