@@ -167,14 +167,10 @@ nav a:hover {
 
 header {
     background-color: #E8E8E8;
-    background-size: cover;
-    background-position: center;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 12%;
-    z-index: 2;
 }
 
 .date {
@@ -202,7 +198,6 @@ header {
 ------------------ */
 
 main {
-    /* height: 84.5%; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -256,7 +251,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     width: 100%;
     background-color: #E8E8E8;
     padding: 10px;
@@ -291,7 +285,7 @@ main {
 
 .grid {
     display: grid;
-    grid-template-rows: 17.5% 75% 7.5%;
+    grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
     height: 100vh;
 }
 
@@ -305,7 +299,7 @@ header {
 
 @media (min-width: 600px) {
     .grid {
-        grid-template-rows: 17.5% 75% 1fr;
+        grid-template-rows: minmax(15%, 1fr) 80% minmax(5%, 1fr);
     }
 
     .main-content {
@@ -328,12 +322,8 @@ header {
 
 @media (min-width: 700px) {
     .grid {
-        grid-template-rows: 15% 85% 1fr;
+        grid-template-rows: minmax(12.5%, 1fr) 82.5% minmax(5%, 1fr);
     }
-
-    /* main {
-        height: 88%;
-    } */
 
     header {
         display: flex;
@@ -389,12 +379,8 @@ header {
 
 @media (min-width: 880px) {
     .grid {
-        grid-template-rows: 10% 85% 1fr;
+        grid-template-rows: minmax(10%, 1fr) 85% minmax(5%, 1fr);
     }
-
-    /* header {
-        min-height: 8%;
-    } */
 
     .container-flex {
         flex-direction: row;
