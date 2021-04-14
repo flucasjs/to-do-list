@@ -61,8 +61,6 @@ itemAdderIcon.addEventListener("click", (event) => {
     addItem(input.value)
 })
 
-
-
 function addItem(inputValue) {
     if (inputValue) {
         LIST.push(new TodoItem(inputValue, LIST.length, false, false), list)

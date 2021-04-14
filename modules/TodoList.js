@@ -40,43 +40,25 @@ class TodoList {
         this.itemsArray[id].done = this.itemsArray[element.id].done ? false : true;
     }
 
-    // Toggles between the styles of a compelted and uncompleted TodoItem
-    toggleCompletedItemStyles(element) {
-        const CHECK = "fa-check-circle";
-        const UNCHECK = "fa-circle";
-        const checkedCircleStyle = "todo-list__circle-icon--checked";
-        const uncheckedCircleStyle = "todo-list__circle-icon--unchecked"
-        const lineThroughStyle = "todo-list__text--linethrough"
-
-        element.classList.toggle(CHECK);
-        element.classList.toggle(UNCHECK);
-        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(checkedCircleStyle);
-        element.parentNode.querySelector(".todo-list__circle-icon").classList.toggle(uncheckedCircleStyle);
-        element.parentNode.querySelector(".todo-list__text").classList.toggle(lineThroughStyle);
-    }
-
     // Renders a TodoItem to the TodoList as a list element to the specified list.
     static renderItem(item, listContainer) {
-        if (item.trash) return;
-
-        const lineThroughStyle = "todo-list__text--linethrough"
-
         const newItem = document.createElement("li");
         newItem.className = "todo-list__item";
+
         const text = document.createElement("p");
-        text.className = `todo-list__text ${item.done ? lineThroughStyle : ""}`
+        text.className = "todo-list__text"
         text.textContent = item.text;
         text.contentEditable = "true";
         text.spellcheck = "false";
         text.autocapitalize = "false";
-        newItem.appendChild(text);
 
+        newItem.appendChild(text);
         listContainer.appendChild(newItem);
     }
 
     // Renders a list of TodoItems as list items in the specified list.
     static renderList(todoList, listContainer) {
-        todoList.itemsArray.forEach( (item) => TodoList.renderItem(item, listContainer) );
+        todoList.itemsArray.forEach(item => TodoList.renderItem(item, listContainer) );
     }
 
     // Parses a JSON string describing a TodoList object.
