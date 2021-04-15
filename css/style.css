@@ -414,3 +414,41 @@ header {
         min-height: 6em;
     }
 }
+
+.remove-note-container {
+    top: 20px;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+}
+
+.remove-note-container:hover {
+    cursor: pointer;
+}
+
+.remove-note-left{
+    width: 1px;
+    height: 10px;
+    position: absolute;
+    z-index: 2;
+    background-color: red;
+    transform: rotate(45deg);
+    top: 6px;
+    left: 10px;
+    opacity: 0;
+    transition: all 0.1s ease-out;
+}
+
+.remove-note-right {
+    width: 1px;
+    height: 10px;
+    position: absolute;
+    z-index: 2;
+    background-color: red;
+    transform: rotate(-45deg);
+    top: 6px;
+    left: 10px;
+    opacity: 0;
+    transition: all 0.1s ease-out;
+}

@@ -52,6 +52,43 @@ class TodoList {
         text.spellcheck = "false";
         text.autocapitalize = "false";
 
+        const removeNoteContainer = document.createElement("div");
+        removeNoteContainer.className = "remove-note-container";
+
+        const removeNoteLeft = document.createElement("div");
+        removeNoteLeft.className = "remove-note-left"
+
+        const removeNoteRight = document.createElement("div");
+        removeNoteRight.className = "remove-note-right"
+
+        removeNoteContainer.appendChild(removeNoteLeft);
+        removeNoteContainer.appendChild(removeNoteRight);
+
+        removeNoteContainer.addEventListener("mouseover", () => {
+            removeNoteLeft.style.width = "1.75px";
+            removeNoteRight.style.width = "1.75px";
+        })
+
+        removeNoteContainer.addEventListener("mouseout", () => {
+            removeNoteLeft.style.width = "1px";
+            removeNoteRight.style.width = "1px";
+        })
+
+        newItem.addEventListener("mouseover", () => {
+            removeNoteLeft.style.opacity = "75%";
+            removeNoteRight.style.opacity = "75%";
+        })
+
+        newItem.addEventListener("mouseout", () => {
+            removeNoteLeft.style.opacity = "0";
+            removeNoteRight.style.opacity = "0";
+        })
+
+        removeNoteContainer.addEventListener("click", () => {
+            listContainer.removeChild(newItem);
+        })
+
+        newItem.appendChild(removeNoteContainer);
         newItem.appendChild(text);
         listContainer.appendChild(newItem);
     }
