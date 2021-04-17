@@ -31,26 +31,6 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// Complete or delete an item depending on which icon the user clicks.
-list.addEventListener("click", (event) => {
-    const element = event.target;
-    const elementState = element.dataset.state;
-
-    if (elementState == "complete") {
-
-        LIST.itemsArray[element.id].toggleDone();
-        LIST.toggleCompletedItemStyles(element);
-
-    } else if (elementState == "delete") {
-    
-        LIST.itemsArray[element.id].setTrash();
-        element.parentNode.parentNode.removeChild(element.parentNode);
-
-    }
-
-    localStorage.setItem("TODO", JSON.stringify(LIST.itemsArray));
-});
-
 function displayTodaysDate(element) {
     const options = {weekday: "long", month: "short", day: "numeric"};
     const today = new Date();
