@@ -415,7 +415,7 @@ header {
     }
 }
 
-.remove-note-container {
+.delete-item-container {
     top: 20px;
     position: relative;
     width: 20px;
@@ -423,24 +423,25 @@ header {
     z-index: 1;
 }
 
-.remove-note-container:hover {
+.delete-item-container:hover {
     cursor: pointer;
 }
 
-.remove-note-left{
+.forward-slash{
     width: 1px;
     height: 10px;
     position: absolute;
     z-index: 2;
-    background-color: red;
+    background-color: pink;
     transform: rotate(45deg);
     top: 6px;
     left: 10px;
     opacity: 0;
     transition: all 0.1s ease-out;
+    cursor: pointer;
 }
 
-.remove-note-right {
+.back-slash {
     width: 1px;
     height: 10px;
     position: absolute;
@@ -451,4 +452,5 @@ header {
     left: 10px;
     opacity: 0;
     transition: all 0.1s ease-out;
+    cursor: pointer;
 }

@@ -1,21 +1,21 @@
 class TodoItem {
 
-    constructor(text = "", id = 0, done = false, trash = false) {
+    constructor(text = "", id = 0, done = false, deleted = false) {
         this.text = text;
         this.id = id;
         this.done = done;
-        this.trash = trash;
+        this.deleted = deleted;
 
         this.toggleDone = this.toggleDone.bind(this);
-        this.setTrash = this.setTrash.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     toggleDone() {
         this.done = (this.done) ? false : true;
     }
 
-    setTrash() {
-        this.trash = true;
+    deleteItem() {
+        this.deleted = true;
     }
 
 }

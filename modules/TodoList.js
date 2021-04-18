@@ -52,43 +52,47 @@ class TodoList {
         text.spellcheck = "false";
         text.autocapitalize = "false";
 
-        const removeNoteContainer = document.createElement("div");
-        removeNoteContainer.className = "remove-note-container";
+        function createDeleteIcon() {
 
-        const removeNoteLeft = document.createElement("div");
-        removeNoteLeft.className = "remove-note-left"
+        }
 
-        const removeNoteRight = document.createElement("div");
-        removeNoteRight.className = "remove-note-right"
+        const deleteIconContainer = document.createElement("div");
+        deleteIconContainer.className = "delete-icon-container";
 
-        removeNoteContainer.appendChild(removeNoteLeft);
-        removeNoteContainer.appendChild(removeNoteRight);
+        const forwardSlash = document.createElement("div");
+        forwardSlash.className = "forward-slash"
 
-        removeNoteContainer.addEventListener("mouseover", () => {
-            removeNoteLeft.style.width = "1.75px";
-            removeNoteRight.style.width = "1.75px";
+        const backSlash = document.createElement("div");
+        backSlash.className = "back-slash"
+
+        deleteIconContainer.appendChild(forwardSlash);
+        deleteIconContainer.appendChild(backSlash);
+
+        deleteIconContainer.addEventListener("mouseover", () => {
+            forwardSlash.style.width = "1.75px";
+            backSlash.style.width = "1.75px";
         })
 
-        removeNoteContainer.addEventListener("mouseout", () => {
-            removeNoteLeft.style.width = "1px";
-            removeNoteRight.style.width = "1px";
+        deleteIconContainer.addEventListener("mouseout", () => {
+            forwardSlash.style.width = "1px";
+            backSlash.style.width = "1px";
         })
 
         newItem.addEventListener("mouseover", () => {
-            removeNoteLeft.style.opacity = "75%";
-            removeNoteRight.style.opacity = "75%";
+            forwardSlash.style.opacity = "75%";
+            backSlash.style.opacity = "75%";
         })
 
         newItem.addEventListener("mouseout", () => {
-            removeNoteLeft.style.opacity = "0";
-            removeNoteRight.style.opacity = "0";
+            forwardSlash.style.opacity = "0";
+            backSlash.style.opacity = "0";
         })
 
-        removeNoteContainer.addEventListener("click", () => {
+        deleteIconContainer.addEventListener("click", () => {
             listContainer.removeChild(newItem);
         })
 
-        newItem.appendChild(removeNoteContainer);
+        newItem.appendChild(deleteIconContainer);
         newItem.appendChild(text);
         listContainer.appendChild(newItem);
     }
@@ -100,7 +104,7 @@ class TodoList {
 
     // Parses a JSON string describing a TodoList object.
     static parseData(dataArray) {
-        return new TodoList(JSON.parse(dataArray).map(item => new TodoItem(item.text, item.id, item.done, item.trash)));
+        return new TodoList(JSON.parse(dataArray).map(item => new TodoItem(item.text, item.id, item.done, item.deleted)));
     }
 
 }
