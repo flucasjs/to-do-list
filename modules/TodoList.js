@@ -40,21 +40,21 @@ class TodoList {
         this.itemsArray[id].done = this.itemsArray[element.id].done ? false : true;
     }
 
-    // Renders a TodoItem to the TodoList as a list element to the specified list.
-    static renderItem(item, listContainer) {
+    // Appends a TodoItem to a TodoList as a list element to the specified list.
+    static renderItem(todoItem, todoList) {
         const newItem = document.createElement("li");
         newItem.className = "todo-list__item";
 
         const text = document.createElement("p");
         text.className = "todo-list__text"
-        text.textContent = item.text;
+        text.textContent = todoItem.text;
         text.contentEditable = "true";
         text.spellcheck = "false";
         text.autocapitalize = "false";
 
-        function createDeleteIcon() {
+        // function createDeleteIcon() {
 
-        }
+        // }
 
         const deleteIconContainer = document.createElement("div");
         deleteIconContainer.className = "delete-icon-container";
@@ -89,17 +89,18 @@ class TodoList {
         })
 
         deleteIconContainer.addEventListener("click", () => {
-            listContainer.removeChild(newItem);
+            todoList.removeChild(newItem);
+            todoItem.deleted = true;
         })
 
         newItem.appendChild(deleteIconContainer);
         newItem.appendChild(text);
-        listContainer.appendChild(newItem);
+        todoList.appendChild(newItem);
     }
 
-    // Renders a list of TodoItems as list items in the specified list.
-    static renderList(todoList, listContainer) {
-        todoList.itemsArray.forEach(item => TodoList.renderItem(item, listContainer) );
+    // Renders a list of TodoItems in a todoList.
+    static renderList(todoList) {
+        todoList.itemsArray.forEach(item => TodoList.renderItem(item, todoList) );
     }
 
     // Parses a JSON string describing a TodoList object.
