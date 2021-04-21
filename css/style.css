@@ -415,7 +415,7 @@ header {
     }
 }
 
-.delete-item-container {
+.delete-icon-container {
     top: 20px;
     position: relative;
     width: 20px;
@@ -423,7 +423,7 @@ header {
     z-index: 1;
 }
 
-.delete-item-container:hover {
+.delete-icon-container:hover {
     cursor: pointer;
 }
 

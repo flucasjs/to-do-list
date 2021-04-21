@@ -69,11 +69,13 @@ class TodoList {
         deleteIconContainer.appendChild(backSlash);
 
         deleteIconContainer.addEventListener("mouseover", () => {
+            forwardSlash.style.backgroundColor = "red";
             forwardSlash.style.width = "1.75px";
             backSlash.style.width = "1.75px";
         })
 
         deleteIconContainer.addEventListener("mouseout", () => {
+            forwardSlash.style.backgroundColor = "pink";
             forwardSlash.style.width = "1px";
             backSlash.style.width = "1px";
         })
