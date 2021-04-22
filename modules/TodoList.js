@@ -80,6 +80,11 @@ class TodoList {
             backSlash.style.width = "1px";
         })
 
+        deleteIconContainer.addEventListener("click", () => {
+            todoList.removeChild(newItem);
+            todoItem.deleted = true;
+        })
+
         newItem.addEventListener("mouseover", () => {
             forwardSlash.style.opacity = "75%";
             backSlash.style.opacity = "75%";
@@ -88,11 +93,6 @@ class TodoList {
         newItem.addEventListener("mouseout", () => {
             forwardSlash.style.opacity = "0";
             backSlash.style.opacity = "0";
-        })
-
-        deleteIconContainer.addEventListener("click", () => {
-            todoList.removeChild(newItem);
-            todoItem.deleted = true;
         })
 
         newItem.appendChild(deleteIconContainer);
@@ -109,7 +109,6 @@ class TodoList {
     static parseData(dataArray) {
         return new TodoList(JSON.parse(dataArray).map(item => new TodoItem(item.text, item.id, item.done, item.deleted)));
     }
-
 }
 
 export default TodoList

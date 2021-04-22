@@ -293,6 +293,16 @@ header {
     grid-row: span 1;
 }
 
+.delete-icon-container {
+    top: 2px;
+    left: 20px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+}
+
+
 /* ====================
     Media Queries
 ==================== */
@@ -317,6 +327,11 @@ header {
         max-width: 45%;
         flex: 1 1 100%;
         border-radius: 10px;
+    }
+
+    .delete-icon-container {
+        top: 20px;
+        left: 20px;
     }
 }
 
@@ -374,6 +389,11 @@ header {
     .todo-list__item {
         margin: 0.75em;
     }
+
+    .delete-icon-container {
+        top: 1px;
+        left: 1px;
+    }
 }
 
 
@@ -413,14 +433,11 @@ header {
     .todo-list__text {
         min-height: 6em;
     }
-}
 
-.delete-icon-container {
-    top: 20px;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    z-index: 1;
+    .delete-icon-container {
+        top: 1px;
+        left: 1px;
+    }
 }
 
 .delete-icon-container:hover {
@@ -458,7 +475,6 @@ header {
 .todo-list__text {
     transition: all .2s ease-in-out; 
 }
-
 
 .todo-list__text:hover { 
     box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.6);
