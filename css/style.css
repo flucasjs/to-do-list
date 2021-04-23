@@ -54,18 +54,9 @@ header {
     text-align: center;
 }
 
-.todo-list-refresher__redo-icon {
-    font-size: 1.75em;
-    color: white;
-}
-
-.todo-list-refresher__redo-icon:hover {
-    text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.4);
-}
-
 .date {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.375rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--secondary-text-color);
     letter-spacing: 0.1em;
@@ -73,6 +64,7 @@ header {
 
 .navbar__tabs {
     font-family: 'Ubuntu', sans-serif;
+    font-size: 0.75rem;
     color: white;
     list-style: none;
     letter-spacing: 0.045em;
@@ -332,6 +324,15 @@ header {
     .delete-icon-container {
         top: 20px;
         left: 20px;
+    }
+
+    .date {
+        font-size: 2.375rem;
+    }
+
+    .navbar__tabs {
+        font-size: 1.125rem;
+        letter-spacing: 0.045em;
     }
 }
 
