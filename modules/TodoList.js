@@ -52,52 +52,54 @@ class TodoList {
         text.spellcheck = "false";
         text.autocapitalize = "false";
 
-        // function createDeleteIcon() {
+        let deleteIcon = createDeleteIcon(newItem);
 
-        // }
-
-        const deleteIconContainer = document.createElement("div");
-        deleteIconContainer.className = "delete-icon-container";
-
-        const forwardSlash = document.createElement("div");
-        forwardSlash.className = "forward-slash"
-
-        const backSlash = document.createElement("div");
-        backSlash.className = "back-slash"
-
-        deleteIconContainer.appendChild(forwardSlash);
-        deleteIconContainer.appendChild(backSlash);
-
-        deleteIconContainer.addEventListener("mouseover", () => {
-            forwardSlash.style.backgroundColor = "red";
-            forwardSlash.style.width = "1.75px";
-            backSlash.style.width = "1.75px";
-        })
-
-        deleteIconContainer.addEventListener("mouseout", () => {
-            forwardSlash.style.backgroundColor = "pink";
-            forwardSlash.style.width = "1px";
-            backSlash.style.width = "1px";
-        })
-
-        deleteIconContainer.addEventListener("click", () => {
-            todoList.removeChild(newItem);
-            todoItem.deleted = true;
-        })
-
-        newItem.addEventListener("mouseover", () => {
-            forwardSlash.style.opacity = "75%";
-            backSlash.style.opacity = "75%";
-        })
-
-        newItem.addEventListener("mouseout", () => {
-            forwardSlash.style.opacity = "0";
-            backSlash.style.opacity = "0";
-        })
-
-        newItem.appendChild(deleteIconContainer);
+        newItem.appendChild(deleteIcon);
         newItem.appendChild(text);
         todoList.appendChild(newItem);
+
+        function createDeleteIcon(todoItem) {
+            const deleteIconContainer = document.createElement("div");
+            deleteIconContainer.className = "delete-icon-container";
+
+            const forwardSlash = document.createElement("div");
+            forwardSlash.className = "forward-slash"
+
+            const backSlash = document.createElement("div");
+            backSlash.className = "back-slash"
+
+            deleteIconContainer.appendChild(forwardSlash);
+            deleteIconContainer.appendChild(backSlash);
+
+            deleteIconContainer.addEventListener("mouseover", () => {
+                forwardSlash.style.backgroundColor = "red";
+                forwardSlash.style.width = "1.75px";
+                backSlash.style.width = "1.75px";
+            })
+
+            deleteIconContainer.addEventListener("mouseout", () => {
+                forwardSlash.style.backgroundColor = "pink";
+                forwardSlash.style.width = "1px";
+                backSlash.style.width = "1px";
+            })
+
+            deleteIconContainer.addEventListener("click", () => {
+                todoList.removeChild(newItem);
+                todoItem.deleted = true;
+            })
+
+            newItem.addEventListener("mouseover", () => {
+                forwardSlash.style.opacity = "75%";
+                backSlash.style.opacity = "75%";
+            })
+
+            newItem.addEventListener("mouseout", () => {
+                forwardSlash.style.opacity = "0";
+                backSlash.style.opacity = "0";
+            })
+
+            return deleteIconContainer;
+        }
     }
 
     // Renders a list of TodoItems in a todoList.
