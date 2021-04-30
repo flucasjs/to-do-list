@@ -163,6 +163,38 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 1000px;
+    background-color: white;
+    z-index: 2;
+    transform: rotate(30deg);
+    left: -35px;
+    background-image: url("../assets/images/texture.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 1000px;
+    background-color: white;
+    z-index: 2;
+    transform: rotate(-30deg);
+    right: -35px;
+    background-image: url("../assets/images/texture.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .date {
@@ -220,6 +252,7 @@ main {
 .todo-list__item {
     position: relative;
     list-style: none;
+    margin: 0.25em;
 }
 
 .todo-list__text {
@@ -338,6 +371,58 @@ header {
         font-size: 1.125rem;
         letter-spacing: 0.045em;
     }
+
+    header::before {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 1000px;
+        background-color: gray;
+        z-index: 2;
+        transform: rotate(45deg);
+        left: 100px;
+    }
+    
+    header::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 1000px;
+        background-color: gray;
+        z-index: 2;
+        transform: rotate(-45deg);
+        left: 100px;
+    }
+}
+
+@media (min-width: 600px) and (min-height: 100px) {
+    .grid {
+        grid-template-rows: minmax(25%, 1fr) 70% minmax(5%, 1fr);
+    }
+
+    .date {
+        font-size: 1.5rem;
+    }
+
+    .navbar__tabs {
+        font-size: 0.8rem;
+        letter-spacing: 0.045em;
+    }
+}
+
+@media (min-width: 650px) and (min-height: 590px) {
+    .grid {
+        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+    }
+    
+    .date {
+        font-size: 2rem;
+    }
+
+    .navbar__tabs {
+        font-size: 1rem;
+        letter-spacing: 0.045em;
+    }
 }
 
 @media (min-width: 700px) {
@@ -401,6 +486,36 @@ header {
     }
 }
 
+@media (min-width: 700px) and (min-height: 150px) {
+    .grid {
+        grid-template-rows: minmax(22.5%, 1fr) 67.5% minmax(5%, 1fr);
+    }
+    
+    .date {
+        font-size: 2rem;
+    }
+
+    .navbar__tabs {
+        font-size: 1rem;
+        letter-spacing: 0.045em;
+    }
+}
+
+@media (min-width: 700px) and (min-height: 650px) {
+    .grid {
+        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+    }
+    
+    .date {
+        font-size: 2rem;
+    }
+
+    .navbar__tabs {
+        font-size: 1rem;
+        letter-spacing: 0.045em;
+    }
+}
+
 
 @media (min-width: 880px) {
     .grid {
@@ -445,27 +560,17 @@ header {
     }
 }
 
-@media (min-width: 600px) and (max-height: 850px) {
+@media (min-width: 880px) and (min-height: 650px) {
     .grid {
-        grid-template-rows: minmax(15%, 1fr) 80% minmax(5%, 1fr);
-    }
-}
-
-@media (min-width: 600px) and (max-height: 650px) {
-    .grid {
-        grid-template-rows: minmax(27.5%, 1fr) 62.5% minmax(5%, 1fr);
-    }
-
-    .todo-list__item {
-        margin: 0.25em;
+        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
     }
     
     .date {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
 
     .navbar__tabs {
-        font-size: 0.75rem;
+        font-size: 1rem;
         letter-spacing: 0.045em;
     }
 }
