@@ -56,7 +56,7 @@ header {
 
 .date {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--secondary-text-color);
     letter-spacing: 0.1em;
@@ -64,7 +64,7 @@ header {
 
 .navbar__tabs {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: white;
     list-style: none;
     letter-spacing: 0.045em;
@@ -379,8 +379,8 @@ header {
         height: 1000px;
         background-color: gray;
         z-index: 2;
-        transform: rotate(45deg);
-        left: 100px;
+        transform: rotate(35deg);
+        left: 50px;
     }
     
     header::after {
@@ -390,8 +390,8 @@ header {
         height: 1000px;
         background-color: gray;
         z-index: 2;
-        transform: rotate(-45deg);
-        left: 100px;
+        transform: rotate(-35deg);
+        right: 50px;
     }
 }
 
@@ -406,6 +406,22 @@ header {
 
     .navbar__tabs {
         font-size: 0.8rem;
+        letter-spacing: 0.045em;
+    }
+}
+
+
+@media (min-width: 600px) and (min-height: 590px) {
+    .grid {
+        grid-template-rows: minmax(15%, 1fr) 82.5% minmax(5%, 1fr);
+    }
+
+    .date {
+        font-size: 2rem;
+    }
+
+    .navbar__tabs {
+        font-size: 1rem;
         letter-spacing: 0.045em;
     }
 }
@@ -503,7 +519,7 @@ header {
 
 @media (min-width: 700px) and (min-height: 650px) {
     .grid {
-        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+        grid-template-rows: minmax(12.5%, 1fr) 82.5% minmax(5%, 1fr);
     }
     
     .date {
@@ -562,7 +578,7 @@ header {
 
 @media (min-width: 880px) and (min-height: 650px) {
     .grid {
-        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+        grid-template-rows: minmax(10%, 1fr) 85% minmax(5%, 1fr);
     }
     
     .date {
