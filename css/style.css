@@ -169,12 +169,12 @@ header {
 header::before {
     content: '';
     position: absolute;
-    width: 60px;
+    width: 100px;
     height: 1000px;
     background-color: white;
     z-index: 2;
-    transform: rotate(30deg);
-    left: -35px;
+    transform: rotate(45deg);
+    left: -75px;
     background-image: url("../assets/images/texture.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -185,12 +185,12 @@ header::before {
 header::after {
     content: '';
     position: absolute;
-    width: 60px;
+    width: 100px;
     height: 1000px;
     background-color: white;
     z-index: 2;
-    transform: rotate(-30deg);
-    right: -35px;
+    transform: rotate(-45deg);
+    right: -75px;
     background-image: url("../assets/images/texture.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -375,23 +375,23 @@ header {
     header::before {
         content: '';
         position: absolute;
-        width: 10px;
+        width: 100px;
         height: 1000px;
         background-color: gray;
         z-index: 2;
-        transform: rotate(35deg);
-        left: 50px;
+        transform: rotate(45deg);
+        left: -50px;
     }
     
     header::after {
         content: '';
         position: absolute;
-        width: 10px;
+        width: 100px;
         height: 1000px;
         background-color: gray;
         z-index: 2;
-        transform: rotate(-35deg);
-        right: 50px;
+        transform: rotate(-45deg);
+        right: -50px;
     }
 }
 
@@ -409,7 +409,6 @@ header {
         letter-spacing: 0.045em;
     }
 }
-
 
 @media (min-width: 600px) and (min-height: 590px) {
     .grid {
@@ -438,6 +437,28 @@ header {
     .navbar__tabs {
         font-size: 1rem;
         letter-spacing: 0.045em;
+    }
+
+    header::before {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 1000px;
+        background-color: gray;
+        z-index: 2;
+        transform: rotate(45deg);
+        left: -65px;
+    }
+    
+    header::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 1000px;
+        background-color: gray;
+        z-index: 2;
+        transform: rotate(-45deg);
+        right: -65px;
     }
 }
 
@@ -500,6 +521,28 @@ header {
         top: 1px;
         left: 1px;
     }
+
+    header::before {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 1000px;
+        background-color: gray;
+        z-index: 2;
+        transform: rotate(45deg);
+        left: -10px;
+    }
+    
+    header::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 1000px;
+        background-color: gray;
+        z-index: 2;
+        transform: rotate(-45deg);
+        right: -10px;
+    }
 }
 
 @media (min-width: 700px) and (min-height: 150px) {
@@ -531,7 +574,6 @@ header {
         letter-spacing: 0.045em;
     }
 }
-
 
 @media (min-width: 880px) {
     .grid {
