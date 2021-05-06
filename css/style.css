@@ -169,7 +169,7 @@ header {
 header::before {
     content: '';
     position: absolute;
-    width: 100px;
+    width: 50px;
     height: 1000px;
     background-color: white;
     z-index: 2;
@@ -185,7 +185,7 @@ header::before {
 header::after {
     content: '';
     position: absolute;
-    width: 100px;
+    width: 50px;
     height: 1000px;
     background-color: white;
     z-index: 2;
@@ -371,27 +371,15 @@ header {
         font-size: 1.125rem;
         letter-spacing: 0.045em;
     }
-
-    header::before {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 1000px;
-        background-color: gray;
-        z-index: 2;
-        transform: rotate(45deg);
-        left: -50px;
-    }
     
+    header::before {
+        width: 50px;
+        left: -75px;
+    }
+
     header::after {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 1000px;
-        background-color: gray;
-        z-index: 2;
-        transform: rotate(-45deg);
-        right: -50px;
+        width: 50px;
+        right: -75px;
     }
 }
 
@@ -412,7 +400,7 @@ header {
 
 @media (min-width: 600px) and (min-height: 590px) {
     .grid {
-        grid-template-rows: minmax(15%, 1fr) 82.5% minmax(5%, 1fr);
+        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
     }
 
     .date {
@@ -437,28 +425,6 @@ header {
     .navbar__tabs {
         font-size: 1rem;
         letter-spacing: 0.045em;
-    }
-
-    header::before {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 1000px;
-        background-color: gray;
-        z-index: 2;
-        transform: rotate(45deg);
-        left: -65px;
-    }
-    
-    header::after {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 1000px;
-        background-color: gray;
-        z-index: 2;
-        transform: rotate(-45deg);
-        right: -65px;
     }
 }
 
@@ -523,25 +489,13 @@ header {
     }
 
     header::before {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 1000px;
-        background-color: gray;
-        z-index: 2;
-        transform: rotate(45deg);
-        left: -10px;
+        width: 50px;
+        left: -50px;
     }
-    
+
     header::after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 1000px;
-        background-color: gray;
-        z-index: 2;
-        transform: rotate(-45deg);
-        right: -10px;
+        width: 50px;
+        right: -50px;
     }
 }
 
@@ -557,6 +511,16 @@ header {
     .navbar__tabs {
         font-size: 1rem;
         letter-spacing: 0.045em;
+    }
+
+    header::before {
+        width: 50px;
+        left: -60px;
+    }
+
+    header::after {
+        width: 50px;
+        right: -60px;
     }
 }
 
@@ -592,11 +556,13 @@ header {
     .date {
         font-size: 2.2em;
         margin-bottom: 0;
+        margin-left: 0.5em;
     }
 
     ul.navbar__tabs {
         font-size: 1.1em;
         margin-top: 1.275em;
+        margin-right: 0.5em;
     }
 
     .container {
@@ -616,13 +582,11 @@ header {
         top: 1px;
         left: 1px;
     }
+    
+
 }
 
 @media (min-width: 880px) and (min-height: 650px) {
-    .grid {
-        grid-template-rows: minmax(10%, 1fr) 85% minmax(5%, 1fr);
-    }
-    
     .date {
         font-size: 2rem;
     }
@@ -630,6 +594,16 @@ header {
     .navbar__tabs {
         font-size: 1rem;
         letter-spacing: 0.045em;
+    }
+
+    header::before {
+        width: 50px;
+        left: -50px;
+    }
+    
+    header::after {
+        width: 50px;
+        right: -50px;
     }
 }
 
