@@ -174,7 +174,7 @@ header::before {
     background-color: white;
     z-index: 2;
     transform: rotate(45deg);
-    left: -75px;
+    left: -50px;
     background-image: url("../assets/images/texture.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -190,7 +190,7 @@ header::after {
     background-color: white;
     z-index: 2;
     transform: rotate(-45deg);
-    right: -75px;
+    right: -50px;
     background-image: url("../assets/images/texture.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -310,7 +310,7 @@ main {
 
 .grid {
     display: grid;
-    grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+    grid-template-rows: minmax(12.5%, 1fr) 82.5% minmax(5%, 1fr);
     height: 100vh;
 }
 
@@ -332,9 +332,17 @@ header {
     Media Queries
 ==================== */
 
-@media (min-width: 600px) {
+@media (min-width: 675px) {
     .grid {
-        grid-template-rows: minmax(15%, 1fr) 80% minmax(5%, 1fr);
+        grid-template-rows: minmax(12.5%, 1fr) 82.5% minmax(5%, 1fr);
+    }
+    
+    .container {
+        width: 70%;
+    }
+
+    .container-flex {
+        justify-content: space-between;
     }
 
     .main-content {
@@ -365,59 +373,32 @@ header {
 
     .date {
         font-size: 2.375rem;
-    }
-
-    .navbar__tabs {
-        font-size: 1.125rem;
-        letter-spacing: 0.045em;
-    }
-    
-    header::before {
-        width: 50px;
-        left: -75px;
-    }
-
-    header::after {
-        width: 50px;
-        right: -75px;
+        margin-top: 0.325em;
+        margin-bottom: 0.2em;
     }
 }
 
-@media (min-width: 600px) and (min-height: 100px) {
+@media (min-width: 675px) and (min-height: 100px) {
     .grid {
-        grid-template-rows: minmax(25%, 1fr) 70% minmax(5%, 1fr);
-    }
-
-    .date {
-        font-size: 1.5rem;
-    }
-
-    .navbar__tabs {
-        font-size: 0.8rem;
-        letter-spacing: 0.045em;
-    }
-}
-
-@media (min-width: 600px) and (min-height: 590px) {
-    .grid {
-        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+        grid-template-rows: minmax(12.5%, 1fr) 82.5% minmax(5%, 1fr);
     }
 
     .date {
         font-size: 2rem;
     }
 
-    .navbar__tabs {
-        font-size: 1rem;
-        letter-spacing: 0.045em;
+    ul.navbar__tabs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
 }
 
-@media (min-width: 650px) and (min-height: 590px) {
+@media (min-width: 675px) and (min-height: 590px) {
     .grid {
-        grid-template-rows: minmax(17.5%, 1fr) 77.5% minmax(5%, 1fr);
+        grid-template-rows: minmax(12.5%, 1fr) 82.5% minmax(5%, 1fr);
     }
-    
+
     .date {
         font-size: 2rem;
     }
@@ -487,16 +468,6 @@ header {
         top: 1px;
         left: 1px;
     }
-
-    header::before {
-        width: 50px;
-        left: -50px;
-    }
-
-    header::after {
-        width: 50px;
-        right: -50px;
-    }
 }
 
 @media (min-width: 700px) and (min-height: 150px) {
@@ -511,16 +482,6 @@ header {
     .navbar__tabs {
         font-size: 1rem;
         letter-spacing: 0.045em;
-    }
-
-    header::before {
-        width: 50px;
-        left: -60px;
-    }
-
-    header::after {
-        width: 50px;
-        right: -60px;
     }
 }
 
@@ -556,13 +517,13 @@ header {
     .date {
         font-size: 2.2em;
         margin-bottom: 0;
-        margin-left: 0.5em;
+        margin-left: 1em;
     }
 
     ul.navbar__tabs {
         font-size: 1.1em;
         margin-top: 1.275em;
-        margin-right: 0.5em;
+        margin-right: 1em;
     }
 
     .container {
@@ -582,18 +543,18 @@ header {
         top: 1px;
         left: 1px;
     }
-    
-
 }
 
 @media (min-width: 880px) and (min-height: 650px) {
     .date {
-        font-size: 2rem;
+        font-size: 2.5rem;
+        margin-left: 0.5em;
     }
 
     .navbar__tabs {
-        font-size: 1rem;
+        font-size: 1.5rem;
         letter-spacing: 0.045em;
+        margin-left: 0.5em;
     }
 
     header::before {
