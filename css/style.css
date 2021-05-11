@@ -164,6 +164,7 @@ header {
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    grid-row: span 1;
 }
 
 header::before {
@@ -261,6 +262,7 @@ main {
     background-color: #F5F591;
     box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.2);
     overflow-wrap: break-word;
+    transition: all .2s ease-in-out; 
 }
 
 .todo-list__text:focus {
@@ -268,6 +270,9 @@ main {
     outline-style: solid;
 }
 
+.todo-list__text:hover { 
+    box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.6);
+}
 /* ------------------
     layout.input
 ------------------ */
@@ -314,10 +319,6 @@ main {
     height: 100vh;
 }
 
-header {
-    grid-row: span 1;
-}
-
 .delete-icon-container {
     top: 2px;
     left: 20px;
@@ -325,6 +326,38 @@ header {
     width: 20px;
     height: 20px;
     z-index: 1;
+}
+
+.delete-icon-container:hover {
+    cursor: pointer;
+}
+
+.forward-slash{
+    width: 1px;
+    height: 10px;
+    position: absolute;
+    z-index: 2;
+    background-color: pink;
+    transform: rotate(45deg);
+    top: 6px;
+    left: 10px;
+    opacity: 0;
+    transition: all 0.1s ease-out;
+    cursor: pointer;
+}
+
+.back-slash {
+    width: 1px;
+    height: 10px;
+    position: absolute;
+    z-index: 2;
+    background-color: red;
+    transform: rotate(-45deg);
+    top: 6px;
+    left: 10px;
+    opacity: 0;
+    transition: all 0.1s ease-out;
+    cursor: pointer;
 }
 
 
@@ -566,44 +599,4 @@ header {
         width: 50px;
         right: -50px;
     }
-}
-
-.delete-icon-container:hover {
-    cursor: pointer;
-}
-
-.forward-slash{
-    width: 1px;
-    height: 10px;
-    position: absolute;
-    z-index: 2;
-    background-color: pink;
-    transform: rotate(45deg);
-    top: 6px;
-    left: 10px;
-    opacity: 0;
-    transition: all 0.1s ease-out;
-    cursor: pointer;
-}
-
-.back-slash {
-    width: 1px;
-    height: 10px;
-    position: absolute;
-    z-index: 2;
-    background-color: red;
-    transform: rotate(-45deg);
-    top: 6px;
-    left: 10px;
-    opacity: 0;
-    transition: all 0.1s ease-out;
-    cursor: pointer;
-}
-
-.todo-list__text {
-    transition: all .2s ease-in-out; 
-}
-
-.todo-list__text:hover { 
-    box-shadow: 2px 3px 10px -5px rgba(0, 0, 0, 0.6);
 }
